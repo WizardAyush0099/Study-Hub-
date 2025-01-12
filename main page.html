@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive study materials, mock tests, and resources to help students excel in their exams.">
+    <meta name="keywords" content="study materials, sample papers, old question papers, mock tests, student resources">
+    <meta name="author" content="YourWebsiteName">
+    <title>Study Hub | Learn, Practice, Succeed</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sh.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Study Hub</h1>
+           <nav>
+    <ul class="nav-links">
+        <li><a href="#about-section">About</a></li>
+        <li><a href="#materials">Study Materials</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+        </div>
+    </header>
+
+    <section id="materials">
+        <div class="container">
+            <h2>Study Materials</h2>
+            <div class="materials-list">
+                <div class="material-item">
+                    <h3>Old Question Papers</h3>
+                    <p>Access a wide range of previous years' question papers at the end of the page ⬇️⬇️</p>
+                </div>
+                <div class="material-item">
+                    <h3>Sample Papers</h3>
+                    <p>Practice with sample papers for better preparation.</p>
+                    <a href="#" class="btn">This will be available soon</a>
+                </div>
+                <div class="material-item">
+                    <h3>Mock Tests</h3>
+                    <p>Test your knowledge with our interactive mock tests.</p>
+                    <a href="#" class="btn">Under Construction 🚧 🚧</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#class-selection" class="btn">View Papers Here 👇👇</a>
+    <section id="class-selection" class="class-selection">
+        <h2>Select Class</h2>
+        <a href="class-10-papers.html" class="btn">Class 10</a>
+        <a href="class-11-papers.html" class="btn">Class 11</a>
+        <a href="class-12-papers.html" class="btn">Class 12</a>
+    </section>
+<section id="contact" class="contact-section">
+  <section id="help-section" class="help-section">
+    <div class="container">
+        <h2>Need Help or Resources?</h2>
+        <p>
+            If you need any assistance, like question papers for your classes or study materials, feel free to reach out using the contact form above. 
+            We’re here to help you succeed in your studies. Don’t hesitate to send us a message!
+        </p>
+    </div>
+</section>
+    <h2>Contact Us</h2>
+    <form
+        action="https://formspree.io/f/xnnnodkj"
+        method="POST"
+        id="contact-form"
+    >
+        <label>
+            Your Name:
+            <input type="text" name="name" required placeholder="Enter your name">
+        </label>
+        <label>
+            Your Email:
+            <input type="email" name="email" required placeholder="Enter your email">
+        </label>
+        <label>
+            Your Message:
+            <textarea name="message" rows="5" required placeholder="Write your message"></textarea>
+        </label>
+        <button type="submit" class="btn">Send</button>
+    </form>
+</section>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Study Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <section id="about-section" class="about-section">
+    <div class="container">
+        <h2>About Me</h2>
+        <p>
+            Hi, I am <span class="name-highlight">AYUSH</span>, passionate about helping students excel in their studies. Explore my resources and reach out anytime for assistance. Stay connected with me on Instagram and YouTube for more updates and helpful content!
+        </p>
+
+        <div class="social-buttons">
+            <a href="https://www.instagram.com/a_y_u_s_h0099?igsh=MXJoeWhmcDQ2OW5pdg==" target="_blank" class="social-btn instagram-btn">
+                Follow Me on Instagram
+            </a>
+            <a href="https://youtube.com/@ayush00099?si=HfqdFi73iHUTnhq_" target="_blank" class="social-btn youtube-btn">
+                Visit My YouTube Channel
+            </a>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
+</script>
