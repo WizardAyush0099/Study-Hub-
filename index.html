@@ -1,125 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-adsense-account" content="ca-pub-6933984756320127">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6933984756320127"
-     crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Comprehensive study materials, mock tests, and resources to help students excel in their exams.">
-    <meta name="keywords" content="study materials, sample papers, old question papers, mock tests, student resources">
-    <meta name="author" content="YourWebsiteName">
-    <title>Study Hub | Learn, Practice, Succeed</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Comprehensive study materials, mock tests, and resources to help students excel in their exams.">
+  <meta name="keywords" content="study materials, sample papers, old question papers, mock tests, student resources">
+  <meta name="author" content="Study Hub">
+  <title>Study Hub | Learn, Practice, Succeed</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sh.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+  <style>
+    .notes-generator {
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .notes-generator input {
+      padding: 10px;
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .notes-generator button {
+      padding: 10px 20px;
+      margin-left: 8px;
+      background-color: #e60023;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .notes-generator button:hover {
+      background-color: #c4001f;
+    }
+
+    #notesResult {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    #notesResult ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    #notesResult li {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
+
 <body>
-    <header class="header">
-        <div class="container">
-            <h1>Study Hub</h1>
-           <nav>
-    <ul class="nav-links">
+
+<header class="header">
+  <div class="container">
+    <h1>Study Hub</h1>
+    <nav>
+      <ul class="nav-links">
         <li><a href="#about-section">About</a></li>
-        <li><a href="#materials">Study Materials</a></li>
-        <li><a href="#resources">Resources</a></li>
-        <li><a href="#community">Community</a></li>
+        <li><a href="#materials">Study Materials</a>
         <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
-        </div>
-    </header>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <section id="materials">
-        <div class="container">
-            <h2>Study Materials</h2>
-            <div class="materials-list">
-                <div class="material-item">
-                    <h3>Old Question Papers</h3>
-                    <p>Access a wide range of previous years' question papers at the end of the page ⬇️⬇️</p>
-                </div>
-                <div class="material-item">
-                    <h3>Sample Papers</h3>
-                    <p>Practice with sample papers for better preparation.</p>
-                    <a href="#" class="btn">This will be available soon</a>
-                </div>
-                <div class="material-item">
-                    <h3>Mock Tests</h3>
-                    <p>Test your knowledge with our interactive mock tests.</p>
-                    <a href="#" class="btn">Under Construction 🚧 🚧</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="materials">
+  <div class="container">
+    <h2>Study Materials</h2>
+    <div class="materials-list">
 
-    <a href="#class-selection" class="btn">View Papers Here 👇👇</a>
-    <section id="class-selection" class="class-selection">
-        <h2>Select Class</h2>
-        <a href="index.class-10-papers.html" class="btn">Class 10</a>
-        <a href="index.class-11-papers.html" class="btn">Class 11</a>
-        <a href="index.class-12-papers.html" class="btn">Class 12</a>
-    </section>
+      <div class="material-item">
+        <h3>Old Question Papers</h3>
+        <p>Access a wide range of previous years' question papers at the end of the page ⬇️⬇️</p>
+      </div>
+
+      <div class="material-item notes-generator">
+        <h3>Auto Notes Generator</h3>
+        <p>"Need notes? Just enter your topic and let us do the rest. Handwritten notes feature launching soon to make learning even better!"</p>
+        <input type="text" id="topicInput" placeholder="Enter a topic">
+        <button onclick="fetchNotes()">Generate Notes</button>
+        <div id="notesResult"></div>
+      </div>
+
+      <div class="material-item">
+        <h3>Mock Tests</h3>
+        <p>Test your knowledge with our interactive mock tests.</p>
+        <a href="#" class="btn">Under Construction 🚧 🚧</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<a href="#class-selection" class="btn">View Papers Here 👇👇</a>
+
+<section id="class-selection" class="class-selection">
+  <h2>Select Class</h2>
+  <a href="class-10-papers.html" class="btn">Class 10</a>
+  <a href="class-11-papers.html" class="btn">Class 11</a>
+  <a href="class-12-papers.html" class="btn">Class 12</a>
+</section>
+
 <section id="contact" class="contact-section">
   <section id="help-section" class="help-section">
     <div class="container">
-        <h2>Need Help or Resources?</h2>
-        <p>
-            If you need any assistance, like question papers for your classes or study materials, feel free to reach out using the contact form above. 
-            We’re here to help you succeed in your studies. Don’t hesitate to send us a message!
-        </p>
+      <h2>Need Help or Resources?</h2>
+      <p>
+        If you need any assistance, like question papers for your classes or study materials, feel free to reach out using the contact form above. 
+        We’re here to help you succeed in your studies. Don’t hesitate to send us a message!
+      </p>
     </div>
+  </section>
+
+  <h2>Contact Us</h2>
+  <form action="https://formspree.io/f/xnnnodkj" method="POST" id="contact-form">
+    <label>Your Name:
+      <input type="text" name="name" required placeholder="Enter your name">
+    </label>
+    <label>Your Email:
+      <input type="email" name="email" required placeholder="Enter your email">
+    </label>
+    <label>Your Message:
+      <textarea name="message" rows="5" required placeholder="Write your message"></textarea>
+    </label>
+    <button type="submit" class="btn">Send</button>
+  </form>
 </section>
-    <h2>Contact Us</h2>
-    <!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/mblgjeva"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
-    <footer>
-    <p>&copy; 2025 Study Hub. All rights reserved. <a href="index.privacy-policy.html">Privacy Policy</a></p>
-    </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
-    <section id="about-section" class="about-section">
-    <div class="container">
-        <h2>About Me</h2>
-        <p>
-            Hi, I am <span class="name-highlight">AYUSH</span>, passionate about helping students excel in their studies. Explore my resources and reach out anytime for assistance. Stay connected with me on Instagram and YouTube for more updates and helpful content!
-        </p>
+<footer>
+  <p>&copy; 2025 Study Hub. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a></p>
+</footer>
 
-        <div class="social-buttons">
-            <a href="https://www.instagram.com/a_y_u_s_h0099?igsh=MXJoeWhmcDQ2OW5pdg==" target="_blank" class="social-btn instagram-btn">
-                Follow Me on Instagram
-            </a>
-            <a href="https://youtube.com/@ayush00099?si=HfqdFi73iHUTnhq_" target="_blank" class="social-btn youtube-btn">
-                Visit My YouTube Channel
-            </a>
-        </div>
+<section id="about-section" class="about-section">
+  <div class="container">
+    <h2>About Me</h2>
+    <p>
+      Hi, I am <span class="name-highlight">AYUSH</span>, passionate about helping students excel in their studies. Explore my resources and reach out anytime for assistance. Stay connected with me on Instagram and YouTube for more updates and helpful content!
+    </p>
+    <div class="social-buttons">
+      <a href="https://www.instagram.com/a_y_u_s_h0099?igsh=MXJoeWhmcDQ2OW5pdg==" target="_blank" class="social-btn instagram-btn">Follow Me on Instagram</a>
+      <a href="https://youtube.com/@ayush00099?si=HfqdFi73iHUTnhq_" target="_blank" class="social-btn youtube-btn">Visit My YouTube Channel</a>
     </div>
+  </div>
 </section>
-</body>
-</html>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
+  AOS.init();
+</script>
+
+<script>
+  function fetchNotes() {
+    const topic = document.getElementById("topicInput").value;
+    const resultDiv = document.getElementById("notesResult");
+
+    if (topic.trim() === "") {
+      resultDiv.innerHTML = "<p>Please enter a topic!</p>";
+      return;
+    }
+
+    resultDiv.innerHTML = "<p>Loading notes...</p>";
+
+    fetch(`https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&exintro=&explaintext=&titles=${encodeURIComponent(topic)}`)
+      .then(response => response.json())
+      .then(data => {
+        const pages = data.query.pages;
+        const pageId = Object.keys(pages)[0];
+
+        if (pageId === "-1") {
+          resultDiv.innerHTML = "<p>No notes found for this topic.</p>";
+        } else {
+          const text = pages[pageId].extract;
+          const bulletPoints = text.split('. ').map(point => `<li>${point.trim()}.</li>`).join('');
+          resultDiv.innerHTML = `<h4>${topic}</h4><ul>${bulletPoints}</ul>`;
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        resultDiv.innerHTML = "<p>There was an error fetching the notes. Try again!</p>";
+      });
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth"
-        });
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+        behavior: "smooth"
+      });
     });
-});
+  });
 </script>
+
+</body>
+</html>
