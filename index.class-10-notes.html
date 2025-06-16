@@ -11,6 +11,7 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      color: #333;
     }
 
     header {
@@ -22,11 +23,11 @@
     }
 
     .button-container {
-      margin-top: 50px;
+      margin-top: 40px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 30px;
+      gap: 20px;
       padding: 0 20px;
     }
 
@@ -34,9 +35,9 @@
       background-color: #52ab98;
       color: white;
       border: none;
-      padding: 20px 40px;
-      border-radius: 15px;
-      font-size: 1.2rem;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-size: 1rem;
       cursor: pointer;
       transition: transform 0.3s ease, background-color 0.3s ease;
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
@@ -47,6 +48,27 @@
     .note-btn:hover {
       background-color: #3b8d79;
       transform: scale(1.05);
+    }
+
+    .pdf-viewer {
+      display: none;
+      margin-top: 30px;
+      padding: 20px;
+    }
+
+    iframe {
+      width: 90%;
+      height: 80vh;
+      border: 2px solid #2b6777;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .coming-soon {
+      display: none;
+      font-size: 1.2rem;
+      color: #ff5555;
+      margin-top: 30px;
     }
 
     footer {
@@ -62,6 +84,10 @@
       .note-btn {
         width: 80%;
       }
+
+      iframe {
+        height: 60vh;
+      }
     }
   </style>
 </head>
@@ -70,18 +96,35 @@
   <header>📘 Class 10 - Handwritten Notes</header>
 
   <div class="button-container">
-    <a class="note-btn" href="https://drive.google.com/file/d/10cYrtIZSbrujMKJFgraRHOnajzeD9wM_/view?usp=drivesdk" target="_blank">📜 History Notes</a>
-
-    <a class="note-btn" href="https://drive.google.com/file/d/1-zm4FhcW2bbaxATKSHDg3t9D3nDgteIv/view?usp=drivesdk" target="_blank">
-      🌍 Geography Notes
-    </a>
-
-    <a class="note-btn" href="/Class 10 Science Diagrams.pdf" target="_blank">🔬 Science Diagrams</a>
+    <button class="note-btn" onclick="showPDF('https://drive.google.com/file/d/10cYrtIZSbrujMKJFgraRHOnajzeD9wM_/preview')">📜 History Notes</button>
+    <button class="note-btn" onclick="showPDF('https://drive.google.com/file/d/1-zm4FhcW2bbaxATKSHDg3t9D3nDgteIv/preview')">🌍 Geography Notes</button>
+    <button class="note-btn" onclick="showComingSoon()">🔬 Science Diagrams</button>
+    <button class="note-btn" onclick="showComingSoon()">📕 Civics Notes</button>
+    <button class="note-btn" onclick="showComingSoon()">📗 Economics Notes</button>
   </div>
 
+  <div id="pdf-viewer" class="pdf-viewer">
+    <iframe id="pdf-frame" src="" allow="autoplay"></iframe>
+  </div>
+
+  <div id="coming-soon" class="coming-soon">📄 This note will be added soon!</div>
+
   <footer>
-    Support and contact us — More notes will be available soon! 📩
+    View-only | More notes coming soon! 📩
   </footer>
+
+  <script>
+    function showPDF(link) {
+      document.getElementById("coming-soon").style.display = "none";
+      document.getElementById("pdf-viewer").style.display = "block";
+      document.getElementById("pdf-frame").src = link;
+    }
+
+    function showComingSoon() {
+      document.getElementById("pdf-viewer").style.display = "none";
+      document.getElementById("coming-soon").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
