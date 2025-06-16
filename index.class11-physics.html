@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Class 11 Physics Handwritten Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f8ff, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #2b6777;
+      color: white;
+      padding: 25px;
+      text-align: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .chapter-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 30px 10px;
+    }
+
+    .chapter-btn {
+      padding: 12px 25px;
+      background-color: #52ab98;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .chapter-btn:hover {
+      background-color: #3b8d79;
+      transform: scale(1.05);
+    }
+
+    .pdf-viewer {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    iframe {
+      width: 90%;
+      height: 80vh;
+      border: 2px solid #2b6777;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .coming-soon {
+      text-align: center;
+      margin: 30px auto;
+      font-size: 1.2rem;
+      color: #ff5555;
+      display: none;
+    }
+
+    .whatsapp-support-section {
+      background-color: #f1fef5;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 2px solid #b2dfdb;
+    }
+
+    .whatsapp-support-box {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #e0f7ea;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .whatsapp-support-box h2 {
+      color: #2e7d32;
+    }
+
+    .whatsapp-support-box p {
+      font-size: 1.1rem;
+      color: #333;
+      margin: 15px 0;
+    }
+
+    .whatsapp-join-btn {
+      display: inline-flex;
+      align-items: center;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .whatsapp-join-btn img {
+      margin-right: 10px;
+      height: 24px;
+    }
+
+    .whatsapp-join-btn:hover {
+      background-color: #1ebe5b;
+    }
+
+    footer {
+      background-color: #f0f0f0;
+      padding: 15px;
+      text-align: center;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      iframe {
+        height: 60vh;
+      }
+
+      .chapter-btn {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>📘 Class 11 Physics - Handwritten Notes</header>
+
+  <div class="chapter-list">
+    <button class="chapter-btn" onclick="showChapter(1)">Chapter 1 - Units & Measurements</button>
+    <button class="chapter-btn" onclick="showComingSoon(2)">Chapter 2 - Motion in a Straight Line</button>
+    <button class="chapter-btn" onclick="showComingSoon(3)">Chapter 3 - Motion in a Plane</button>
+    <button class="chapter-btn" onclick="showComingSoon(4)">Chapter 4 - Laws of Motion</button>
+    <button class="chapter-btn" onclick="showComingSoon(5)">Chapter 5 - Work, Energy and Power</button>
+    <button class="chapter-btn" onclick="showComingSoon(6)">Chapter 6 - System of Particles</button>
+    <button class="chapter-btn" onclick="showComingSoon(7)">Chapter 7 - Rotational Motion</button>
+    <button class="chapter-btn" onclick="showComingSoon(8)">Chapter 8 - Gravitation</button>
+    <button class="chapter-btn" onclick="showComingSoon(9)">Chapter 9 - Mechanical Properties of Solids</button>
+    <button class="chapter-btn" onclick="showComingSoon(10)">Chapter 10 - Mechanical Properties of Fluids</button>
+    <button class="chapter-btn" onclick="showComingSoon(11)">Chapter 11 - Thermal Properties of Matter</button>
+    <button class="chapter-btn" onclick="showComingSoon(12)">Chapter 12 - Thermodynamics</button>
+    <button class="chapter-btn" onclick="showComingSoon(13)">Chapter 13 - Kinetic Theory</button>
+    <button class="chapter-btn" onclick="showComingSoon(14)">Chapter 14 - Oscillations</button>
+    <button class="chapter-btn" onclick="showComingSoon(15)">Chapter 15 - Waves</button>
+  </div>
+
+  <div id="pdf-viewer" class="pdf-viewer">
+    <iframe id="pdf-frame" src="" allow="autoplay"></iframe>
+  </div>
+
+  <div id="coming-soon" class="coming-soon">
+    📄 This chapter will be added soon!
+  </div>
+
+  <section class="whatsapp-support-section">
+    <div class="whatsapp-support-box">
+      <h2>📞 Need Help or Support?</h2>
+      <p>Join our official WhatsApp Community to ask questions, get help, and stay updated with the latest study resources.</p>
+      <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank" class="whatsapp-join-btn">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+        Join WhatsApp Community
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    View-only | More chapters coming soon! © YourStudyHub
+  </footer>
+
+  <script>
+    function showChapter(chapter) {
+      document.getElementById('coming-soon').style.display = 'none';
+      document.getElementById('pdf-viewer').style.display = 'block';
+      const frame = document.getElementById('pdf-frame');
+
+      if (chapter === 1) {
+        frame.src = "https://drive.google.com/file/d/11GKDFrFA7ox9LNt_0CEO-esfkajP1x1g/preview";
+      }
+    }
+
+    function showComingSoon(chapter) {
+      document.getElementById('pdf-viewer').style.display = 'none';
+      document.getElementById('coming-soon').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
