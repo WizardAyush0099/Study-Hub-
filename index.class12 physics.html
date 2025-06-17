@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Class 12 Physics Handwritten Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f5f7fa, #ffffff);
+      color: #222;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 30px 15px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+    }
+
+    .chapters {
+      margin: 40px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .chapters h2 {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+      font-size: 1.6rem;
+    }
+
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .chapter-list a,
+    .chapter-list button {
+      background-color: #2563eb;
+      color: white;
+      text-decoration: none;
+      border: none;
+      padding: 14px 26px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .chapter-list a:hover,
+    .chapter-list button:hover {
+      background-color: #1d4ed8;
+      transform: scale(1.03);
+    }
+
+    .pdf-container {
+      margin: 50px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+    }
+
+    .whatsapp-support-section {
+      margin: 60px auto;
+      text-align: center;
+      padding: 40px 20px;
+      background: #e0f7f1;
+      border-top: 3px solid #25D366;
+      border-radius: 20px;
+      max-width: 900px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    .whatsapp-support-box h2 {
+      color: #1e3a8a;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .whatsapp-support-box p {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .whatsapp-join-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #25D366;
+      color: white;
+      padding: 14px 24px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .whatsapp-join-btn:hover {
+      background-color: #1ebe5d;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 80px;
+      font-size: 1rem;
+      color: #333;
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #f1f1f1;
+      border-top: 2px solid #ddd;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .chapter-list a, .chapter-list button {
+        width: 90%;
+      }
+
+      iframe {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📘 Class 12 Physics - Handwritten Notes</h1>
+    <p>Select a chapter below to view the notes.</p>
+  </header>
+
+  <section class="chapters">
+    <h2>📚 Chapters</h2>
+    <div class="chapter-list">
+      <a href="#chapter1">Chapter 1: Electric Charges and Fields</a>
+      <button onclick="alert('Chapter 2 Notes Coming Soon!')">Chapter 2: Electrostatic Potential and Capacitance</button>
+      <button onclick="alert('Chapter 3 Notes Coming Soon!')">Chapter 3: Current Electricity</button>
+      <button onclick="alert('Chapter 4 Notes Coming Soon!')">Chapter 4: Moving Charges and Magnetism</button>
+      <button onclick="alert('Chapter 5 Notes Coming Soon!')">Chapter 5: Magnetism and Matter</button>
+      <!-- Add more chapters as needed -->
+    </div>
+  </section>
+
+  <section id="chapter1" class="pdf-container">
+    <h2>📄 Chapter 1: Electric Charges and Fields</h2>
+    <iframe src="https://drive.google.com/file/d/11VHXRqSRRUKB8yoyB2WHtvdd9bXRSy0v/preview" allow="autoplay"></iframe>
+  </section>
+
+  <section class="whatsapp-support-section">
+    <div class="whatsapp-support-box">
+      <h2>📞 Need Help or Support?</h2>
+      <p>Join our official WhatsApp Community to ask questions, get help, and stay updated with the latest study resources.</p>
+      <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank" class="whatsapp-join-btn">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+        Join WhatsApp Community
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    More Class 12 Physics chapters will be added soon! Stay tuned 📘✨
+  </footer>
+
+</body>
+</html>
