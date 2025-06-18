@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Class 11 Chemistry Handwritten Notes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fffaf0, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #8e44ad;
+      color: white;
+      padding: 25px;
+      text-align: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .chapter-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 30px 10px;
+    }
+
+    .chapter-btn {
+      padding: 12px 25px;
+      background-color: #9b59b6;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .chapter-btn:hover {
+      background-color: #7d3c98;
+      transform: scale(1.05);
+    }
+
+    .pdf-viewer {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+
+    iframe {
+      width: 90%;
+      height: 80vh;
+      border: 2px solid #8e44ad;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .coming-soon {
+      text-align: center;
+      margin: 30px auto;
+      font-size: 1.2rem;
+      color: #e74c3c;
+      display: none;
+    }
+
+    .whatsapp-support-section {
+      background-color: #f1fef5;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 2px solid #dcd6f7;
+    }
+
+    .whatsapp-support-box {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #f5e6ff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .whatsapp-support-box h2 {
+      color: #6c3483;
+    }
+
+    .whatsapp-support-box p {
+      font-size: 1.1rem;
+      color: #333;
+      margin: 15px 0;
+    }
+
+    .whatsapp-join-btn {
+      display: inline-flex;
+      align-items: center;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .whatsapp-join-btn img {
+      margin-right: 10px;
+      height: 24px;
+    }
+
+    .whatsapp-join-btn:hover {
+      background-color: #1ebe5b;
+    }
+
+    footer {
+      background-color: #f0f0f0;
+      padding: 15px;
+      text-align: center;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      iframe {
+        height: 60vh;
+      }
+
+      .chapter-btn {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>🧪 Class 11 Chemistry - Handwritten Notes</header>
+
+  <div class="chapter-list">
+    <button class="chapter-btn" onclick="showChapter(2)">Chapter 2 - Some Basic Concepts of Chemistry</button>
+    <button class="chapter-btn" onclick="showChapter(3)">Chapter 3 - Structure of Atom</button>
+    <button class="chapter-btn" onclick="showComingSoon(4)">Chapter 4 - Classification of Elements</button>
+    <button class="chapter-btn" onclick="showComingSoon(5)">Chapter 5 - Chemical Bonding</button>
+    <button class="chapter-btn" onclick="showComingSoon(6)">Chapter 6 - Thermodynamics</button>
+    <button class="chapter-btn" onclick="showComingSoon(7)">Chapter 7 - Equilibrium</button>
+    <button class="chapter-btn" onclick="showComingSoon(8)">Chapter 8 - Redox Reactions</button>
+    <button class="chapter-btn" onclick="showComingSoon(9)">Chapter 9 - Hydrogen</button>
+    <button class="chapter-btn" onclick="showComingSoon(10)">Chapter 10 - The s-Block Element</button>
+    <button class="chapter-btn" onclick="showComingSoon(11)">Chapter 11 - The p-Block Element</button>
+    <button class="chapter-btn" onclick="showComingSoon(12)">Chapter 12 - Organic Chemistry - Some Basic Principles</button>
+    <button class="chapter-btn" onclick="showComingSoon(13)">Chapter 13 - Hydrocarbons</button>
+    <button class="chapter-btn" onclick="showComingSoon(14)">Chapter 14 - Environmental Chemistry</button>
+  </div>
+
+  <div id="pdf-viewer" class="pdf-viewer">
+    <iframe id="pdf-frame" src="" allow="autoplay"></iframe>
+  </div>
+
+  <div id="coming-soon" class="coming-soon">
+    📄 This chapter will be added soon!
+  </div>
+
+  <section class="whatsapp-support-section">
+    <div class="whatsapp-support-box">
+      <h2>📞 Need Help or Support?</h2>
+      <p>Join our official WhatsApp Community to ask questions, get help, and stay updated with the latest study resources.</p>
+      <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank" class="whatsapp-join-btn">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+        Join WhatsApp Community
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    View-only | More chapters coming soon! © YourStudyHub
+  </footer>
+
+  <script>
+    function showChapter(chapter) {
+      document.getElementById('coming-soon').style.display = 'none';
+      document.getElementById('pdf-viewer').style.display = 'block';
+      const frame = document.getElementById('pdf-frame');
+
+      if (chapter === 2) {
+        frame.src = "https://drive.google.com/file/d/12FmItUFACDlyWIROCIlJiOQmy65AvLB3/preview";
+      } else if (chapter === 3) {
+        frame.src = "https://drive.google.com/file/d/12FhCixOSjNefFddy9zwzK7LgdA92xWSi/preview";
+      }
+    }
+
+    function showComingSoon(chapter) {
+      document.getElementById('pdf-viewer').style.display = 'none';
+      document.getElementById('coming-soon').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
