@@ -140,19 +140,19 @@
   <header>🧪 Class 11 Chemistry - Handwritten Notes</header>
 
   <div class="chapter-list">
-    <button class="chapter-btn" onclick="showChapter(2)">Chapter 2 - Structure of Atom</button>
-    <button class="chapter-btn" onclick="showChapter(3)">Chapter 3 - Classification of Elements </button>
-    <button class="chapter-btn" onclick="showChapter(4)">Chapter 4 - Chemical Bonding </button>
-    <button class="chapter-btn" onclick="showComingSoon(5)">Chapter 5 - Thermodynamics</button>
-    <button class="chapter-btn" onclick="showComingSoon(6)">Chapter 6 - Thermodynamics</button>
-    <button class="chapter-btn" onclick="showComingSoon(7)">Chapter 7 - Equilibrium</button>
-    <button class="chapter-btn" onclick="showComingSoon(8)">Chapter 8 - Redox Reactions</button>
-    <button class="chapter-btn" onclick="showComingSoon(9)">Chapter 9 - Hydrogen</button>
-    <button class="chapter-btn" onclick="showComingSoon(10)">Chapter 10 - The s-Block Element</button>
-    <button class="chapter-btn" onclick="showComingSoon(11)">Chapter 11 - The p-Block Element</button>
-    <button class="chapter-btn" onclick="showComingSoon(12)">Chapter 12 - Organic Chemistry - Some Basic Principles</button>
-    <button class="chapter-btn" onclick="showComingSoon(13)">Chapter 13 - Hydrocarbons</button>
-    <button class="chapter-btn" onclick="showComingSoon(14)">Chapter 14 - Environmental Chemistry</button>
+    <button class="chapter-btn" onclick="showChapter(2)">Chapter 1 - Structure of Atom</button>
+    <button class="chapter-btn" onclick="showChapter(3)">Chapter 2 - Classification of Elements</button>
+    <button class="chapter-btn" onclick="showChapter(4)">Chapter 3 - Chemcal Bonding</button>
+    <button class="chapter-btn" onclick="showComingSoon(5)">Chapter 4 - Thermodynamics</button>
+    <button class="chapter-btn" onclick="showComingSoon(6)">Chapter 5 - Thermodynamics</button>
+    <button class="chapter-btn" onclick="showComingSoon(7)">Chapter 6 - Equilibrium</button>
+    <button class="chapter-btn" onclick="showComingSoon(8)">Chapter 7 - Redox Reactions</button>
+    <button class="chapter-btn" onclick="showComingSoon(9)">Chapter 8 - Hydrogen</button>
+    <button class="chapter-btn" onclick="showComingSoon(10)">Chapter 9 - The s-Block Element</button>
+    <button class="chapter-btn" onclick="showComingSoon(11)">Chapter 10 - The p-Block Element</button>
+    <button class="chapter-btn" onclick="showComingSoon(12)">Chapter 11 - Organic Chemistry - Some Basic Principles</button>
+    <button class="chapter-btn" onclick="showComingSoon(13)">Chapter 12 - Hydrocarbons</button>
+    <button class="chapter-btn" onclick="showComingSoon(14)">Chapter 13 - Environmental Chemistry</button>
   </div>
 
   <div id="pdf-viewer" class="pdf-viewer">
@@ -179,6 +179,7 @@
   </footer>
 
   <script>
+  document.addEventListener("DOMContentLoaded", function () {
     function showChapter(chapter) {
       document.getElementById('coming-soon').style.display = 'none';
       document.getElementById('pdf-viewer').style.display = 'block';
@@ -188,10 +189,20 @@
         frame.src = "https://drive.google.com/file/d/12FmItUFACDlyWIROCIlJiOQmy65AvLB3/preview";
       } else if (chapter === 3) {
         frame.src = "https://drive.google.com/file/d/12FhCixOSjNefFddy9zwzK7LgdA92xWSi/preview";
+      } else if (chapter === 4) {
+        frame.src = "https://drive.google.com/file/d/14xLlYEVNctYTUWY4y1UrD0uudNFQzLSI/preview";
       }
-    if (chapter === 4) {
-        frame.src = "https://drive.google.com/file/d/14xLlYEVNctYTUWY4y1UrD0uudNFQzLSI/view?usp=drivesdk";
-      } 
+    }
+
+    function showComingSoon(chapter) {
+      document.getElementById('pdf-viewer').style.display = 'none';
+      document.getElementById('coming-soon').style.display = 'block';
+    }
+
+    // expose to global
+    window.showChapter = showChapter;
+    window.showComingSoon = showComingSoon;
+  });
   </script>
 
 </body>
