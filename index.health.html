@@ -1922,6 +1922,1164 @@ window.addEventListener('resize', () => {
 ══════════════════════════════════════════════════════════════ */
 console.log('%c🔥 FitLife Blueprint — 56 Features Active. Zero Empty Gaps.','color:#ff6b35;font-weight:bold;font-size:13px;background:#080b14;padding:5px 10px;border-radius:6px;border-left:3px solid #ff6b35');
 
-</script>
+</script> 
+        <style>
+          /* ================================================================
+   FITLIFE BLUEPRINT — PREMIUM UPGRADE CSS
+   Paste this ENTIRE block at the very BOTTOM of index.health.css
+   ================================================================ */
+
+/* ── UPGRADED CSS VARIABLES ── */
+:root {
+  --neon-orange: #ff6b35;
+  --neon-cyan: #00d4ff;
+  --neon-green: #7fff6f;
+  --neon-purple: #a855f7;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(24px);
+  --depth-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4);
+  --glow-orange: 0 0 40px rgba(255,107,53,0.4), 0 0 80px rgba(255,107,53,0.15);
+  --glow-cyan: 0 0 40px rgba(0,212,255,0.4), 0 0 80px rgba(0,212,255,0.15);
+  --card-shine: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%);
+}
+
+/* ================================================================
+   SECTION 1 — LOADER UPGRADE: Cinematic reveal + percentage counter
+   ================================================================ */
+#loader {
+  background: radial-gradient(ellipse at center, #0d1117 0%, #080b14 70%) !important;
+}
+.loader-inner::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,53,0.08), transparent 70%);
+  animation: loaderGlow 2s ease-in-out infinite;
+}
+@keyframes loaderGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.loader-text {
+  letter-spacing: 0.4em !important;
+  background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: loaderTextPulse 1.5s ease-in-out infinite;
+}
+@keyframes loaderTextPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ================================================================
+   SECTION 2 — NAVBAR: Premium glassmorphism upgrade
+   ================================================================ */
+#navbar.scrolled {
+  background: rgba(8, 11, 20, 0.7) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255,107,53,0.15) !important;
+  box-shadow: 0 1px 0 rgba(255,107,53,0.1), 0 8px 40px rgba(0,0,0,0.6) !important;
+}
+.nav-logo {
+  position: relative;
+}
+.nav-logo .logo-icon {
+  filter: drop-shadow(0 0 8px var(--neon-orange));
+  animation: logoFloat 3s ease-in-out infinite;
+}
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(5deg); }
+}
+.nav-cta {
+  background: linear-gradient(135deg, #ff6b35, #ff4500) !important;
+  box-shadow: 0 0 20px rgba(255,107,53,0.3), inset 0 1px 0 rgba(255,255,255,0.15) !important;
+  position: relative;
+  overflow: hidden;
+}
+.nav-cta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+.nav-cta:hover::after { left: 100%; }
+
+/* ================================================================
+   SECTION 3 — HERO: Cinematic 3D upgrade
+   ================================================================ */
+
+/* Upgraded noise texture overlay */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* Cinematic vignette */
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(8,11,20,0.8) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero content z-index fix */
+.hero-content, .hero-book-wrapper, .scroll-indicator {
+  position: relative;
+  z-index: 3;
+}
+.floating-shapes { z-index: 2; }
+
+/* Upgraded orbs with neon glow */
+.orb-1 {
+  background: radial-gradient(circle, rgba(255,107,53,0.35), rgba(255,69,0,0.1), transparent 70%) !important;
+  filter: blur(60px) !important;
+  animation: orb1Float 10s ease-in-out infinite !important;
+}
+.orb-2 {
+  background: radial-gradient(circle, rgba(0,212,255,0.25), rgba(0,150,200,0.1), transparent 70%) !important;
+  filter: blur(60px) !important;
+  animation: orb2Float 14s ease-in-out infinite !important;
+}
+.orb-3 {
+  background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%) !important;
+  filter: blur(60px) !important;
+  animation: orb3Float 8s ease-in-out infinite !important;
+}
+@keyframes orb1Float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(40px,-30px) scale(1.1); }
+  66% { transform: translate(-20px,40px) scale(0.9); }
+}
+@keyframes orb2Float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-40px,-20px) scale(1.15); }
+}
+@keyframes orb3Float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(20px,30px) scale(1.2); }
+}
+
+/* Hero title — cinematic gradient text */
+.hero-title .title-line:first-child {
+  background: linear-gradient(135deg, #ffffff 30%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(255,255,255,0.15));
+}
+.accent-line {
+  background: linear-gradient(135deg, #ff6b35, #ff8c42, #ffaa00) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  -webkit-text-stroke: 0 !important;
+  filter: drop-shadow(0 0 40px rgba(255,107,53,0.5)) !important;
+  animation: accentPulse 4s ease-in-out infinite;
+}
+@keyframes accentPulse {
+  0%,100% { filter: drop-shadow(0 0 30px rgba(255,107,53,0.4)); }
+  50% { filter: drop-shadow(0 0 60px rgba(255,107,53,0.8)) drop-shadow(0 0 100px rgba(255,107,53,0.3)); }
+}
+
+/* Hero subtitle */
+.hero-subtitle {
+  background: linear-gradient(135deg, var(--neon-cyan), rgba(0,212,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero CTA button upgrade */
+.btn-primary {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4500 50%, #ff6b35 100%) !important;
+  background-size: 200% 200% !important;
+  animation: gradientShift 3s ease infinite !important;
+  box-shadow: 0 0 30px rgba(255,107,53,0.4), 0 4px 24px rgba(255,107,53,0.3), inset 0 1px 0 rgba(255,255,255,0.2) !important;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hero stats — glow numbers */
+.stat-num {
+  background: linear-gradient(135deg, #ffffff, var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+.stat-unit { color: var(--neon-orange) !important; text-shadow: 0 0 12px var(--neon-orange); }
+
+/* ================================================================
+   SECTION 4 — BOOK MOCKUP: Ultra 3D premium upgrade
+   ================================================================ */
+.hero-book-wrapper {
+  perspective: 1200px;
+  filter: drop-shadow(0 60px 80px rgba(255,107,53,0.2));
+}
+.book-cover {
+  filter: none !important;
+  animation: bookCinematic 8s ease-in-out infinite !important;
+}
+@keyframes bookCinematic {
+  0%, 100% { transform: rotateY(-30deg) rotateX(6deg) translateY(0); }
+  50% { transform: rotateY(-22deg) rotateX(3deg) translateY(-20px); }
+}
+.book-face {
+  background: linear-gradient(145deg, #1f0800 0%, #0d0400 40%, #1a0600 70%, #260c00 100%) !important;
+  box-shadow:
+    inset 0 0 60px rgba(255,107,53,0.15),
+    inset -4px 0 20px rgba(0,0,0,0.5),
+    4px 0 20px rgba(255,107,53,0.1) !important;
+}
+.book-glow {
+  background: radial-gradient(ellipse at 30% 20%, rgba(255,107,53,0.3), rgba(255,140,0,0.1), transparent 60%) !important;
+  animation: bookGlowPulse 3s ease-in-out infinite;
+}
+@keyframes bookGlowPulse {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.book-logo {
+  font-size: 2.5rem !important;
+  filter: drop-shadow(0 0 20px var(--neon-orange)) drop-shadow(0 0 40px rgba(255,107,53,0.5)) !important;
+  animation: logoSpin 10s linear infinite;
+}
+@keyframes logoSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.book-content h2 {
+  background: linear-gradient(135deg, #ff6b35, #ff8c42, #ffaa00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.2rem !important;
+  text-shadow: none;
+}
+.book-stripe {
+  background: linear-gradient(90deg, transparent, #ff6b35, #ff8c42, #ffaa00, #ff6b35, transparent) !important;
+  animation: stripeShimmer 2s linear infinite;
+  background-size: 200% 100% !important;
+}
+@keyframes stripeShimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* Orbiting ring around book */
+.book-orbit-ring {
+  position: absolute;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(255,107,53,0.15);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotateX(70deg);
+  animation: orbitSpin 12s linear infinite;
+  pointer-events: none;
+}
+.book-orbit-ring::before {
+  content: '';
+  position: absolute;
+  width: 8px; height: 8px;
+  background: var(--neon-orange);
+  border-radius: 50%;
+  top: -4px; left: 50%;
+  box-shadow: 0 0 12px var(--neon-orange), 0 0 24px rgba(255,107,53,0.5);
+}
+@keyframes orbitSpin { to { transform: translate(-50%,-50%) rotateX(70deg) rotateZ(360deg); } }
+
+/* Book particle dots */
+.book-particles {
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
+}
+.book-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+  background: var(--neon-orange);
+  box-shadow: 0 0 6px var(--neon-orange);
+}
+@keyframes particleFloat {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  20% { opacity: 1; transform: translateY(-20px) scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-80px) scale(0); }
+}
+
+/* ================================================================
+   SECTION 5 — FEATURE CARDS: Cinematic glassmorphism
+   ================================================================ */
+.feature-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.9), rgba(11,15,28,0.95)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: transform 0.1s linear, box-shadow 0.4s ease, border-color 0.4s ease !important;
+}
+
+/* Shine overlay on cards */
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  pointer-events: none;
+}
+
+/* Animated gradient border on hover */
+.feature-card:hover {
+  border-color: transparent !important;
+  box-shadow: 0 0 0 1px var(--neon-orange), var(--glow-orange), var(--depth-shadow) !important;
+}
+
+/* Card inner glow on hover */
+.feature-card::before {
+  background: linear-gradient(135deg, var(--neon-orange), var(--neon-cyan)) !important;
+  opacity: 0;
+  transition: opacity 0.5s !important;
+}
+.feature-card:hover::before { opacity: 1 !important; }
+
+.feature-icon-wrap {
+  background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,107,53,0.05)) !important;
+  border: 1px solid rgba(255,107,53,0.3) !important;
+  box-shadow: 0 0 20px rgba(255,107,53,0.1), inset 0 1px 0 rgba(255,255,255,0.05) !important;
+  transition: all 0.4s !important;
+}
+.feature-card:hover .feature-icon-wrap {
+  box-shadow: 0 0 30px rgba(255,107,53,0.4), 0 0 60px rgba(255,107,53,0.15) !important;
+  transform: scale(1.1) !important;
+}
+.feature-icon { display: block; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.feature-card:hover .feature-icon { transform: scale(1.2) rotate(10deg); }
+
+.feature-card h3 {
+  background: linear-gradient(135deg, #ffffff, rgba(255,255,255,0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated bar upgrade */
+.feature-bar {
+  height: 5px !important;
+  background: rgba(255,255,255,0.04) !important;
+  border-radius: 100px !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+.feature-bar-fill {
+  position: relative !important;
+  background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan)) !important;
+  box-shadow: 0 0 12px var(--neon-orange), 0 0 24px rgba(255,107,53,0.3) !important;
+}
+/* Animated dot at end of progress bar */
+.feature-bar-fill::after {
+  content: '';
+  position: absolute;
+  right: -4px; top: 50%;
+  transform: translateY(-50%);
+  width: 10px; height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-orange), 0 0 16px var(--neon-orange);
+  opacity: 0;
+  transition: opacity 0.3s 1.5s;
+}
+.feature-bar-fill.animated::after { opacity: 1; }
+
+/* ================================================================
+   SECTION 6 — AUDIENCE CARDS: Glassmorphism upgrade
+   ================================================================ */
+.audience-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.audience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--card-shine);
+  pointer-events: none;
+}
+.audience-card:hover {
+  background: linear-gradient(145deg, rgba(255,107,53,0.08), rgba(255,107,53,0.02)) !important;
+  border-color: rgba(255,107,53,0.4) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,107,53,0.15) !important;
+}
+.audience-icon {
+  font-size: 2.4rem !important;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+}
+.audience-card:hover .audience-icon { transform: scale(1.3) translateY(-4px); }
+
+/* ================================================================
+   SECTION 7 — CHAPTER CARDS: Neon left border upgrade
+   ================================================================ */
+.chapter-card {
+  background: linear-gradient(135deg, rgba(17,24,39,0.8), rgba(11,15,28,0.9)) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(12px) !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  position: relative !important;
+}
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--neon-orange), var(--neon-cyan));
+  border-radius: 3px 0 0 3px;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.chapter-card:hover::before { transform: scaleY(1); transform-origin: top; }
+.chapter-card:hover {
+  transform: translateX(12px) !important;
+  border-color: rgba(255,107,53,0.2) !important;
+  box-shadow: -4px 0 0 var(--neon-orange), 0 8px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255,107,53,0.1) !important;
+  background: linear-gradient(135deg, rgba(255,107,53,0.06), rgba(11,15,28,0.95)) !important;
+}
+.chapter-num {
+  font-size: 2.5rem !important;
+  letter-spacing: -0.02em;
+}
+.chapter-card:hover .chapter-num {
+  background: linear-gradient(135deg, var(--neon-orange), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.chapter-arrow {
+  font-size: 1.4rem !important;
+  transition: transform 0.3s, color 0.3s !important;
+}
+.chapter-card:hover .chapter-arrow { transform: translateX(8px) scale(1.2) !important; }
+
+/* ================================================================
+   SECTION 8 — EXERCISE SECTION: Upgraded premium bars
+   ================================================================ */
+.exercise-item {
+  background: linear-gradient(135deg, rgba(17,24,39,0.9), rgba(11,15,28,0.95)) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(16px) !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  position: relative !important;
+}
+.exercise-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--card-shine);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.exercise-item:hover {
+  border-color: rgba(255,107,53,0.3) !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 30px rgba(255,107,53,0.1) !important;
+  transform: translateY(-4px) !important;
+}
+.ex-bar-fill {
+  background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan)) !important;
+  box-shadow: 0 0 8px var(--neon-orange), 0 0 20px rgba(255,107,53,0.3) !important;
+  position: relative !important;
+}
+.ex-bar-fill::after {
+  content: '';
+  position: absolute;
+  right: -3px; top: 50%;
+  transform: translateY(-50%);
+  width: 8px; height: 8px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--neon-cyan), 0 0 12px var(--neon-cyan);
+  opacity: 0;
+  transition: opacity 0.3s 1.5s;
+}
+.ex-bar-fill.animated::after { opacity: 1; }
+
+.ex-name { font-weight: 700 !important; letter-spacing: 0.02em; }
+.ex-pct {
+  background: linear-gradient(135deg, var(--neon-orange), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700 !important;
+}
+
+/* Workout stat cards */
+.workout-stat-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.95), rgba(11,15,28,0.98)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.workout-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.workout-stat-card:hover::before { opacity: 1; }
+.workout-stat-card:hover {
+  border-color: rgba(255,107,53,0.3) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,107,53,0.15) !important;
+}
+.wsc-number {
+  background: linear-gradient(135deg, var(--neon-orange), #ffaa00) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 0 8px rgba(255,107,53,0.4));
+}
+
+/* ================================================================
+   SECTION 9 — MACRO CIRCLES: Premium neon rings
+   ================================================================ */
+.macro-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.9), rgba(11,15,28,0.95)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.macro-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--card-shine);
+  pointer-events: none;
+}
+.macro-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,107,53,0.1) !important;
+}
+.macro-bg { stroke: rgba(255,255,255,0.03) !important; stroke-width: 8 !important; }
+.protein-fill {
+  stroke: #ff6b35 !important;
+  filter: drop-shadow(0 0 6px rgba(255,107,53,0.8));
+}
+.carb-fill {
+  stroke: #00d4ff !important;
+  filter: drop-shadow(0 0 6px rgba(0,212,255,0.8));
+}
+.fat-fill {
+  stroke: #7fff6f !important;
+  filter: drop-shadow(0 0 6px rgba(127,255,111,0.8));
+}
+.macro-pct {
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.macro-card h3 {
+  background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Nutrition features */
+.nutrition-feature {
+  background: linear-gradient(135deg, rgba(17,24,39,0.8), rgba(11,15,28,0.9)) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(16px) !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+.nutrition-feature:hover {
+  border-color: rgba(255,107,53,0.3) !important;
+  box-shadow: 8px 0 0 var(--neon-orange), 0 8px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255,107,53,0.1) !important;
+  transform: translateX(12px) !important;
+  background: linear-gradient(135deg, rgba(255,107,53,0.06), rgba(11,15,28,0.95)) !important;
+}
+.nf-icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.2));
+}
+.nutrition-feature:hover .nf-icon { transform: scale(1.3) rotate(10deg); }
+
+/* ================================================================
+   SECTION 10 — RESULTS SECTION: Cinematic transformation cards
+   ================================================================ */
+.result-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.95), rgba(11,15,28,0.98)) !important;
+  border: 1px solid rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan), var(--neon-green));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.result-card:hover::before { opacity: 1; }
+.result-card:hover {
+  border-color: rgba(255,107,53,0.2) !important;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(255,107,53,0.1) !important;
+}
+.rs-num {
+  background: linear-gradient(135deg, var(--neon-orange), #ffaa00) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 2.2rem !important;
+  filter: drop-shadow(0 0 8px rgba(255,107,53,0.4));
+}
+
+/* Big stats upgrade */
+.big-stats {
+  background: linear-gradient(135deg, rgba(17,24,39,0.9), rgba(8,11,20,0.95)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(30px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.big-stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,107,53,0.03), transparent);
+  pointer-events: none;
+}
+.big-num {
+  background: linear-gradient(135deg, var(--neon-orange), #ffaa00) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 0 12px rgba(255,107,53,0.4));
+}
+.big-stat {
+  position: relative;
+  padding: 16px;
+}
+.big-stat::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.06), transparent);
+}
+.big-stat:last-child::after { display: none; }
+
+/* ================================================================
+   SECTION 11 — TESTIMONIALS: Premium glass cards
+   ================================================================ */
+.testimonial-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.95), rgba(11,15,28,0.98)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(30px) !important;
+  position: relative !important;
+}
+.testimonial-card::before {
+  content: '"' !important;
+  background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,107,53,0.04)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 12rem !important;
+  line-height: 0.8 !important;
+  top: 16px !important;
+  left: 28px !important;
+}
+.t-stars { letter-spacing: 6px; text-shadow: 0 0 12px rgba(251,191,36,0.6); }
+.t-text { color: rgba(240,244,255,0.9) !important; }
+.t-avatar { box-shadow: 0 0 20px rgba(255,107,53,0.3) !important; }
+.carousel-btn {
+  background: rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  transition: all 0.3s !important;
+}
+.carousel-btn:hover {
+  background: rgba(255,107,53,0.12) !important;
+  border-color: var(--neon-orange) !important;
+  box-shadow: 0 0 20px rgba(255,107,53,0.3) !important;
+  transform: scale(1.1) !important;
+}
+
+/* ================================================================
+   SECTION 12 — BONUS CARDS: Glow upgrade
+   ================================================================ */
+.bonus-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.95), rgba(11,15,28,0.98)) !important;
+  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+/* Corner glow accent */
+.bonus-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle at top right, rgba(255,107,53,0.15), transparent 70%);
+  pointer-events: none;
+}
+.bonus-icon {
+  font-size: 3rem !important;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.3));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bonus-card:hover .bonus-icon { transform: scale(1.2) translateY(-4px) rotate(10deg); }
+.bonus-value {
+  background: linear-gradient(135deg, var(--neon-orange), var(--neon-cyan)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  border: 1px solid rgba(255,107,53,0.3) !important;
+  background-color: transparent !important;
+}
+
+/* ================================================================
+   SECTION 13 — CTA SECTION: Cinematic finale upgrade
+   ================================================================ */
+.cta-section {
+  position: relative;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(255,107,53,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(0,212,255,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-title {
+  font-size: clamp(3.5rem, 8vw, 7rem) !important;
+  background: linear-gradient(135deg, #fff 40%, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 40px rgba(255,255,255,0.1));
+}
+.cta-title .text-accent {
+  background: linear-gradient(135deg, #ff6b35, #ff8c42, #ffaa00) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 0 30px rgba(255,107,53,0.5)) !important;
+}
+.cta-new-price {
+  filter: drop-shadow(0 0 20px var(--neon-green)) drop-shadow(0 0 40px rgba(127,255,111,0.3)) !important;
+  animation: pricePulse 2s ease-in-out infinite;
+}
+@keyframes pricePulse {
+  0%,100% { filter: drop-shadow(0 0 16px var(--neon-green)); }
+  50% { filter: drop-shadow(0 0 32px var(--neon-green)) drop-shadow(0 0 60px rgba(127,255,111,0.4)); }
+}
+.cta-features span {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 16px;
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+  font-size: 0.82rem;
+  transition: all 0.3s;
+}
+.cta-features span:hover {
+  border-color: var(--neon-orange);
+  background: rgba(255,107,53,0.08);
+  transform: translateY(-2px);
+}
+
+/* ================================================================
+   SECTION 14 — FOOTER: Upgraded premium style
+   ================================================================ */
+#footer {
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, #060910 100%) !important;
+  border-top: 1px solid rgba(255,107,53,0.1) !important;
+  position: relative;
+  overflow: hidden;
+}
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-orange), var(--neon-cyan), transparent);
+}
+.footer-logo .logo-icon {
+  filter: drop-shadow(0 0 8px var(--neon-orange));
+}
+.footer-links a {
+  position: relative;
+  transition: all 0.3s !important;
+}
+.footer-links a::before {
+  content: '→';
+  position: absolute;
+  left: -16px;
+  opacity: 0;
+  color: var(--neon-orange);
+  transition: all 0.3s;
+  font-size: 0.75rem;
+}
+.footer-links a:hover::before { opacity: 1; left: -12px; }
+.footer-links a:hover { color: var(--neon-orange) !important; padding-left: 8px; }
+.social-link {
+  background: rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  transition: all 0.3s !important;
+}
+.social-link:hover {
+  background: rgba(255,107,53,0.12) !important;
+  border-color: var(--neon-orange) !important;
+  box-shadow: 0 0 20px rgba(255,107,53,0.3) !important;
+  transform: translateY(-4px) scale(1.1) !important;
+}
+
+/* ================================================================
+   SECTION 15 — EXERCISE ANIMATION SECTION (NEW)
+   ================================================================ */
+#exercise-anim {
+  padding: 120px 0;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+#exercise-anim::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(255,107,53,0.06), transparent 70%);
+  pointer-events: none;
+}
+.exercise-anim-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+}
+.exercise-anim-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.9), rgba(11,15,28,0.95));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 24px;
+  padding: 40px 24px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: none;
+}
+.exercise-anim-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan));
+  transform: scaleX(0);
+  transition: transform 0.5s;
+}
+.exercise-anim-card:hover::before { transform: scaleX(1); }
+.exercise-anim-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(255,107,53,0.3);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 40px rgba(255,107,53,0.1);
+}
+/* CSS animated exercise figure */
+.exercise-figure {
+  width: 80px; height: 80px;
+  margin: 0 auto 24px;
+  position: relative;
+}
+/* Squat animation */
+.fig-squat {
+  border: 3px solid var(--neon-orange);
+  border-radius: 50%;
+  animation: squatAnim 1.5s ease-in-out infinite;
+  box-shadow: 0 0 16px rgba(255,107,53,0.4), 0 0 32px rgba(255,107,53,0.15);
+}
+@keyframes squatAnim {
+  0%,100% { transform: scaleY(1) translateY(0); border-radius: 50%; }
+  50% { transform: scaleY(0.7) translateY(10px); border-radius: 40% 40% 55% 55%; }
+}
+/* Pushup animation */
+.fig-pushup {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+  border-radius: 8px;
+  animation: pushupAnim 1.8s ease-in-out infinite;
+  box-shadow: 0 0 16px rgba(0,212,255,0.4), 0 0 32px rgba(0,212,255,0.15);
+}
+@keyframes pushupAnim {
+  0%,100% { transform: rotate(-5deg) translateY(0); border-radius: 8px; }
+  50% { transform: rotate(5deg) translateY(-15px); border-radius: 40px 8px; }
+}
+/* Deadlift animation */
+.fig-deadlift {
+  border: 3px solid var(--neon-green);
+  border-radius: 12px;
+  animation: deadliftAnim 2s ease-in-out infinite;
+  box-shadow: 0 0 16px rgba(127,255,111,0.4), 0 0 32px rgba(127,255,111,0.15);
+}
+@keyframes deadliftAnim {
+  0%,100% { transform: translateY(0) scaleX(1); }
+  30% { transform: translateY(-20px) scaleX(0.9); }
+  60% { transform: translateY(-10px) scaleX(1.05); }
+}
+/* Run animation */
+.fig-run {
+  background: linear-gradient(135deg, var(--neon-orange), #ffaa00);
+  border-radius: 50% 50% 40% 40%;
+  animation: runAnim 1s ease-in-out infinite;
+  box-shadow: 0 0 16px rgba(255,107,53,0.5), 0 0 32px rgba(255,107,53,0.2);
+}
+@keyframes runAnim {
+  0%,100% { transform: translateX(-10px) rotate(-5deg); border-radius: 50% 40% 50% 40%; }
+  50% { transform: translateX(10px) rotate(5deg); border-radius: 40% 50% 40% 50%; }
+}
+/* Plank animation */
+.fig-plank {
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+  border-radius: 4px;
+  height: 20px;
+  margin-top: 30px;
+  animation: plankAnim 3s ease-in-out infinite;
+  box-shadow: 0 0 16px rgba(168,85,247,0.5), 0 0 32px rgba(168,85,247,0.2);
+}
+@keyframes plankAnim {
+  0%,100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(0.95); opacity: 0.8; }
+}
+/* Curl animation */
+.fig-curl {
+  border: 3px solid #ffaa00;
+  border-radius: 0 0 50% 50%;
+  border-top: none;
+  animation: curlAnim 1.2s ease-in-out infinite;
+  box-shadow: 0 0 16px rgba(255,170,0,0.5), 0 0 32px rgba(255,170,0,0.2);
+}
+@keyframes curlAnim {
+  0%,100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(-30deg) translateY(-8px); }
+}
+.exercise-anim-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.exercise-anim-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.exercise-anim-badge {
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,107,53,0.3);
+  color: var(--neon-orange);
+  background: rgba(255,107,53,0.08);
+}
+
+/* ================================================================
+   SECTION 16 — CONTACT SECTION UPGRADE
+   ================================================================ */
+#contact {
+  background: var(--bg-primary) !important;
+}
+.contact-form {
+  background: linear-gradient(145deg, rgba(17,24,39,0.9), rgba(11,15,28,0.95)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,107,53,0.05) !important;
+}
+.contact-form::before {
+  background: linear-gradient(135deg, var(--neon-orange), var(--neon-cyan)) !important;
+  opacity: 0.6;
+}
+.input-group input,
+.input-group textarea {
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s !important;
+}
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: var(--neon-orange) !important;
+  box-shadow: 0 0 0 3px rgba(255,107,53,0.1), 0 0 20px rgba(255,107,53,0.2) !important;
+  background: rgba(255,107,53,0.03) !important;
+}
+.input-group label {
+  font-family: var(--font-body) !important;
+  color: var(--text-secondary) !important;
+}
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+  color: var(--neon-orange) !important;
+  background: var(--bg-primary) !important;
+  font-weight: 600 !important;
+}
+.info-card {
+  background: linear-gradient(145deg, rgba(17,24,39,0.9), rgba(11,15,28,0.95)) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(20px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.info-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--neon-orange), var(--neon-cyan));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.info-card:hover::before { opacity: 1; }
+.info-card:hover {
+  border-color: rgba(255,107,53,0.25) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 4px 0 0 var(--neon-orange), 0 0 30px rgba(255,107,53,0.1) !important;
+  transform: translateX(8px) translateY(-4px) !important;
+}
+
+/* ================================================================
+   SECTION 17 — SECTION TITLE UPGRADE
+   ================================================================ */
+.section-title {
+  position: relative;
+}
+.section-tag {
+  position: relative;
+  overflow: hidden;
+}
+.section-tag::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: tagShimmer 3s ease-in-out infinite;
+}
+@keyframes tagShimmer {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+/* ================================================================
+   SECTION 18 — GSAP ANIMATION CLASSES (set by JS)
+   ================================================================ */
+.gsap-fade-in {
+  will-change: transform, opacity;
+}
+.gsap-stagger-child {
+  will-change: transform, opacity;
+}
+
+/* ================================================================
+   SECTION 19 — SCROLL PROGRESS UPGRADE
+   ================================================================ */
+#scroll-progress {
+  height: 2px !important;
+  background: linear-gradient(90deg, var(--neon-orange), var(--neon-cyan), var(--neon-green)) !important;
+  box-shadow: 0 0 10px var(--neon-orange), 0 0 20px rgba(255,107,53,0.3) !important;
+  border-radius: 0 2px 2px 0 !important;
+}
+
+/* ================================================================
+   SECTION 20 — CURSOR UPGRADE
+   ================================================================ */
+#cursor {
+  width: 10px !important;
+  height: 10px !important;
+  background: #fff !important;
+  box-shadow: 0 0 10px var(--neon-orange), 0 0 20px rgba(255,107,53,0.5) !important;
+  mix-blend-mode: normal !important;
+}
+#cursor-follower {
+  width: 40px !important;
+  height: 40px !important;
+  border: 1.5px solid rgba(255,107,53,0.6) !important;
+  background: rgba(255,107,53,0.04) !important;
+}
+
+/* ================================================================
+   SECTION 21 — MOBILE OPTIMIZATIONS
+   ================================================================ */
+@media (max-width: 768px) {
+  .exercise-anim-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .book-orbit-ring { display: none; }
+  .cta-features { flex-direction: column; gap: 10px; }
+}
+@media (max-width: 480px) {
+  .exercise-anim-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   SECTION 22 — PERFORMANCE (will-change hints)
+   ================================================================ */
+.feature-card,
+.audience-card,
+.chapter-card,
+.result-card,
+.testimonial-card,
+.exercise-item,
+.bonus-card,
+.exercise-anim-card {
+  will-change: transform;
+}
+.orb { will-change: transform, filter; }
+.book-cover { will-change: transform; }
+        </style>
 </body>
 </html>
