@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Study Hub Premium eBook Library — HP Patwari, FitLife Blueprint and more. Affordable, exam-focused digital guides for serious students.">
+  <title>E-Books Library | Study Hub</title>
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','4371581243162957');fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"/></noscript>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --secondary: #8b5cf6;
+      --accent: #06b6d4;
+      --green: #10b981;
+      --bg-dark: #030712;
+      --glass: rgba(255,255,255,0.03);
+      --glass-border: rgba(255,255,255,0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: #f3f4f6;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(59,130,246,0.07) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139,92,246,0.07) 0%, transparent 50%);
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+
+    /* ── PRELOADER ── */
+    #preloader {
+      position: fixed; inset: 0; background: #030712; z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 20px; transition: opacity 0.7s ease;
+    }
+    .loader-logo { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; }
+    .loader-logo span { color: #3b82f6; }
+    .loader-bar {
+      width: 160px; height: 3px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden;
+    }
+    .loader-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+      animation: loadFill 1.4s ease-out forwards;
+    }
+    @keyframes loadFill { to { width: 100%; } }
+
+    /* ── SCROLL PROGRESS ── */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 1000; width: 0%;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6, #06b6d4);
+      transition: width 0.1s linear;
+    }
+
+    /* ── STARS CANVAS ── */
+    #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+    /* ── TEXT GRADIENT ── */
+    .text-gradient {
+      background: linear-gradient(135deg, #60a5fa, #a78bfa, #22d3ee);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 200% auto; animation: gradFlow 4s linear infinite;
+    }
+    .text-gradient-gold {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b, #fcd34d);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    @keyframes gradFlow { to { background-position: 200% center; } }
+
+    /* ── GLASS ── */
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+    }
+
+    /* ── NAV LINK UNDERLINE ── */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary); transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── FLOAT ── */
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+    .float { animation: floatY 5s ease-in-out infinite; }
+    .float-slow { animation: floatY 7s ease-in-out infinite; }
+    .float-delay { animation: floatY 5s ease-in-out 1.5s infinite; }
+
+    /* ── GLOW RING ── */
+    @keyframes glowPulse { 0%,100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+    .glow-ring { animation: glowPulse 3s ease-in-out infinite; }
+
+    /* ── EBOOK CARD ── */
+    .ebook-card {
+      background: rgba(255,255,255,0.025);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.45s cubic-bezier(0.22,1,0.36,1);
+      position: relative;
+    }
+    .ebook-card::before {
+      content: '';
+      position: absolute; inset: -1px;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(59,130,246,0), rgba(139,92,246,0), rgba(6,182,212,0));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      transition: all 0.45s ease;
+      pointer-events: none;
+    }
+    .ebook-card:hover::before {
+      background: linear-gradient(135deg, rgba(59,130,246,0.6), rgba(139,92,246,0.6), rgba(6,182,212,0.6));
+    }
+    .ebook-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px -20px rgba(59,130,246,0.3), 0 0 0 1px rgba(59,130,246,0.15);
+    }
+
+    /* ── BOOK COVER ZOOM ── */
+    .book-cover { overflow: hidden; }
+    .book-cover img { transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+    .ebook-card:hover .book-cover img { transform: scale(1.08); }
+
+    /* ── SHINE EFFECT ── */
+    .shine {
+      position: relative; overflow: hidden;
+    }
+    .shine::after {
+      content: '';
+      position: absolute; top: -50%; left: -75%;
+      width: 50%; height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+    }
+    .ebook-card:hover .shine::after { left: 130%; }
+
+    /* ── 3D TILT ── */
+    .tilt-card { transform-style: preserve-3d; transition: transform 0.15s ease; }
+
+    /* ── FILTER PILLS ── */
+    .filter-pill {
+      padding: 8px 20px; border-radius: 99px; font-size: 0.82rem; font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      cursor: pointer; transition: all 0.25s; white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .filter-pill:hover { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); color: #93c5fd; }
+    .filter-pill.active { background: #3b82f6; border-color: #3b82f6; color: #fff; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+
+    /* ── SEARCH BAR ── */
+    .search-bar {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 14px 20px;
+      color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.92rem;
+      transition: all 0.3s; outline: none;
+    }
+    .search-bar:focus { border-color: rgba(59,130,246,0.5); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); background: rgba(59,130,246,0.05); }
+    .search-bar::placeholder { color: #4b5563; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 12px; border-radius: 99px; font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+    .badge-trending { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+    .badge-bestseller { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+    .badge-new { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+    .badge-coming { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+
+    /* ── CTA BTN ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: #fff; font-weight: 800; padding: 14px 28px; border-radius: 14px;
+      transition: all 0.3s; position: relative; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(59,130,246,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(59,130,246,0.45); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,255,255,0.15); color: #fff;
+      font-weight: 700; padding: 14px 28px; border-radius: 14px;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.06); border-color: rgba(59,130,246,0.5); }
+
+    /* ── TRUST BADGE ── */
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 99px; padding: 8px 16px; font-size: 0.8rem; font-weight: 700;
+    }
+
+    /* ── FEATURE ICON ── */
+    .feat-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── STAR ── */
+    .stars { color: #fbbf24; letter-spacing: 2px; font-size: 0.9rem; }
+
+    /* ── HERO BOOK MOCKUP ── */
+    .book-mockup {
+      border-radius: 16px;
+      box-shadow: -12px 16px 40px rgba(0,0,0,0.6), 4px 0 0 rgba(255,255,255,0.06);
+      transform: perspective(800px) rotateY(-12deg) rotateX(4deg);
+      transition: transform 0.6s ease;
+    }
+    .book-mockup:hover { transform: perspective(800px) rotateY(-4deg) rotateX(2deg); }
+
+    /* ── COUNTER ── */
+    .count-up { font-variant-numeric: tabular-nums; }
+
+    /* ── SKELETON ── */
+    .skeleton {
+      background: linear-gradient(90deg, #1f2937 25%, #2d3748 50%, #1f2937 75%);
+      background-size: 200% 100%; animation: skelAnim 1.5s infinite;
+    }
+    @keyframes skelAnim { to { background-position: -200% 0; } }
+
+    /* ── CARD HIDDEN ── */
+    .card-hidden { display: none !important; }
+
+    /* ── HERO PARTICLE DOTS ── */
+    .hero-dot {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.6), transparent);
+      animation: dotPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes dotPulse { 0%,100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.4); } }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .book-mockup { transform: none; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+      .float, .float-slow, .float-delay { animation: none; }
+    }
+
+    /* ── URGENCY TICKER ── */
+    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-track { display: flex; animation: tickerMove 20s linear infinite; white-space: nowrap; }
+
+    /* ── GRADIENT BORDER ANIMATED ── */
+    @keyframes borderRotate { to { --angle: 360deg; } }
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-logo">Study<span>Hub</span></div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+  <p style="font-size:0.72rem;color:#4b5563;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Loading Library...</p>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- PARTICLES CANVAS -->
+<canvas id="particles"></canvas>
+
+<!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+<nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-5 px-6 lg:px-20">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center space-x-2 group">
+      <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-12 transition-transform">
+        <i data-lucide="layers" class="text-white w-6 h-6"></i>
+      </div>
+      <span class="text-2xl font-extrabold tracking-tight">Study<span class="text-blue-500">Hub</span></span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center space-x-7">
+      <a href="index.html" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Home</a>
+      <a href="index.html#materials" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Materials</a>
+      <a href="index.html#notes-generator" class="nav-link text-sm font-medium text-gray-400 hover:text-white">AI Notes</a>
+      <a href="index.e-books.html" class="text-sm font-bold text-blue-400 relative">
+        E-Books
+        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></span>
+      </a>
+      <a href="index.html#handwritten" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Handwritten</a>
+      <a href="#contact" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Contact</a>
+      <a href="index.ebook.html" class="btn-primary text-sm py-2.5 px-5" style="border-radius:99px;">
+        <i data-lucide="book-open" class="w-4 h-4"></i> Buy Now
+      </a>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+      <i data-lucide="menu" class="w-7 h-7"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE SIDEBAR -->
+<div id="mobile-menu" class="fixed inset-0 bg-black/95 z-[60] flex flex-col items-center justify-center space-y-8 translate-x-full transition-transform duration-500 md:hidden">
+  <button id="close-menu" class="absolute top-8 right-8 text-white">
+    <i data-lucide="x" class="w-9 h-9"></i>
+  </button>
+  <a href="index.html" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Home</a>
+  <a href="index.html#materials" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Materials</a>
+  <a href="index.html#notes-generator" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">AI Notes</a>
+  <a href="index.e-books.html" class="text-3xl font-extrabold mobile-link text-gradient">E-Books</a>
+  <a href="index.html#handwritten" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Handwritten</a>
+  <a href="#contact" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Contact</a>
+  <a href="index.ebook.html" class="btn-primary mt-4">Get eBook ₹199</a>
+</div>
+
+<!-- ═══════════════════════════════════════
+     URGENCY TICKER
+═══════════════════════════════════════ -->
+<div class="fixed top-0 left-0 right-0 z-40 overflow-hidden" style="background:linear-gradient(90deg,#1e3a5f,#1a1f3a,#1e3a5f);height:28px;display:flex;align-items:center;">
+  <div class="ticker-track text-xs font-bold text-blue-300" style="gap:0;">
+    <span style="padding:0 40px;">🔥 HP Patwari eBook — Only ₹199 &nbsp;•&nbsp; ⚡ Instant Download After Payment &nbsp;•&nbsp; 🏆 Trusted by 2000+ Students &nbsp;•&nbsp; 💎 Limited Time Offer &nbsp;•&nbsp; 📚 Updated for 2026 Exam &nbsp;•&nbsp;</span>
+    <span style="padding:0 40px;">🔥 HP Patwari eBook — Only ₹199 &nbsp;•&nbsp; ⚡ Instant Download After Payment &nbsp;•&nbsp; 🏆 Trusted by 2000+ Students &nbsp;•&nbsp; 💎 Limited Time Offer &nbsp;•&nbsp; 📚 Updated for 2026 Exam &nbsp;•&nbsp;</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════ -->
+<section id="hero" class="relative pt-36 pb-24 px-6 overflow-hidden">
+
+  <!-- Background glows -->
+  <div class="absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl -z-10 glow-ring" style="background:radial-gradient(circle,rgba(59,130,246,0.12),transparent 70%)"></div>
+  <div class="absolute top-40 right-1/4 w-80 h-80 rounded-full blur-3xl -z-10 glow-ring" style="background:radial-gradient(circle,rgba(139,92,246,0.1),transparent 70%);animation-delay:1.5s"></div>
+
+  <!-- Hero dots -->
+  <div class="hero-dot w-3 h-3" style="top:25%;left:10%;animation-delay:0s"></div>
+  <div class="hero-dot w-2 h-2" style="top:60%;left:5%;animation-delay:1s"></div>
+  <div class="hero-dot w-4 h-4" style="top:30%;right:8%;animation-delay:2s"></div>
+  <div class="hero-dot w-2 h-2" style="top:70%;right:12%;animation-delay:0.5s"></div>
+
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Left: Text -->
+    <div class="space-y-8 reveal visible">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:#93c5fd;">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+        </span>
+        Premium Digital Library
+      </div>
+
+      <h1 class="text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+        Explore<br>
+        <span class="text-gradient">Premium</span><br>
+        E-Books
+      </h1>
+
+      <p class="text-gray-400 text-lg max-w-lg leading-relaxed">
+        Curated digital resources designed for serious students. Exam-focused, affordable, and instantly accessible.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#showroom" class="btn-primary">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
+          Browse Library
+        </a>
+        <a href="index.ebook.html" class="btn-outline">
+          Start Learning
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+
+      <!-- Trust row -->
+      <div class="flex flex-wrap gap-3 pt-2">
+        <div class="trust-badge"><span>🏆</span> 2000+ Students</div>
+        <div class="trust-badge"><span>⚡</span> Instant Download</div>
+        <div class="trust-badge"><span>🔒</span> Secure Payment</div>
+      </div>
+    </div>
+
+    <!-- Right: Book mockups -->
+    <div class="relative flex items-center justify-center reveal reveal-delay-2">
+      <div class="absolute w-80 h-80 rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(59,130,246,0.15),transparent 70%)"></div>
+
+      <!-- Main book (Patwari) -->
+      <div class="relative float" style="z-index:2;">
+        <!--
+          ★ PLACE YOUR PATWARI BOOK COVER IMAGE HERE ★
+          Replace the src below with your file path: e.g., src="book.png"
+          Current fallback: gradient placeholder
+        -->
+        <div id="patwari-cover" class="book-mockup shine w-56 h-72 flex flex-col items-center justify-center text-center relative overflow-hidden cursor-pointer"
+             style="background:linear-gradient(135deg,#1e3a5f,#0f1f35);border:1px solid rgba(59,130,246,0.3);"
+             onclick="window.location='index.ebook.html'">
+          <img src="book.png" alt="HP Patwari eBook Cover"
+               class="w-full h-full object-cover absolute inset-0 rounded-2xl"
+               onerror="this.style.display='none'; document.getElementById('patwari-fallback').style.display='flex'">
+          <div id="patwari-fallback" class="absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
+            <div class="text-4xl mb-3">📚</div>
+            <div class="text-xs font-black uppercase tracking-widest text-blue-300 mb-2">HP Patwari</div>
+            <div class="text-xs text-gray-400 leading-snug">Complete Preparation Guide 2026</div>
+            <div class="mt-4 text-lg font-black text-gradient">₹199</div>
+          </div>
+          <!-- Spine highlight -->
+          <div class="absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl" style="background:linear-gradient(180deg,rgba(59,130,246,0.5),rgba(139,92,246,0.3))"></div>
+        </div>
+        <!-- Price tag -->
+        <div class="absolute -top-3 -right-4 bg-blue-600 text-white text-xs font-black px-3 py-1.5 rounded-full shadow-lg shadow-blue-500/40 z-10">₹199</div>
+        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 badge badge-trending z-10">🔥 Trending</div>
+      </div>
+
+      <!-- Second book (FitLife) -->
+      <div class="relative float-delay ml-6" style="z-index:1;margin-top:50px;">
+        <!--
+          ★ PLACE YOUR FITLIFE COVER IMAGE HERE ★
+          Replace the src below with your FitLife cover image path: e.g., src="fitlife.png"
+        -->
+        <div class="book-mockup shine w-44 h-60 flex flex-col items-center justify-center text-center relative overflow-hidden cursor-pointer"
+             style="background:linear-gradient(135deg,#0f2a1a,#052015);border:1px solid rgba(16,185,129,0.3);"
+             onclick="window.location='index.health.html'">
+          <img src="fitlife.png" alt="FitLife Blueprint Cover"
+               class="w-full h-full object-cover absolute inset-0 rounded-2xl"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="absolute inset-0 flex flex-col items-center justify-center p-5 hidden">
+            <div class="text-3xl mb-2">💪</div>
+            <div class="text-xs font-black uppercase tracking-widest text-green-300 mb-1">FitLife</div>
+            <div class="text-xs text-gray-400 leading-snug">Blueprint Health Guide</div>
+            <div class="mt-3 text-base font-black" style="color:#34d399;">₹199</div>
+          </div>
+          <div class="absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl" style="background:linear-gradient(180deg,rgba(16,185,129,0.5),rgba(6,182,212,0.3))"></div>
+        </div>
+        <div class="absolute -top-3 -right-4 text-xs font-black px-3 py-1.5 rounded-full shadow-lg z-10" style="background:#10b981;color:#fff;box-shadow:0 4px 14px rgba(16,185,129,0.4);">₹199</div>
+        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 badge badge-bestseller z-10">💪 Best Seller</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SEARCH + FILTER
+═══════════════════════════════════════ -->
+<section class="py-10 px-6" id="search-section">
+  <div class="max-w-4xl mx-auto reveal">
+    <div class="glass p-6" style="border-radius:24px;">
+      <!-- Search -->
+      <div class="relative mb-5">
+        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"></i>
+        <input id="search-input" type="text" placeholder="Search eBooks, topics, subjects..."
+               class="search-bar w-full pl-12 pr-4" autocomplete="off">
+      </div>
+      <!-- Filter pills -->
+      <div class="flex flex-wrap gap-3" id="filter-pills">
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="exam">📋 Government Exams</button>
+        <button class="filter-pill" data-filter="health">💪 Health &amp; Fitness</button>
+        <button class="filter-pill" data-filter="school">📓 School Notes</button>
+        <button class="filter-pill" data-filter="coming">🔜 Coming Soon</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     EBOOK SHOWROOM
+═══════════════════════════════════════ -->
+<section id="showroom" class="py-10 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-14 reveal">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style="background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);color:#c4b5fd;">
+        <i data-lucide="library" class="w-3 h-3"></i> Digital Showroom
+      </div>
+      <h2 class="text-4xl lg:text-5xl font-black mb-4">Our <span class="text-gradient">E-Book Collection</span></h2>
+      <p class="text-gray-500 max-w-xl mx-auto">Hand-crafted study guides built to help you prepare smarter, not harder.</p>
+    </div>
+
+    <!-- Grid -->
+    <div id="ebook-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- ── CARD 1: HP Patwari ── -->
+      <div class="ebook-card tilt-card reveal" data-category="exam" data-name="hp patwari preparation guide government exam himachal pradesh">
+        <!-- Thumbnail -->
+        <div class="book-cover shine relative" style="height:240px;background:linear-gradient(135deg,#1e3a5f 0%,#0d1f35 100%);">
+          <!--
+            ★ Patwari cover image — place "book.png" in same folder as this file ★
+          -->
+          <img src="book.png" alt="HP Patwari eBook"
+               class="w-full h-full object-cover"
+               loading="lazy"
+               onerror="this.style.display='none'">
+          <!-- Overlay gradient -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+          <!-- Top badges -->
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="badge badge-trending">🔥 Trending</span>
+            <span class="badge badge-new">2026</span>
+          </div>
+          <!-- Urgency -->
+          <div class="absolute bottom-4 right-4 text-xs font-black px-3 py-1 rounded-full" style="background:rgba(239,68,68,0.9);color:#fff;">
+            ⏳ Limited Offer
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h3 class="font-black text-lg text-white leading-tight">HP Patwari Complete Guide</h3>
+              <p class="text-xs text-gray-500 mt-1">Himachal Pradesh Govt. Exam</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-black text-gradient">₹199</div>
+              <div class="text-xs text-gray-500 line-through">₹499</div>
+            </div>
+          </div>
+
+          <p class="text-sm text-gray-400 leading-relaxed mb-4">
+            Complete HP Patwari preparation guide — syllabus-wise notes, PYQs, MCQ sets, HP GK, and exam strategy packed into one powerful PDF.
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(59,130,246,0.1);color:#93c5fd;">PDF Format</span>
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(59,130,246,0.1);color:#93c5fd;">PYQs Included</span>
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(59,130,246,0.1);color:#93c5fd;">MCQ Practice</span>
+          </div>
+
+          <!-- Features mini list -->
+          <ul class="space-y-1.5 mb-6">
+            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Full syllabus coverage</li>
+            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Previous Year Questions</li>
+            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Instant download after payment</li>
+          </ul>
+
+          <a href="index.ebook.html" class="btn-primary w-full justify-center">
+            <i data-lucide="eye" class="w-4 h-4"></i> View Details
+          </a>
+        </div>
+      </div>
+
+      <!-- ── CARD 2: FitLife Blueprint ── -->
+      <div class="ebook-card tilt-card reveal reveal-delay-1" data-category="health" data-name="fitlife blueprint health fitness diet lifestyle wellness">
+        <!-- Thumbnail -->
+        <div class="book-cover shine relative" style="height:240px;background:linear-gradient(135deg,#052015 0%,#0a1f0f 100%);">
+          <!--
+            ★ FitLife cover image — place your image file (e.g., "fitlife.png") in same folder ★
+            Update src="fitlife.png" to your actual filename once you have it
+          -->
+          <img src="fitlife.png" alt="FitLife Blueprint eBook"
+               class="w-full h-full object-cover"
+               loading="lazy"
+               onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="badge badge-bestseller">💪 Best Seller</span>
+          </div>
+          <div class="absolute bottom-4 right-4 text-xs font-black px-3 py-1 rounded-full" style="background:rgba(16,185,129,0.9);color:#fff;">
+            ⚡ Instant Access
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h3 class="font-black text-lg text-white leading-tight">FitLife Blueprint</h3>
+              <p class="text-xs text-gray-500 mt-1">Health &amp; Fitness Guide</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-black" style="background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">₹199</div>
+              <div class="text-xs text-gray-500 line-through">₹499</div>
+            </div>
+          </div>
+
+          <p class="text-sm text-gray-400 leading-relaxed mb-4">
+            Transform your health with this complete blueprint — diet planning, home workouts, weight management, sleep science, and mental wellness in one guide.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(16,185,129,0.1);color:#6ee7b7;">Diet Plans</span>
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(16,185,129,0.1);color:#6ee7b7;">Workouts</span>
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(16,185,129,0.1);color:#6ee7b7;">Wellness</span>
+          </div>
+
+          <ul class="space-y-1.5 mb-6">
+            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Complete nutrition guide</li>
+            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Home workout routines</li>
+            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Instant download after payment</li>
+          </ul>
+
+          <a href="index.health.html" class="w-full justify-center inline-flex items-center gap-2 font-black py-3.5 px-6 rounded-2xl transition-all"
+             style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;box-shadow:0 8px 24px rgba(16,185,129,0.3);">
+            <i data-lucide="eye" class="w-4 h-4"></i> View Details
+          </a>
+        </div>
+      </div>
+
+      <!-- ── CARD 3: Coming Soon ── -->
+      <div class="ebook-card reveal reveal-delay-2" data-category="coming" data-name="coming soon new ebook">
+        <div class="relative flex items-center justify-center" style="height:240px;background:linear-gradient(135deg,#1a1f35,#0f1225);">
+          <div class="text-center">
+            <div class="text-5xl mb-3">🔜</div>
+            <div class="text-xs font-black uppercase tracking-widest text-purple-400">Coming Soon</div>
+          </div>
+          <div class="absolute top-4 left-4"><span class="badge badge-coming">⏳ Coming Soon</span></div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-black text-lg text-white mb-2">More eBooks Loading...</h3>
+          <p class="text-sm text-gray-500 mb-5">We're working on HP Forest Guard, HP Clerk, HP Health Inspector and more exam guides. Stay tuned!</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(139,92,246,0.1);color:#c4b5fd;">Forest Guard</span>
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(139,92,246,0.1);color:#c4b5fd;">HP Clerk</span>
+            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(139,92,246,0.1);color:#c4b5fd;">Health Inspector</span>
+          </div>
+          <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank" class="btn-outline w-full justify-center" style="border-color:rgba(139,92,246,0.3);">
+            <i data-lucide="bell" class="w-4 h-4"></i> Get Notified
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- No results -->
+    <div id="no-results" class="hidden text-center py-20">
+      <div class="text-5xl mb-4">🔍</div>
+      <p class="text-gray-500 font-bold">No eBooks found. Try a different search.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FEATURED eBOOK SPOTLIGHT
+═══════════════════════════════════════ -->
+<section class="py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal" style="background:linear-gradient(135deg,rgba(30,58,120,0.25),rgba(15,23,42,0.5),rgba(88,28,135,0.15));border:1px solid rgba(59,130,246,0.2);border-radius:32px;padding:3rem;overflow:hidden;position:relative;">
+
+      <!-- Glow blob -->
+      <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(59,130,246,0.15),transparent 70%);pointer-events:none;"></div>
+      <div class="absolute -bottom-20 -right-20 w-80 h-80 rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(139,92,246,0.1),transparent 70%);pointer-events:none;"></div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+
+        <!-- Book visual -->
+        <div class="flex justify-center">
+          <div class="relative">
+            <div class="absolute inset-0 rounded-2xl blur-2xl" style="background:radial-gradient(circle,rgba(59,130,246,0.3),transparent 60%);transform:scale(1.1)"></div>
+            <!--
+              ★ Same Patwari cover used here — "book.png" ★
+            -->
+            <div class="float book-mockup shine w-64 h-80 relative overflow-hidden"
+                 style="background:linear-gradient(135deg,#1e3a5f,#0d1f35);border:1px solid rgba(59,130,246,0.3);">
+              <img src="book.png" alt="HP Patwari Featured"
+                   class="w-full h-full object-cover absolute inset-0"
+                   onerror="this.style.display='none'">
+              <div class="absolute left-0 top-0 bottom-0 w-3 rounded-l-2xl" style="background:linear-gradient(180deg,rgba(59,130,246,0.6),rgba(139,92,246,0.4))"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-6 z-10" id="feat-fallback"
+                   style="display:none;">
+                <div class="text-5xl mb-4">📚</div>
+                <div class="text-sm font-black text-blue-300 uppercase tracking-widest mb-2">HP Patwari</div>
+                <div class="text-xs text-gray-400 text-center">Complete Preparation Guide 2026</div>
+                <div class="mt-6 text-2xl font-black text-gradient">₹199</div>
+              </div>
+            </div>
+
+            <!-- Floating mini badges -->
+            <div class="absolute -right-6 top-8 glass px-3 py-2 rounded-xl text-xs font-black text-green-400 float-delay" style="border-color:rgba(16,185,129,0.2);">
+              ✅ 2000+ Sold
+            </div>
+            <div class="absolute -left-8 bottom-16 glass px-3 py-2 rounded-xl text-xs font-black text-blue-400 float-slow" style="border-color:rgba(59,130,246,0.2);">
+              ⚡ Instant PDF
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="space-y-6">
+          <div>
+            <span class="badge badge-trending mb-3">🔥 #1 Best eBook</span>
+            <h2 class="text-4xl font-black leading-tight">HP Patwari <span class="text-gradient">Complete</span> Preparation Guide 2026</h2>
+          </div>
+
+          <p class="text-gray-400 leading-relaxed">
+            The most comprehensive HP Patwari preparation guide available — built by experts, updated for 2026, and designed to maximize your score in minimum time.
+          </p>
+
+          <!-- Benefits -->
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+              <span class="text-sm font-bold">Full Syllabus Coverage</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+              <span class="text-sm font-bold">Previous Year Questions</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+              <span class="text-sm font-bold">5000+ MCQ Practice</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+              <span class="text-sm font-bold">HP GK &amp; Current Affairs</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+              <span class="text-sm font-bold">Instant PDF Download</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
+              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+              <span class="text-sm font-bold">Printable Format</span>
+            </div>
+          </div>
+
+          <!-- Price + CTA -->
+          <div class="flex flex-wrap items-center gap-6 pt-2">
+            <div>
+              <div class="text-4xl font-black text-gradient">₹199</div>
+              <div class="text-sm text-gray-500 line-through">₹499 • 60% off</div>
+            </div>
+            <a href="index.ebook.html" class="btn-primary text-base px-8 py-4">
+              <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+              Get This eBook
+            </a>
+          </div>
+
+          <!-- Trust badges row -->
+          <div class="flex flex-wrap gap-3 pt-1">
+            <div class="trust-badge text-xs"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-blue-400"></i> Secure Razorpay</div>
+            <div class="trust-badge text-xs"><i data-lucide="zap" class="w-3.5 h-3.5 text-yellow-400"></i> Instant Access</div>
+            <div class="trust-badge text-xs"><i data-lucide="users" class="w-3.5 h-3.5 text-green-400"></i> 2000+ Students</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     WHY OUR E-BOOKS
+═══════════════════════════════════════ -->
+<section class="py-20 px-6" style="background:rgba(0,0,0,0.2);">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style="background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);color:#67e8f9;">
+        <i data-lucide="star" class="w-3 h-3"></i> Why Study Hub?
+      </div>
+      <h2 class="text-4xl font-black mb-3">Why Our <span class="text-gradient">eBooks?</span></h2>
+      <p class="text-gray-500 max-w-lg mx-auto">Not just notes — engineered study tools designed to get you results.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="glass p-7 text-center reveal group hover:-translate-y-2 transition-transform duration-300">
+        <div class="feat-icon mx-auto mb-5" style="background:rgba(59,130,246,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="target" class="w-7 h-7 text-blue-400"></i>
+        </div>
+        <h3 class="font-black text-lg mb-2">Exam-Focused</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Every topic mapped exactly to the official exam syllabus. Zero irrelevant content.</p>
+      </div>
+
+      <div class="glass p-7 text-center reveal reveal-delay-1 group hover:-translate-y-2 transition-transform duration-300">
+        <div class="feat-icon mx-auto mb-5" style="background:rgba(139,92,246,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="refresh-cw" class="w-7 h-7 text-purple-400"></i>
+        </div>
+        <h3 class="font-black text-lg mb-2">Always Updated</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Content updated regularly for 2026 exams — latest syllabus changes included.</p>
+      </div>
+
+      <div class="glass p-7 text-center reveal reveal-delay-2 group hover:-translate-y-2 transition-transform duration-300">
+        <div class="feat-icon mx-auto mb-5" style="background:rgba(16,185,129,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="indian-rupee" class="w-7 h-7 text-green-400"></i>
+        </div>
+        <h3 class="font-black text-lg mb-2">Truly Affordable</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Premium quality at ₹199. No coaching fees. No hidden charges. Ever.</p>
+      </div>
+
+      <div class="glass p-7 text-center reveal reveal-delay-3 group hover:-translate-y-2 transition-transform duration-300">
+        <div class="feat-icon mx-auto mb-5" style="background:rgba(245,158,11,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
+          <i data-lucide="zap" class="w-7 h-7 text-yellow-400"></i>
+        </div>
+        <h3 class="font-black text-lg mb-2">Instant Access</h3>
+        <p class="text-sm text-gray-500 leading-relaxed">Pay once, download instantly. Access anytime on any device, forever.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     STATS STRIP
+═══════════════════════════════════════ -->
+<section class="py-14 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="glass reveal" style="border-radius:24px;padding:2.5rem;">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-black text-gradient count-up" data-target="2000">0</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">Students</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black" style="background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">2</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">eBooks Live</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">4.9★</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">Avg Rating</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black" style="background:linear-gradient(135deg,#f87171,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">5min</div>
+          <div class="text-sm text-gray-500 mt-1 font-medium">Avg Delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════ -->
+<section class="py-20 px-6" style="background:rgba(0,0,0,0.2);">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);color:#fcd34d;">
+        <i data-lucide="heart" class="w-3 h-3"></i> Student Reviews
+      </div>
+      <h2 class="text-4xl font-black mb-3">What <span class="text-gradient">Students Say</span></h2>
+      <p class="text-gray-500">Real reviews from students who prepared with our eBooks.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="glass p-7 reveal group hover:-translate-y-2 transition-transform duration-300">
+        <div class="stars mb-3">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-5">"The HP Patwari eBook is absolutely brilliant. PYQs and MCQs in one place — saved me so much time. Totally worth ₹199."</p>
+        <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);">R</div>
+          <div>
+            <div class="font-bold text-sm">Rahul Sharma</div>
+            <div class="text-xs text-gray-500">HP Patwari Aspirant, Mandi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass p-7 reveal reveal-delay-1 group hover:-translate-y-2 transition-transform duration-300">
+        <div class="stars mb-3">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-5">"Downloaded in minutes, worked perfectly on my phone. The HP GK section alone is worth the price. Highly recommend to all HP exam aspirants!"</p>
+        <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background:linear-gradient(135deg,#10b981,#059669);">P</div>
+          <div>
+            <div class="font-bold text-sm">Priya Thakur</div>
+            <div class="text-xs text-gray-500">Govt. Exam Student, Shimla</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass p-7 reveal reveal-delay-2 group hover:-translate-y-2 transition-transform duration-300">
+        <div class="stars mb-3">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-5">"FitLife Blueprint is exactly what I needed alongside my studies. Diet + workout + mental health in one PDF. Study Hub really delivers quality."</p>
+        <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">A</div>
+          <div>
+            <div class="font-bold text-sm">Amit Verma</div>
+            <div class="text-xs text-gray-500">Student, Kangra</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     WHATSAPP BANNER
+═══════════════════════════════════════ -->
+<section class="py-16 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="glass text-center reveal p-12" style="border-color:rgba(16,185,129,0.2);background:rgba(16,185,129,0.03);">
+      <div class="inline-flex p-4 rounded-full mb-5 text-green-400" style="background:rgba(16,185,129,0.1);">
+        <i data-lucide="message-square" class="w-8 h-8"></i>
+      </div>
+      <h2 class="text-3xl font-black mb-3">Get Updates &amp; Free Tips</h2>
+      <p class="text-gray-400 mb-8 max-w-lg mx-auto">Join our WhatsApp community — exam updates, free study material, doubt solving, and exclusive offers.</p>
+      <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank"
+         class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-black px-8 py-4 rounded-full transition-all shadow-xl"
+         style="box-shadow:0 8px 24px rgba(16,185,129,0.3);">
+        <i data-lucide="phone" class="w-5 h-5"></i>
+        Join WhatsApp Community
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+<section id="contact" class="py-20 px-6">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:#93c5fd;">
+        <i data-lucide="mail" class="w-3 h-3"></i> Contact Us
+      </div>
+      <h2 class="text-4xl font-black mb-5">Let's Get <span class="text-gradient">in Touch</span></h2>
+      <p class="text-gray-400 mb-10">Have questions about an eBook? Need help with your order? We're here for you.</p>
+
+      <div class="space-y-6">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="mail" class="w-6 h-6"></i></div>
+          <div>
+            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Email</p>
+            <p class="font-bold">studyhubnetwork@gmail.com</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></div>
+          <div>
+            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Phone / WhatsApp</p>
+            <p class="font-bold">+91 8629844548</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+          <div>
+            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Location</p>
+            <p class="font-bold">Shimla, Himachal Pradesh 171201, India</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="building-2" class="w-6 h-6"></i></div>
+          <div>
+            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Business</p>
+            <p class="font-bold">Study Hub Network</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass p-10 reveal reveal-delay-2">
+      <form action="https://formspree.io/f/mblgjeva" method="POST" class="space-y-5">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <input type="text" name="name" placeholder="Full Name" required
+                 class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium"
+                 style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
+                 onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          <input type="email" name="email" placeholder="Email Address" required
+                 class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium"
+                 style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
+                 onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        </div>
+        <input type="text" name="subject" placeholder="Subject (e.g. Order Help, Query)"
+               class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium"
+               style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
+               onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        <textarea name="message" placeholder="How can we help you?" rows="4" required
+                  class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium resize-none"
+                  style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
+                  onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>
+        <button type="submit" class="btn-primary w-full justify-center text-base py-4">
+          <i data-lucide="send" class="w-5 h-5"></i>
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="py-16 px-6 border-t border-white/5" style="background:rgba(0,0,0,0.5);">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+    <div class="col-span-2">
+      <a href="index.html" class="flex items-center gap-2 mb-5">
+        <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-white"><i data-lucide="layers" class="w-5 h-5"></i></div>
+        <span class="text-xl font-black">Study<span class="text-blue-500">Hub</span></span>
+      </a>
+      <p class="text-gray-500 max-w-xs mb-6 text-sm leading-relaxed">Premium digital study resources for HP government exam aspirants and beyond. Learn smarter. Score higher.</p>
+      <div class="flex gap-3">
+        <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" class="w-10 h-10 glass flex items-center justify-center hover:bg-green-500/20 transition-colors text-gray-400 hover:text-green-400">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+        </a>
+        <a href="https://www.instagram.com/study_hub099?igsh=MTFzdWN6MmR5Y3hudA==" class="w-10 h-10 glass flex items-center justify-center hover:bg-pink-500/20 transition-colors text-gray-400 hover:text-pink-400">
+          <i data-lucide="instagram" class="w-5 h-5"></i>
+        </a>
+        <a href="https://youtube.com/@ayush00099" class="w-10 h-10 glass flex items-center justify-center hover:bg-red-500/20 transition-colors text-gray-400 hover:text-red-400">
+          <i data-lucide="youtube" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="font-black mb-5 text-sm uppercase tracking-widest">E-Books</h4>
+      <ul class="space-y-3 text-sm text-gray-500">
+        <li><a href="index.ebook.html" class="hover:text-blue-400 transition-colors">HP Patwari Guide</a></li>
+        <li><a href="index.health.html" class="hover:text-blue-400 transition-colors">FitLife Blueprint</a></li>
+        <li><a href="index.class-10-papers.html" class="hover:text-blue-400 transition-colors">Class 10 Papers</a></li>
+        <li><a href="index.html#materials" class="hover:text-blue-400 transition-colors">Study Materials</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-black mb-5 text-sm uppercase tracking-widest">Legal</h4>
+      <ul class="space-y-3 text-sm text-gray-500">
+        <li><a href="index_privacy-policy.html" class="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+        <li><a href="index_privacy-policy.html#terms" class="hover:text-blue-400 transition-colors">Terms &amp; Conditions</a></li>
+        <li><a href="index_privacy-policy.html#refund" class="hover:text-blue-400 transition-colors">Refund Policy</a></li>
+        <li><a href="index_privacy-policy.html#contact" class="hover:text-blue-400 transition-colors">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+    <p>&copy; 2026 Study Hub Network. All rights reserved.</p>
+    <p>Not affiliated with HP Govt. or HPPSC. Educational purposes only.</p>
+  </div>
+</footer>
+
+<!-- Fixed WhatsApp -->
+<a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank" rel="noopener"
+   class="fixed bottom-8 right-8 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-50"
+   style="box-shadow:0 8px 28px rgba(16,185,129,0.5);">
+  <i data-lucide="message-circle" class="w-7 h-7"></i>
+</a>
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
+<script>
+  // ── Init Icons ──
+  lucide.createIcons();
+
+  // ── Preloader ──
+  window.addEventListener('load', () => {
+    const pre = document.getElementById('preloader');
+    setTimeout(() => {
+      pre.style.opacity = '0';
+      setTimeout(() => pre.style.display = 'none', 700);
+    }, 1400);
+  });
+
+  // ── Scroll Progress + Navbar ──
+  window.addEventListener('scroll', () => {
+    const scroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('scroll-progress').style.width = (scroll / height * 100) + '%';
+
+    const nav = document.getElementById('navbar');
+    if (scroll > 60) {
+      nav.style.cssText = 'background:rgba(3,7,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding-top:14px;padding-bottom:14px;';
+    } else {
+      nav.style.cssText = 'background:transparent;padding-top:20px;padding-bottom:20px;';
+    }
+
+    // Reveal
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
+    });
+  });
+
+  // ── Mobile Menu ──
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('translate-x-full');
+  });
+  document.getElementById('close-menu').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.add('translate-x-full');
+  });
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.add('translate-x-full');
+  }));
+
+  // ── Particles ──
+  const isMobile = window.innerWidth < 640;
+  if (!isMobile) {
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let dots = [];
+    function initDots() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      dots = [];
+      for (let i = 0; i < 35; i++) {
+        dots.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.5 + 0.5,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          color: Math.random() > 0.5 ? 'rgba(59,130,246,0.18)' : 'rgba(139,92,246,0.14)'
+        });
+      }
+    }
+    function animateDots() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      dots.forEach(d => {
+        d.x += d.vx; d.y += d.vy;
+        if (d.x < 0 || d.x > canvas.width) d.vx *= -1;
+        if (d.y < 0 || d.y > canvas.height) d.vy *= -1;
+        ctx.fillStyle = d.color;
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2); ctx.fill();
+      });
+      // Draw lines between nearby dots
+      dots.forEach((a, i) => {
+        dots.slice(i + 1).forEach(b => {
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(59,130,246,${0.06 * (1 - dist/120)})`;
+            ctx.lineWidth = 0.6;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        });
+      });
+      requestAnimationFrame(animateDots);
+    }
+    window.addEventListener('resize', initDots);
+    initDots(); animateDots();
+  }
+
+  // ── 3D Card Tilt ──
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-10px) scale(1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // ── Search & Filter ──
+  const searchInput = document.getElementById('search-input');
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const grid = document.getElementById('ebook-grid');
+  let activeFilter = 'all';
+
+  function filterCards() {
+    const q = searchInput.value.toLowerCase().trim();
+    const cards = grid.querySelectorAll('.ebook-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const cat = card.dataset.category || '';
+      const name = (card.dataset.name || '').toLowerCase();
+      const matchFilter = activeFilter === 'all' || cat === activeFilter;
+      const matchSearch = q === '' || name.includes(q);
+      if (matchFilter && matchSearch) {
+        card.classList.remove('card-hidden');
+        visible++;
+      } else {
+        card.classList.add('card-hidden');
+      }
+    });
+    document.getElementById('no-results').classList.toggle('hidden', visible > 0);
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeFilter = pill.dataset.filter;
+      filterCards();
+    });
+  });
+  searchInput.addEventListener('input', filterCards);
+
+  // ── Counter animation ──
+  document.querySelectorAll('.count-up').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        let count = 0;
+        const step = Math.ceil(target / 80);
+        const timer = setInterval(() => {
+          count = Math.min(count + step, target);
+          el.textContent = count.toLocaleString() + '+';
+          if (count >= target) clearInterval(timer);
+        }, 20);
+        obs.disconnect();
+      }
+    });
+    obs.observe(el);
+  });
+
+  // ── Initial reveal on load ──
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+    });
+  }, 200);
+
+  // ── Patwari cover image fallback ──
+  window.addEventListener('load', () => {
+    const img = document.querySelector('#patwari-cover img');
+    if (img && (img.naturalWidth === 0 || img.style.display === 'none')) {
+      document.getElementById('patwari-fallback').style.display = 'flex';
+    }
+  });
+</script>
+</body>
+</html>
