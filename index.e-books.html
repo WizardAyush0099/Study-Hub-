@@ -1,1240 +1,2996 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Study Hub Premium eBook Library — HP Patwari, FitLife Blueprint and more. Affordable, exam-focused digital guides for serious students.">
-  <title>E-Books Library | Study Hub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub E-Books - Premium Exam Preparation Store</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <link href="tailwind-full.css" rel="stylesheet">
+    <!-- Google Fonts: Syne + DM Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Meta Pixel -->
-  <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','4371581243162957');fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"/></noscript>
+    <style>
+        /* ─── Root & Tokens ─────────────────────────────── */
+        :root {
+            --gold: #F59E0B;
+            --gold-light: #FCD34D;
+            --gold-dark: #D97706;
+            --ink: #0F172A;
+            --ink-mid: #1E293B;
+            --ink-soft: #334155;
+            --surface: #FFFFFF;
+            --surface-2: #F8FAFC;
+            --border: rgba(15,23,42,0.08);
+            --shadow-sm: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+            --shadow-md: 0 4px 16px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.04);
+            --shadow-lg: 0 12px 40px rgba(15,23,42,0.12), 0 4px 16px rgba(15,23,42,0.06);
+            --shadow-xl: 0 20px 60px rgba(15,23,42,0.16), 0 8px 24px rgba(15,23,42,0.08);
+            --shadow-gold: 0 8px 30px rgba(245,158,11,0.35), 0 2px 8px rgba(245,158,11,0.2);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: cubic-bezier(0.4, 0, 0.2, 1);
+            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        /* ─── Base ───────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'DM Sans', sans-serif; 
+            background: #F8FAFC;
+            color: var(--ink); 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Syne', sans-serif; }
 
-  <style>
-    :root {
-      --primary: #3b82f6;
-      --secondary: #8b5cf6;
-      --accent: #06b6d4;
-      --green: #10b981;
-      --bg-dark: #030712;
-      --glass: rgba(255,255,255,0.03);
-      --glass-border: rgba(255,255,255,0.08);
+        /* ─── Scrollbar ──────────────────────────────────── */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(245,158,11,0.4); border-radius: 99px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* ─── Scroll Progress ────────────────────────────── */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+            background: linear-gradient(90deg, var(--gold), #F97316, var(--gold));
+            background-size: 200% 100%;
+            animation: progressShimmer 2s linear infinite;
+            transform-origin: left;
+            transition: transform 0.05s linear;
+            box-shadow: 0 0 12px rgba(245,158,11,0.6);
+        }
+        @keyframes progressShimmer {
+            0% { background-position: 0% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* ─── Navbar ─────────────────────────────────────── */
+        .navbar {
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            background: rgba(255,255,255,0.88);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s var(--transition);
+        }
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.96);
+            box-shadow: var(--shadow-md);
+        }
+        .nav-link {
+            position: relative; font-weight: 500;
+            color: var(--ink-soft); font-size: 0.9rem;
+            transition: color 0.25s var(--transition);
+            padding-bottom: 2px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute; bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            border-radius: 99px;
+            transition: width 0.3s var(--spring);
+        }
+        .nav-link:hover { color: var(--ink); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: var(--ink); font-weight: 600; }
+
+        /* ─── Logo ───────────────────────────────────────── */
+        .logo-text {
+            background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+        }
+        .logo-icon { transition: transform 0.4s var(--spring); }
+        a:hover .logo-icon { transform: rotate(15deg) scale(1.1); }
+
+        /* ─── Search Input ───────────────────────────────── */
+        .search-wrap { position: relative; }
+        .search-input {
+            width: 100%;
+            padding: 10px 16px 10px 44px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            background: var(--surface-2);
+            font-size: 0.875rem;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s var(--transition);
+            outline: none;
+            color: var(--ink);
+        }
+        .search-input::placeholder { color: #94A3B8; }
+        .search-input:focus {
+            border-color: var(--gold);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(245,158,11,0.12);
+        }
+        .search-icon {
+            position: absolute; left: 14px; top: 50%;
+            transform: translateY(-50%);
+            color: #94A3B8; transition: color 0.3s;
+        }
+        .search-input:focus ~ .search-icon { color: var(--gold); }
+        .search-wrap:focus-within .search-icon { color: var(--gold); }
+
+        /* ─── Mobile Menu ────────────────────────────────── */
+        #mobileMenu {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.45s var(--transition), opacity 0.3s;
+            opacity: 0;
+        }
+        #mobileMenu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+        .mobile-link {
+            display: block; padding: 10px 16px;
+            color: var(--ink-soft); font-weight: 500;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s, transform 0.2s var(--spring);
+        }
+        .mobile-link:hover { background: #FEF3C7; color: var(--ink); transform: translateX(4px); }
+        .mobile-link.active { background: #FEF3C7; color: var(--ink); font-weight: 700; border-left: 3px solid var(--gold); }
+
+        /* ─── Hero Section ───────────────────────────────── */
+        .hero {
+            position: relative; overflow: hidden;
+            background: linear-gradient(160deg, #FFFBEB 0%, #FEF9F0 40%, #EFF6FF 100%);
+            padding: 80px 0 64px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,158,11,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-blob {
+            position: absolute; border-radius: 50%;
+            filter: blur(80px); opacity: 0.5;
+            pointer-events: none;
+            animation: blobFloat 8s ease-in-out infinite;
+        }
+        .hero-blob-1 {
+            width: 400px; height: 400px;
+            background: rgba(245,158,11,0.18);
+            top: -100px; left: -80px;
+        }
+        .hero-blob-2 {
+            width: 350px; height: 350px;
+            background: rgba(99,102,241,0.1);
+            bottom: -80px; right: -60px;
+            animation-delay: -4s;
+        }
+        .hero-blob-3 {
+            width: 200px; height: 200px;
+            background: rgba(16,185,129,0.1);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -2s;
+        }
+        @keyframes blobFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.3);
+            padding: 6px 16px; border-radius: 99px;
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--gold-dark);
+            margin-bottom: 20px;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+        .hero-badge-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--gold);
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.2); }
+            50% { box-shadow: 0 0 0 6px rgba(245,158,11,0); }
+        }
+
+        .hero-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 60%, #4338CA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-title .glow-word {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, #FBBF24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        .hero-title .glow-word::after {
+            content: attr(data-text);
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(12px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .hero-stats {
+            display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+            margin-top: 32px;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat-num {
+            font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--ink), var(--ink-soft));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-stat-label { font-size: 0.78rem; color: #64748B; font-weight: 500; margin-top: 2px; }
+        .hero-stat-divider { width: 1px; background: var(--border); align-self: stretch; }
+
+        /* ─── Categories ─────────────────────────────────── */
+        .categories-bar {
+            position: sticky; top: 64px; z-index: 40;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        .cat-btn {
+            padding: 8px 20px; border-radius: 10px;
+            font-size: 0.875rem; font-weight: 600;
+            white-space: nowrap; flex-shrink: 0;
+            border: 1.5px solid var(--border);
+            background: white; color: var(--ink-soft);
+            transition: all 0.25s var(--transition);
+            cursor: pointer; position: relative; overflow: hidden;
+        }
+        .cat-btn::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            opacity: 0; transition: opacity 0.25s;
+        }
+        .cat-btn span { position: relative; z-index: 1; }
+        .cat-btn:hover:not(:disabled) {
+            border-color: var(--gold-light);
+            color: var(--gold-dark);
+            box-shadow: 0 2px 12px rgba(245,158,11,0.2);
+            transform: translateY(-1px);
+        }
+        .cat-btn.active {
+            border-color: var(--gold);
+            color: white;
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-1px);
+        }
+        .cat-btn.active::before { opacity: 1; }
+        .cat-btn:disabled {
+            opacity: 0.45; cursor: not-allowed;
+            background: var(--surface-2);
+        }
+        .cat-btn:active:not(:disabled) { transform: scale(0.97); }
+
+        /* ─── Section Headings ───────────────────────────── */
+        .section-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--gold-dark);
+            margin-bottom: 6px;
+        }
+        .section-title {
+            font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+            color: var(--ink); display: flex; align-items: center; gap: 12px;
+        }
+        .section-title-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ─── Product Card (Amazon-style horizontal) ─────── */
+        .product-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s var(--transition);
+            position: relative; overflow: visible;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, rgba(245,158,11,0.05), transparent);
+            opacity: 0; transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .product-card:hover {
+            border-color: rgba(245,158,11,0.25);
+            box-shadow: var(--shadow-xl), 0 0 0 1px rgba(245,158,11,0.15);
+            transform: translateY(-4px);
+        }
+        .product-card:hover::before { opacity: 1; }
+
+        /* Product Image */
+        .product-img-wrap {
+            border-radius: 14px; overflow: hidden;
+            position: relative; flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+        }
+        .product-img-wrap::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(15,23,42,0.15) 100%);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .product-card:hover .product-img-wrap::after { opacity: 1; }
+        .product-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s var(--transition);
+            display: block;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.07); }
+
+        /* Tag Badge */
+        .product-tag {
+    position: absolute;
+    top: -7px;
+    right: 15px;
+    white-space: nowrap;
+    width: fit;
+    padding: 5px 16px;
+    border-radius: 99px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, #F97316, var(--gold));
+    color: white;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.5);
+    z-index: 2;
+}
+        @keyframes tagFloat {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-3px) rotate(1deg); }
+        }
+
+        /* Discount Badge */
+        .discount-badge {
+            display: inline-flex; align-items: center;
+            gap: 4px;
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white; font-size: 0.7rem; font-weight: 800;
+            padding: 3px 10px; border-radius: 99px;
+            box-shadow: 0 3px 10px rgba(239,68,68,0.4);
+            animation: discountPulse 2s ease-in-out infinite;
+        }
+        @keyframes discountPulse {
+            0%, 100% { box-shadow: 0 3px 10px rgba(239,68,68,0.4); }
+            50% { box-shadow: 0 3px 20px rgba(239,68,68,0.6); }
+        }
+
+        /* Limited Deal */
+        .limited-deal {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: #16A34A; font-size: 0.78rem; font-weight: 700;
+        }
+        .limited-deal-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #16A34A;
+            animation: livePulse 1.2s ease-in-out infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.6; }
+        }
+
+        /* Stars */
+        .star-fill { color: #F59E0B; fill: #F59E0B; }
+        .star-empty { color: #E2E8F0; fill: #E2E8F0; }
+
+        /* Price */
+        .price-main {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem; font-weight: 800;
+            color: var(--ink);
+            line-height: 1;
+        }
+        .price-original {
+            font-size: 1rem; color: #94A3B8;
+            text-decoration: line-through; font-weight: 400;
+        }
+
+        /* Trust Signals */
+        .trust-pill {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 0.72rem; color: #64748B; font-weight: 500;
+        }
+        .trust-pill svg { color: #10B981; }
+
+        /* ─── Buttons ─────────────────────────────────────── */
+        .btn-primary {
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 14px 20px;
+            border-radius: 12px; font-weight: 700;
+            font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #F59E0B 100%);
+            background-size: 200% 100%;
+            color: var(--ink);
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+            transition: all 0.3s var(--transition);
+            border: none; cursor: pointer; text-decoration: none;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s var(--transition);
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover {
+            background-position: 100% 0;
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-2px);
+        }
+        .btn-primary:active { transform: scale(0.97) translateY(0); box-shadow: 0 2px 8px rgba(245,158,11,0.3); }
+
+        .btn-secondary {
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 12px 20px;
+            border-radius: 12px; font-weight: 600;
+            font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(15,23,42,0.25);
+            transition: all 0.3s var(--transition);
+            border: none; cursor: pointer; text-decoration: none;
+        }
+        .btn-secondary::before {
+            content: '';
+            position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        .btn-secondary:hover::before { left: 100%; }
+        .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(15,23,42,0.35); }
+        .btn-secondary:active { transform: scale(0.97); }
+
+        .btn-outline {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 11px 20px;
+            border-radius: 12px; font-weight: 600;
+            font-size: 0.875rem; font-family: 'DM Sans', sans-serif;
+            background: white;
+            border: 1.5px solid #BFDBFE;
+            color: #1D4ED8;
+            transition: all 0.25s var(--transition);
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            background: #EFF6FF;
+            border-color: #3B82F6;
+            color: #1E40AF;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(59,130,246,0.2);
+        }
+        .btn-outline:active { transform: scale(0.97); }
+
+        /* Ripple */
+        .ripple { position: relative; overflow: hidden; }
+        .ripple-effect {
+            position: absolute; border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            transform: scale(0);
+            animation: rippleAnim 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* ─── Coming Soon Cards ───────────────────────────── */
+        .coming-card {
+            background: white;
+            border: 1.5px dashed #CBD5E1;
+            border-radius: var(--radius);
+            padding: 24px 16px;
+            text-align: center;
+            opacity: 0.7;
+            transition: all 0.4s var(--transition);
+        }
+        .coming-card:hover {
+            opacity: 1;
+            border-color: rgba(245,158,11,0.4);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+        .coming-cover {
+            width: 72px; height: 96px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+            margin: 0 auto 16px;
+            position: relative; overflow: hidden;
+        }
+        .coming-cover::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.3));
+        }
+        .coming-cover-shimmer {
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.8s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .coming-badge {
+            display: inline-block;
+            padding: 5px 14px; border-radius: 99px;
+            background: linear-gradient(135deg, #64748B, #475569);
+            color: white; font-size: 0.65rem; font-weight: 800;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            margin-top: 12px;
+        }
+
+        /* ─── Reveal Animations ──────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s var(--transition), transform 0.65s var(--transition);
+        }
+        .reveal.animate { opacity: 1; transform: translateY(0); }
+
+        /* ─── Back to Top ─────────────────────────────────── */
+        .back-to-top {
+            position: fixed; bottom: 20px; right: 20px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: white; font-size: 1.25rem;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999;
+            box-shadow: var(--shadow-gold);
+            cursor: pointer;
+            transition: all 0.3s var(--spring);
+        }
+        .back-to-top {
+            opacity: 0; visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.35s var(--spring);
+        }
+        .back-to-top.show {
+            opacity: 1; visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .back-to-top:hover { transform: translateY(-3px) scale(1.05) !important; }
+
+        /* ─── WhatsApp Float ─────────────────────────────── */
+        .whatsapp-float {
+    position: fixed;
+    bottom: 10px;
+    right: 4px; /* THIS is the main fix */
+    left: auto; /* prevent left shift */
+    
+    width: 60px;
+    height: 60px;
+    
+    z-index: 9999;
+    border-radius: 50%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        /* ─── Footer ─────────────────────────────────────── */
+        footer { background: linear-gradient(160deg, #0F172A 0%, #1E293B 100%); }
+        .footer-link { 
+            color: #94A3B8; font-size: 0.875rem;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+        .footer-link:hover { color: var(--gold); transform: translateX(3px); }
+        .social-btn {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            color: #94A3B8;
+            transition: all 0.25s var(--spring);
+        }
+        .social-btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+            transform: translateY(-3px) rotate(-5deg);
+            box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+        }
+
+        /* ─── Misc ───────────────────────────────────────── */
+        .gradient-line {
+            height: 3px; border-radius: 99px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin-top: 12px; margin-bottom: 32px;
+        }
+        .empty-state {
+            text-align: center; padding: 80px 24px;
+            color: #94A3B8;
+        }
+        .empty-state-icon { font-size: 3.5rem; margin-bottom: 16px; }
+        .empty-state-text { font-size: 1.25rem; font-family: 'Syne', sans-serif; }
+
+        /* Parallax shimmer for hero */
+        @keyframes heroShimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(400%) rotate(45deg); }
+        }
+        .hero-shimmer {
+            position: absolute; top: 0; left: 0;
+            width: 60px; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: heroShimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+:root {
+    /* Neon glow palette */
+    --neon-gold: rgba(245, 158, 11, 0.7);
+    --neon-gold-hard: rgba(245, 158, 11, 1);
+    --neon-blue: rgba(99, 102, 241, 0.7);
+    --neon-green: rgba(16, 185, 129, 0.7);
+
+    /* Gradient presets */
+    --grad-gold: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #F97316 100%);
+    --grad-ink: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #334155 100%);
+    --grad-glass: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 100%);
+    --grad-mesh-1: radial-gradient(ellipse at 20% 50%, rgba(245,158,11,0.08) 0%, transparent 60%);
+    --grad-mesh-2: radial-gradient(ellipse at 80% 20%, rgba(99,102,241,0.07) 0%, transparent 60%);
+    --grad-mesh-3: radial-gradient(ellipse at 60% 90%, rgba(16,185,129,0.05) 0%, transparent 55%);
+
+    /* Transition easing */
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-snappy: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Extended shadows */
+    --shadow-neon-gold: 0 0 20px rgba(245,158,11,0.4), 0 0 60px rgba(245,158,11,0.15);
+    --shadow-neon-blue: 0 0 20px rgba(99,102,241,0.3), 0 0 60px rgba(99,102,241,0.1);
+    --shadow-card-hover: 0 24px 80px rgba(15,23,42,0.18), 0 8px 30px rgba(15,23,42,0.1), 0 0 0 1px rgba(245,158,11,0.12);
+    --shadow-inner-glass: inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(15,23,42,0.04);
+
+    /* Noise + glass tokens */
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-blur: 24px;
+    --noise-opacity: 0.025;
+
+    /* Animation timing */
+    --dur-fast: 180ms;
+    --dur-base: 280ms;
+    --dur-slow: 500ms;
+    --dur-xslow: 800ms;
+}
+
+
+/* ─── 02. Global Body + Background FX ──────────────────────────── */
+body {
+    background-color: #F8FAFC;
+    background-image:
+        var(--grad-mesh-1),
+        var(--grad-mesh-2),
+        var(--grad-mesh-3);
+    background-attachment: fixed;
+    /* Subtle noise via SVG data URI */
+    position: relative;
+}
+
+/* Full-page noise overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--noise-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+}
+
+/* Ensure content sits above noise */
+body > * { position: relative; z-index: 1; }
+
+
+/* ─── 03. Animated Mesh Grid Background ────────────────────────── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(15,23,42,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: gridDrift 30s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes gridDrift {
+    0%   { background-position: 0 0, 0 0; }
+    100% { background-position: 48px 48px, 48px 48px; }
+}
+
+
+    
+:root { --cx: 50vw; --cy: 50vh; }
+
+.cursor-glow-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        600px circle at var(--cx) var(--cy),
+        rgba(245,158,11,0.04) 0%,
+        transparent 70%
+    );
+    transition: background 0.1s linear;
+}
+
+
+/* ─── 05. Navbar — Glassmorphism Ultra ─────────────────────────── */
+.navbar {
+    background: rgba(255, 255, 255, 0.78) !important;
+    backdrop-filter: blur(28px) saturate(200%) brightness(1.05) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(1.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
+    box-shadow: var(--shadow-inner-glass), 0 1px 0 rgba(15,23,42,0.06);
+    transition: all var(--dur-slow) var(--ease-smooth) !important;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.92) !important;
+    box-shadow:
+        var(--shadow-inner-glass),
+        0 4px 24px rgba(15,23,42,0.08),
+        0 1px 0 rgba(245,158,11,0.1) !important;
+    border-bottom-color: rgba(245,158,11,0.12) !important;
+}
+
+/* Navbar height shrink on scroll */
+.navbar.scrolled .flex { min-height: 56px; transition: min-height var(--dur-base) var(--ease-smooth); }
+
+
+/* ─── 06. Logo — Advanced Micro-interaction ─────────────────────── */
+.logo-icon {
+    background: var(--grad-gold) !important;
+    box-shadow: 0 3px 12px rgba(245,158,11,0.4);
+    transition: transform var(--dur-slow) var(--ease-bounce),
+                box-shadow var(--dur-base) var(--ease-smooth) !important;
+}
+
+a:hover .logo-icon {
+    transform: rotate(20deg) scale(1.15) !important;
+    box-shadow: var(--shadow-neon-gold);
+}
+
+/* Logo text animated gradient */
+.logo-text {
+    background: linear-gradient(135deg, #0F172A 0%, #334155 40%, #F59E0B 70%, #0F172A 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: logoGradientFlow 6s ease-in-out infinite;
+}
+
+@keyframes logoGradientFlow {
+    0%, 100% { background-position: 0% 0; }
+    50%       { background-position: 100% 0; }
+}
+
+
+/* ─── 07. Search — Premium Focus & Autocomplete Glow ────────────── */
+.search-input {
+    background: rgba(248, 250, 252, 0.8) !important;
+    backdrop-filter: blur(8px);
+    letter-spacing: 0.01em;
+    caret-color: var(--gold);
+    transition:
+        border-color var(--dur-base) var(--ease-smooth),
+        box-shadow var(--dur-base) var(--ease-smooth),
+        background var(--dur-base) var(--ease-smooth),
+        transform var(--dur-fast) var(--ease-bounce) !important;
+}
+
+.search-input:focus {
+    background: rgba(255,255,255,0.98) !important;
+    border-color: var(--gold) !important;
+    box-shadow:
+        0 0 0 4px rgba(245,158,11,0.12),
+        0 0 20px rgba(245,158,11,0.1),
+        var(--shadow-inner-glass) !important;
+    transform: scale(1.01);
+}
+
+.search-wrap { overflow: visible; }
+
+/* Animated search icon on focus */
+.search-wrap:focus-within .search-icon {
+    color: var(--gold) !important;
+    animation: searchIconBounce 0.4s var(--ease-bounce);
+}
+
+@keyframes searchIconBounce {
+    0%   { transform: translateY(-50%) scale(1); }
+    40%  { transform: translateY(-50%) scale(1.3) rotate(-10deg); }
+    100% { transform: translateY(-50%) scale(1); }
+}
+
+
+/* ─── 08. Category Buttons — Spring & Neon ──────────────────────── */
+.cat-btn {
+    transition:
+        all var(--dur-base) var(--ease-bounce) !important;
+    will-change: transform, box-shadow;
+    isolation: isolate;
+}
+
+.cat-btn:not(:disabled):not(.active):hover {
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 6px 20px rgba(245,158,11,0.25) !important;
+}
+
+.cat-btn.active {
+    animation: catActivePop 0.35s var(--ease-bounce) forwards;
+    box-shadow: var(--shadow-neon-gold) !important;
+}
+
+@keyframes catActivePop {
+    0%   { transform: scale(1); }
+    50%  { transform: translateY(-4px) scale(1.06); }
+    100% { transform: translateY(-1px) scale(1.02); }
+}
+
+/* Rotating shimmer on active category */
+.cat-btn.active::after {
+    content: '';
+    position: absolute; inset: -2px;
+    border-radius: 13px;
+    background: conic-gradient(from 0deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%, transparent 100%);
+    animation: catRotate 2.5s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes catRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Tap press effect */
+.cat-btn:active:not(:disabled) {
+    transform: scale(0.95) !important;
+}
+
+
+/* ─── 09. Hero — Cinematic Depth Upgrades ───────────────────────── */
+.hero {
+    background: linear-gradient(160deg, #FFFBEB 0%, #FEF9F0 35%, #EFF6FF 75%, #F0FDF4 100%) !important;
+    animation: heroBgShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroBgShift {
+    0%   { background: linear-gradient(160deg, #FFFBEB 0%, #FEF9F0 35%, #EFF6FF 75%, #F0FDF4 100%); }
+    100% { background: linear-gradient(160deg, #FFF7ED 0%, #FFFBEB 35%, #F0F9FF 75%, #F0FDF4 100%); }
+}
+
+/* Blob upgrade — more vivid, more movement */
+.hero-blob-1 {
+    background: radial-gradient(circle, rgba(245,158,11,0.25) 0%, rgba(249,115,22,0.1) 100%) !important;
+    animation: blob1Float 9s ease-in-out infinite !important;
+}
+.hero-blob-2 {
+    background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.08) 100%) !important;
+    animation: blob2Float 11s ease-in-out infinite !important;
+}
+.hero-blob-3 {
+    background: radial-gradient(circle, rgba(16,185,129,0.14) 0%, rgba(20,184,166,0.06) 100%) !important;
+    animation: blob3Float 7s ease-in-out infinite !important;
+}
+
+@keyframes blob1Float {
+    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+    33%       { transform: translateY(-30px) translateX(15px) scale(1.06); }
+    66%       { transform: translateY(-10px) translateX(-20px) scale(0.97); }
+}
+@keyframes blob2Float {
+    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+    40%       { transform: translateY(-20px) translateX(-18px) scale(1.08); }
+    70%       { transform: translateY(12px) translateX(10px) scale(0.95); }
+}
+@keyframes blob3Float {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50%       { transform: translate(-50%, -50%) scale(1.15) rotate(15deg); }
+}
+
+/* Hero badge — upgraded pulse ring */
+.hero-badge {
+    position: relative;
+    transition: transform var(--dur-base) var(--ease-bounce), box-shadow var(--dur-base);
+}
+.hero-badge:hover { transform: scale(1.04); }
+
+.hero-badge::before {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 99px;
+    background: conic-gradient(from 0deg, var(--gold), transparent 40%, var(--gold) 100%);
+    animation: badgeRotateBorder 3s linear infinite;
+    z-index: -1;
+    opacity: 0.4;
+}
+@keyframes badgeRotateBorder {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Hero title — gradient animation */
+.hero-title {
+    background: linear-gradient(135deg, #0F172A 0%, #334155 30%, #6366F1 65%, #0F172A 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: titleGradientShift 8s ease-in-out infinite;
+}
+
+@keyframes titleGradientShift {
+    0%, 100% { background-position: 0% 0; }
+    50%       { background-position: 100% 0; }
+}
+
+/* Glow word — enhanced pulse */
+.hero-title .glow-word {
+    animation: glowWordPulse 3s ease-in-out infinite;
+}
+@keyframes glowWordPulse {
+    0%, 100% { filter: drop-shadow(0 0 0px rgba(245,158,11,0)); }
+    50%       { filter: drop-shadow(0 0 12px rgba(245,158,11,0.5)); }
+}
+
+
+/* ─── 10. Hero Stats — Hover Lift ───────────────────────────────── */
+.hero-stat {
+    transition: transform var(--dur-base) var(--ease-bounce);
+    cursor: default;
+}
+.hero-stat:hover { transform: translateY(-4px); }
+
+.hero-stat-num {
+    background: linear-gradient(135deg, #0F172A 0%, #F59E0B 50%, #0F172A 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: statNumShimmer 4s ease-in-out infinite;
+}
+@keyframes statNumShimmer {
+    0%, 100% { background-position: 0% 0; }
+    50%       { background-position: 100% 0; }
+}
+
+
+/* ─── 11. Section Headings — Animated Gradient + Underline ─────── */
+.section-label {
+    animation: labelFadeIn 0.5s var(--ease-smooth) both;
+    letter-spacing: 0.18em !important;
+}
+@keyframes labelFadeIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.section-title {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.gradient-line {
+    height: 3px !important;
+    border-radius: 99px;
+    position: relative;
+    overflow: hidden;
+}
+.gradient-line::after {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: rgba(255,255,255,0.6);
+    animation: lineShimmer 2.5s ease-in-out infinite;
+    border-radius: 99px;
+}
+@keyframes lineShimmer {
+    0%   { left: -60%; }
+    100% { left: 120%; }
+}
+
+/* Section title dot — orbit ring */
+.section-title-dot {
+    position: relative;
+    transition: transform var(--dur-base) var(--ease-bounce);
+}
+.section-title-dot::after {
+    content: '';
+    position: absolute; inset: -5px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    opacity: 0;
+    animation: dotOrbit 2s ease-in-out infinite;
+}
+@keyframes dotOrbit {
+    0%   { inset: -2px; opacity: 0.6; }
+    100% { inset: -10px; opacity: 0; }
+}
+
+
+/* ─── 12. Product Cards — 3D Perspective + Glow ─────────────────── */
+.product-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition:
+        transform var(--dur-slow) var(--ease-smooth),
+        box-shadow var(--dur-slow) var(--ease-smooth),
+        border-color var(--dur-base) var(--ease-smooth) !important;
+    will-change: transform, box-shadow;
+    /* Gradient border via outline trick */
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+}
+
+.product-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: var(--shadow-card-hover) !important;
+    border-color: rgba(245,158,11,0.2) !important;
+}
+
+/* Inner glass sheen */
+.product-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.12) 0%,
+        transparent 50%,
+        rgba(255,255,255,0.04) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur-base);
+    z-index: 1;
+}
+.product-card:hover::after { opacity: 1; }
+
+ */
+
+
+/* ─── 13. Product Image — Advanced Parallax Zoom ────────────────── */
+.product-img-wrap {
+    transition:
+        box-shadow var(--dur-slow) var(--ease-smooth),
+        transform var(--dur-slow) var(--ease-smooth) !important;
+    will-change: transform;
+}
+
+.product-card:hover .product-img-wrap {
+    box-shadow: 0 12px 40px rgba(15,23,42,0.22) !important;
+    transform: scale(1.02);
+}
+
+.product-img-wrap img {
+    transition: transform 0.65s var(--ease-smooth) !important;
+    will-change: transform;
+    transform-origin: center center;
+}
+.product-card:hover .product-img-wrap img {
+    transform: scale(1.1) !important;
+}
+
+/* Shine sweep on hover */
+.product-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -80%;
+    width: 60%; height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,0.28) 50%,
+        transparent 100%
+    );
+    transform: skewX(-15deg);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: none;
+}
+.product-card:hover .product-img-wrap::before {
+    animation: imageShineSweep 0.7s var(--ease-snappy) forwards;
+    opacity: 1;
+}
+@keyframes imageShineSweep {
+    from { left: -80%; }
+    to   { left: 140%; }
+}
+
+
+/* Pulse ring behind tag */
+.product-tag::before {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 99px;
+    background: inherit;
+    filter: blur(8px);
+    opacity: 0.45;
+    animation: tagGlowPulse 2s ease-in-out infinite;
+    z-index: -1;
+}
+@keyframes tagGlowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50%       { opacity: 0.6; transform: scale(1.05); }
+}
+
+
+/* ─── 15. Discount Badge — Pulse Ring Upgrade ───────────────────── */
+.discount-badge {
+    position: relative;
+    animation: discountPulse 2s ease-in-out infinite, discountGlow 2s ease-in-out infinite !important;
+}
+@keyframes discountGlow {
+    0%, 100% { box-shadow: 0 3px 10px rgba(239,68,68,0.35); }
+    50%       { box-shadow: 0 3px 25px rgba(239,68,68,0.7), 0 0 0 4px rgba(239,68,68,0.12); }
+}
+
+/* Triple pulse rings */
+.discount-badge::before,
+.discount-badge::after {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: 99px;
+    border: 1.5px solid rgba(239,68,68,0.5);
+    animation: discountRing 2s ease-out infinite;
+    pointer-events: none;
+}
+.discount-badge::after { animation-delay: 0.6s; }
+
+@keyframes discountRing {
+    0%   { inset: -1px; opacity: 0.6; }
+    100% { inset: -8px; opacity: 0; }
+}
+
+
+/* ─── 16. Price — Gradient + Shimmer Text ───────────────────────── */
+.price-main {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 40%, #0F172A 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all var(--dur-base) var(--ease-smooth);
+    display: inline-block;
+}
+
+.product-card:hover .price-main {
+    background: linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #FBBF24 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: priceShimmer 1.5s ease-in-out infinite;
+}
+@keyframes priceShimmer {
+    0%, 100% { background-position: 0% 0; }
+    50%       { background-position: 100% 0; }
+}
+
+
+/* ─── 17. Trust Pills — Icon Bounce on Card Hover ───────────────── */
+.trust-pill {
+    transition: transform var(--dur-base) var(--ease-bounce),
+                color var(--dur-base) var(--ease-smooth);
+}
+.trust-pill:hover { transform: translateY(-2px); color: var(--ink-soft) !important; }
+
+.product-card:hover .trust-pill svg {
+    animation: iconBounce 0.5s var(--ease-bounce);
+}
+.product-card:hover .trust-pill:nth-child(1) svg { animation-delay: 0ms; }
+.product-card:hover .trust-pill:nth-child(2) svg { animation-delay: 80ms; }
+.product-card:hover .trust-pill:nth-child(3) svg { animation-delay: 160ms; }
+
+@keyframes iconBounce {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.4) rotate(-10deg); }
+    70%  { transform: scale(0.9) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+
+/* ─── 18. Buttons — Complete Premium Glow System ────────────────── */
+
+/* ── btn-primary: Liquid gold ────────────────────────────────────── */
+.btn-primary {
+    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 40%, #F97316 80%, #F59E0B 100%) !important;
+    background-size: 300% 100% !important;
+    transition:
+        background-position var(--dur-slow) var(--ease-smooth),
+        transform var(--dur-base) var(--ease-bounce),
+        box-shadow var(--dur-base) var(--ease-smooth) !important;
+    letter-spacing: 0.02em;
+    font-size: 0.92rem !important;
+    will-change: transform;
+}
+.btn-primary:hover {
+    background-position: 100% 0 !important;
+    transform: translateY(-3px) !important;
+    box-shadow:
+        0 0 0 2px rgba(245,158,11,0.2),
+        0 8px 30px rgba(245,158,11,0.5),
+        0 20px 60px rgba(245,158,11,0.2) !important;
+}
+.btn-primary:active {
+    transform: translateY(0px) scale(0.97) !important;
+    box-shadow: 0 2px 10px rgba(245,158,11,0.4) !important;
+}
+
+/* Breathing glow on btn-primary at rest */
+@keyframes btnBreath {
+    0%, 100% { box-shadow: 0 4px 15px rgba(245,158,11,0.4); }
+    50%       { box-shadow: 0 4px 30px rgba(245,158,11,0.65), 0 0 0 3px rgba(245,158,11,0.08); }
+}
+.btn-primary { animation: btnBreath 3s ease-in-out infinite; }
+.btn-primary:hover { animation: none; }
+
+/* ── btn-secondary: Dark slate with blue shimmer ─────────────────── */
+.btn-secondary {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%) !important;
+    background-size: 200% 100% !important;
+    transition:
+        background-position var(--dur-slow) var(--ease-smooth),
+        transform var(--dur-base) var(--ease-bounce),
+        box-shadow var(--dur-base) var(--ease-smooth) !important;
+}
+.btn-secondary:hover {
+    background-position: 100% 0 !important;
+    transform: translateY(-3px) !important;
+    box-shadow:
+        0 8px 30px rgba(15,23,42,0.4),
+        0 0 0 1px rgba(99,102,241,0.2),
+        0 0 20px rgba(99,102,241,0.15) !important;
+}
+
+/* ── btn-outline: Blue fill liquid ───────────────────────────────── */
+.btn-outline {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    transition:
+        color var(--dur-base) var(--ease-smooth),
+        border-color var(--dur-base),
+        transform var(--dur-base) var(--ease-bounce),
+        box-shadow var(--dur-base) !important;
+}
+.btn-outline::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-base) var(--ease-smooth);
+    z-index: -1;
+}
+.btn-outline:hover::before { transform: scaleX(1); }
+.btn-outline:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(59,130,246,0.25) !important;
+}
+
+/* Shared button press state */
+.btn-primary:active,
+.btn-secondary:active,
+.btn-outline:active {
+    transition-duration: 80ms !important;
+}
+
+
+/* ─── 19. Ripple — Enhanced Wave Burst ──────────────────────────── */
+.ripple-effect {
+    background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.1) 100%) !important;
+    animation: rippleWave 0.7s var(--ease-smooth) forwards !important;
+}
+@keyframes rippleWave {
+    from { transform: scale(0); opacity: 1; }
+    to   { transform: scale(4.5); opacity: 0; }
+}
+
+
+/* ─── 20. Coming Soon — Glassmorphism Cards ─────────────────────── */
+.coming-card {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1.5px dashed rgba(148,163,184,0.5) !important;
+    box-shadow:
+        var(--shadow-inner-glass),
+        0 2px 8px rgba(15,23,42,0.04) !important;
+    transition:
+        all var(--dur-slow) var(--ease-bounce) !important;
+}
+.coming-card:hover {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(245,158,11,0.35) !important;
+    box-shadow:
+        var(--shadow-inner-glass),
+        0 12px 40px rgba(15,23,42,0.1),
+        0 0 0 2px rgba(245,158,11,0.1) !important;
+    transform: translateY(-5px) scale(1.02) !important;
+}
+
+.coming-cover {
+    background: linear-gradient(135deg, #E2E8F0 0%, #F1F5F9 50%, #E2E8F0 100%) !important;
+    background-size: 200% 200%;
+    animation: comingCoverShift 3s ease-in-out infinite;
+    box-shadow: 0 4px 12px rgba(15,23,42,0.1);
+}
+@keyframes comingCoverShift {
+    0%, 100% { background-position: 0% 0%; }
+    50%       { background-position: 100% 100%; }
+}
+
+.coming-badge {
+    background: linear-gradient(135deg, #64748B, #475569, #334155) !important;
+    background-size: 200% 100%;
+    animation: comingBadgeShimmer 3s ease-in-out infinite;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.2);
+    transition: all var(--dur-base) var(--ease-bounce);
+}
+.coming-card:hover .coming-badge {
+    background: linear-gradient(135deg, #F59E0B, #F97316) !important;
+    box-shadow: var(--shadow-neon-gold);
+}
+@keyframes comingBadgeShimmer {
+    0%, 100% { background-position: 0% 0; }
+    50%       { background-position: 100% 0; }
+}
+
+
+/* ─── 21. Scroll Reveal — Blur + Slide + Scale ───────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+    filter: blur(4px);
+    transition:
+        opacity 0.7s var(--ease-smooth),
+        transform 0.7s var(--ease-smooth),
+        filter 0.7s var(--ease-smooth) !important;
+}
+.reveal.animate {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) !important;
+}
+
+/* Stagger variants for grid children */
+.reveal:nth-child(1) { transition-delay: 0ms !important; }
+.reveal:nth-child(2) { transition-delay: 70ms !important; }
+.reveal:nth-child(3) { transition-delay: 140ms !important; }
+.reveal:nth-child(4) { transition-delay: 210ms !important; }
+.reveal:nth-child(5) { transition-delay: 280ms !important; }
+.reveal:nth-child(6) { transition-delay: 350ms !important; }
+
+
+/* ─── 22. Scroll Progress — Animated Neon Thickness ────────────── */
+.scroll-progress {
+    height: 3px !important;
+    background: linear-gradient(90deg, #F59E0B, #F97316, #EF4444, #F59E0B) !important;
+    background-size: 300% 100% !important;
+    animation: progressNeon 2.5s linear infinite !important;
+    box-shadow:
+        0 0 8px rgba(245,158,11,0.8),
+        0 0 20px rgba(249,115,22,0.4) !important;
+}
+@keyframes progressNeon {
+    0%   { background-position: 0% 0; }
+    100% { background-position: 300% 0; }
+}
+
+/* Thickness pulse at scroll progress tip */
+.scroll-progress::after {
+    content: '';
+    position: absolute; right: 0; top: -2px;
+    width: 6px; height: 7px;
+    border-radius: 50%;
+    background: #FBBF24;
+    box-shadow: 0 0 8px 2px rgba(245,158,11,0.9);
+    animation: progressTip 0.5s ease-in-out infinite alternate;
+}
+@keyframes progressTip {
+    from { opacity: 0.7; transform: scale(0.8); }
+    to   { opacity: 1; transform: scale(1.2); }
+}
+
+
+/* ─── 23. Back to Top — Spring Bounce + Glow ────────────────────── */
+#backToTop {
+    background: var(--grad-gold) !important;
+    background-size: 200% 200%;
+    animation: backTopGradient 3s ease-in-out infinite;
+    transition:
+        opacity var(--dur-base) var(--ease-smooth),
+        visibility var(--dur-base),
+        transform var(--dur-base) var(--ease-bounce),
+        box-shadow var(--dur-base) !important;
+}
+@keyframes backTopGradient {
+    0%, 100% { background-position: 0% 0%; }
+    50%       { background-position: 100% 100%; }
+}
+
+#backToTop:hover {
+    transform: translateY(-5px) scale(1.1) !important;
+    box-shadow: var(--shadow-neon-gold) !important;
+}
+#backToTop:active {
+    transform: scale(0.92) !important;
+}
+
+/* Arrow icon bounce */
+#backToTop svg {
+    transition: transform var(--dur-base) var(--ease-bounce);
+}
+#backToTop:hover svg {
+    transform: translateY(-2px);
+    animation: arrowBounce 0.6s var(--ease-bounce) infinite alternate;
+}
+@keyframes arrowBounce {
+    from { transform: translateY(-2px); }
+    to   { transform: translateY(-6px); }
+}
+
+
+/* ─── 24. WhatsApp Float — Orbit Ring + Enhanced Glow ───────────── */
+.whatsapp-float {
+    box-shadow: 0 8px 28px rgba(37,211,102,0.42) !important;
+    position: relative;
+    isolation: isolate;
+}
+
+/* Orbit ring */
+.whatsapp-float::before {
+    content: '';
+    position: absolute; inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(37,211,102,0.35);
+    animation: waOrbit 2.5s ease-out infinite;
+    pointer-events: none;
+}
+.whatsapp-float::after {
+    content: '';
+    position: absolute; inset: -3px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(37,211,102,0.2);
+    animation: waOrbit 2.5s ease-out infinite;
+    animation-delay: 0.8s;
+    pointer-events: none;
+}
+@keyframes waOrbit {
+    0%   { inset: -3px; opacity: 0.7; }
+    100% { inset: -18px; opacity: 0; }
+}
+
+
+/* ─── 25. Footer — Animated Gradient + Grid ─────────────────────── */
+footer {
+    background:
+        linear-gradient(160deg, #0A0F1E 0%, #0F172A 50%, #1A2035 100%) !important;
+    position: relative; overflow: hidden;
+}
+
+/* Footer grid background */
+footer::before {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+}
+footer > * { position: relative; z-index: 1; }
+
+/* Footer top glow */
+footer::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,158,11,0.4), rgba(99,102,241,0.2), transparent);
+    animation: footerTopGlow 4s ease-in-out infinite;
+}
+@keyframes footerTopGlow {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1; }
+}
+
+.social-btn {
+    transition: all var(--dur-base) var(--ease-bounce) !important;
+}
+.social-btn:hover {
+    transform: translateY(-4px) rotate(-8deg) scale(1.1) !important;
+    box-shadow: 0 8px 25px rgba(245,158,11,0.45) !important;
+}
+
+.footer-link {
+    position: relative;
+    display: inline-block;
+    transition: color var(--dur-base), transform var(--dur-base) var(--ease-bounce) !important;
+}
+.footer-link::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width var(--dur-base) var(--ease-smooth);
+}
+.footer-link:hover {
+    color: var(--gold) !important;
+    transform: translateX(5px) !important;
+}
+.footer-link:hover::after { width: 100%; }
+
+
+/* ─── 26. Skeleton / Loading States ─────────────────────────────── */
+
+/* Base shimmer animation */
+@keyframes skeletonWave {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton-box {
+    background: linear-gradient(90deg,
+        #F1F5F9 0%,
+        #E2E8F0 20%,
+        #F8FAFC 40%,
+        #E2E8F0 60%,
+        #F1F5F9 100%
+    );
+    background-size: 400% 100%;
+    animation: skeletonWave 1.8s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+/* Skeleton card placeholder (add class="skeleton-card" to article) */
+.skeleton-card {
+    background: white;
+    border-radius: var(--radius-lg, 24px);
+    border: 1px solid rgba(15,23,42,0.06);
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.skeleton-card .sk-image {
+    width: 128px; height: 160px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+    background-size: 400% 100%;
+    animation: skeletonWave 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+.skeleton-card .sk-line {
+    height: 12px; border-radius: 6px;
+    background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+    background-size: 400% 100%;
+    animation: skeletonWave 1.8s ease-in-out infinite;
+    margin-bottom: 10px;
+}
+.skeleton-card .sk-line.wide  { width: 80%; }
+.skeleton-card .sk-line.med   { width: 55%; animation-delay: 0.15s; }
+.skeleton-card .sk-line.short { width: 30%; animation-delay: 0.3s; }
+
+/* Improved coming-cover shimmer */
+.coming-cover-shimmer {
+    background: linear-gradient(90deg,
+        #E2E8F0 0%,
+        #F1F5F9 20%,
+        #FFFFFF 40%,
+        #F1F5F9 60%,
+        #E2E8F0 100%
+    ) !important;
+    background-size: 400% 100% !important;
+    animation: skeletonWave 2s ease-in-out infinite !important;
+}
+
+/* Loading bar (top of card) */
+.loading-bar {
+    height: 3px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--gold), #F97316);
+    background-size: 200% 100%;
+    animation: loadingBarSlide 1.5s ease-in-out infinite;
+    transform-origin: left;
+}
+@keyframes loadingBarSlide {
+    0%   { background-position: 200% 0; width: 0%; }
+    50%  { background-position: 0% 0; width: 70%; }
+    100% { background-position: -100% 0; width: 100%; }
+}
+
+
+/* ─── 27. Mobile Touch Enhancements ─────────────────────────────── */
+
+/* Smooth tap highlight removal + custom feedback */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch press feedback on cards */
+@media (hover: none) and (pointer: coarse) {
+    .product-card:active {
+        transform: scale(0.98) !important;
+        box-shadow: var(--shadow-md) !important;
+        transition-duration: 100ms !important;
     }
 
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-dark);
-      color: #f3f4f6;
-      overflow-x: hidden;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(59,130,246,0.07) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(139,92,246,0.07) 0%, transparent 50%);
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-outline:active {
+        transform: scale(0.95) !important;
+        transition-duration: 80ms !important;
     }
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-
-    /* ── PRELOADER ── */
-    #preloader {
-      position: fixed; inset: 0; background: #030712; z-index: 9999;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 20px; transition: opacity 0.7s ease;
-    }
-    .loader-logo { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.5px; }
-    .loader-logo span { color: #3b82f6; }
-    .loader-bar {
-      width: 160px; height: 3px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden;
-    }
-    .loader-fill {
-      height: 100%; width: 0%;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
-      animation: loadFill 1.4s ease-out forwards;
-    }
-    @keyframes loadFill { to { width: 100%; } }
-
-    /* ── SCROLL PROGRESS ── */
-    #scroll-progress {
-      position: fixed; top: 0; left: 0; height: 3px; z-index: 1000; width: 0%;
-      background: linear-gradient(to right, #3b82f6, #8b5cf6, #06b6d4);
-      transition: width 0.1s linear;
+    .cat-btn:active:not(:disabled) {
+        transform: scale(0.94) !important;
     }
 
-    /* ── STARS CANVAS ── */
-    #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+    /* Increase tap targets on mobile */
+    .nav-link { padding: 8px 4px; }
+    .trust-pill { padding: 4px 0; }
 
-    /* ── TEXT GRADIENT ── */
-    .text-gradient {
-      background: linear-gradient(135deg, #60a5fa, #a78bfa, #22d3ee);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-size: 200% auto; animation: gradFlow 4s linear infinite;
-    }
-    .text-gradient-gold {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b, #fcd34d);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    @keyframes gradFlow { to { background-position: 200% center; } }
+    /* Disable heavy animations on mobile to save battery */
+    .hero-blob { animation-duration: 15s !important; }
+    body::after { animation: none !important; }
+}
 
-    /* ── GLASS ── */
-    .glass {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-    }
+/* Swipe feel on category bar */
+.categories-bar > div > div {
+    scroll-snap-type: x mandatory;
+}
+.cat-btn {
+    scroll-snap-align: start;
+}
 
-    /* ── NAV LINK UNDERLINE ── */
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: var(--primary); transition: width 0.3s;
-    }
-    .nav-link:hover::after { width: 100%; }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
+/* ─── 28. Miscellaneous Premium Polish ───────────────────────────── */
 
-    /* ── FLOAT ── */
-    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
-    .float { animation: floatY 5s ease-in-out infinite; }
-    .float-slow { animation: floatY 7s ease-in-out infinite; }
-    .float-delay { animation: floatY 5s ease-in-out 1.5s infinite; }
+/* Selection color */
+::selection {
+    background: rgba(245,158,11,0.25);
+    color: var(--ink);
+}
+::-moz-selection {
+    background: rgba(245,158,11,0.25);
+    color: var(--ink);
+}
 
-    /* ── GLOW RING ── */
-    @keyframes glowPulse { 0%,100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
-    .glow-ring { animation: glowPulse 3s ease-in-out infinite; }
+/* Focus-visible ring (keyboard nav) */
+:focus-visible {
+    outline: 2px solid var(--gold) !important;
+    outline-offset: 3px;
+}
 
-    /* ── EBOOK CARD ── */
-    .ebook-card {
-      background: rgba(255,255,255,0.025);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 24px;
-      overflow: hidden;
-      transition: all 0.45s cubic-bezier(0.22,1,0.36,1);
-      position: relative;
-    }
-    .ebook-card::before {
-      content: '';
-      position: absolute; inset: -1px;
-      border-radius: 24px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(59,130,246,0), rgba(139,92,246,0), rgba(6,182,212,0));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      transition: all 0.45s ease;
-      pointer-events: none;
-    }
-    .ebook-card:hover::before {
-      background: linear-gradient(135deg, rgba(59,130,246,0.6), rgba(139,92,246,0.6), rgba(6,182,212,0.6));
-    }
-    .ebook-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 60px -20px rgba(59,130,246,0.3), 0 0 0 1px rgba(59,130,246,0.15);
-    }
+/* Smooth image rendering */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
 
-    /* ── BOOK COVER ZOOM ── */
-    .book-cover { overflow: hidden; }
-    .book-cover img { transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
-    .ebook-card:hover .book-cover img { transform: scale(1.08); }
+/* Section entry: fade + drift */
+section {
+    transition: opacity 0.3s;
+}
 
-    /* ── SHINE EFFECT ── */
-    .shine {
-      position: relative; overflow: hidden;
-    }
-    .shine::after {
-      content: '';
-      position: absolute; top: -50%; left: -75%;
-      width: 50%; height: 200%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.6s ease;
-    }
-    .ebook-card:hover .shine::after { left: 130%; }
+/* Gradient rule dividers between sections */
+.gradient-line + * { margin-top: 0; }
 
-    /* ── 3D TILT ── */
-    .tilt-card { transform-style: preserve-3d; transition: transform 0.15s ease; }
+/* Price save badge on card hover */
+.product-card:hover .price-original {
+    color: #F87171 !important;
+    transition: color var(--dur-base);
+}
 
-    /* ── FILTER PILLS ── */
-    .filter-pill {
-      padding: 8px 20px; border-radius: 99px; font-size: 0.82rem; font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      cursor: pointer; transition: all 0.25s; white-space: nowrap;
-      letter-spacing: 0.02em;
-    }
-    .filter-pill:hover { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); color: #93c5fd; }
-    .filter-pill.active { background: #3b82f6; border-color: #3b82f6; color: #fff; box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+/* Stars hover glow */
+.star-fill {
+    filter: drop-shadow(0 0 2px rgba(245,158,11,0.4));
+    transition: filter var(--dur-base);
+}
+.product-card:hover .star-fill {
+    filter: drop-shadow(0 0 5px rgba(245,158,11,0.7));
+}
 
-    /* ── SEARCH BAR ── */
-    .search-bar {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px; padding: 14px 20px;
-      color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.92rem;
-      transition: all 0.3s; outline: none;
-    }
-    .search-bar:focus { border-color: rgba(59,130,246,0.5); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); background: rgba(59,130,246,0.05); }
-    .search-bar::placeholder { color: #4b5563; }
+/* Limited deal dot upgrade */
+.limited-deal-dot {
+    position: relative;
+}
+.limited-deal-dot::after {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 50%;
+    background: rgba(22,163,74,0.3);
+    animation: limitedDotRing 1.2s ease-out infinite;
+}
+@keyframes limitedDotRing {
+    0%   { inset: -2px; opacity: 0.7; }
+    100% { inset: -8px; opacity: 0; }
+}
 
-    /* ── BADGE ── */
-    .badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px 12px; border-radius: 99px; font-size: 0.72rem; font-weight: 800;
-      letter-spacing: 0.03em;
-    }
-    .badge-trending { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
-    .badge-bestseller { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
-    .badge-new { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
-    .badge-coming { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+/* Smooth hero badge entrance */
+.hero-badge {
+    animation: heroBadgeIn 0.6s var(--ease-bounce) both 0.2s, badgePulse 3s ease-in-out infinite 0.8s !important;
+}
+@keyframes heroBadgeIn {
+    from { opacity: 0; transform: translateY(-12px) scale(0.85); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 
-    /* ── CTA BTN ── */
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, #3b82f6, #6366f1);
-      color: #fff; font-weight: 800; padding: 14px 28px; border-radius: 14px;
-      transition: all 0.3s; position: relative; overflow: hidden;
-      box-shadow: 0 8px 24px rgba(59,130,246,0.3);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(59,130,246,0.45); }
-    .btn-primary:active { transform: translateY(0); }
+/* Hero title staggered entrance */
+.hero-title {
+    animation: heroTitleIn 0.8s var(--ease-smooth) both 0.35s, titleGradientShift 8s ease-in-out infinite 1.2s;
+}
+@keyframes heroTitleIn {
+    from { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
 
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid rgba(255,255,255,0.15); color: #fff;
-      font-weight: 700; padding: 14px 28px; border-radius: 14px;
-      transition: all 0.3s;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.06); border-color: rgba(59,130,246,0.5); }
+/* Stat items entrance */
+.hero-stat { animation: statIn 0.6s var(--ease-bounce) both; }
+.hero-stat:nth-child(1) { animation-delay: 0.5s; }
+.hero-stat:nth-child(2) { animation-delay: 0.65s; }
+.hero-stat:nth-child(3) { animation-delay: 0.8s; }
+.hero-stat:nth-child(4) { animation-delay: 0.65s; }
+.hero-stat:nth-child(5) { animation-delay: 0.8s; }
+@keyframes statIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.9); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 
-    /* ── TRUST BADGE ── */
-    .trust-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 99px; padding: 8px 16px; font-size: 0.8rem; font-weight: 700;
+
+/* ─── 29. Accessibility — Reduced Motion ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 
-    /* ── FEATURE ICON ── */
-    .feat-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+    .hero-blob { animation: none !important; }
+    body::after { animation: none !important; }
+    .scroll-progress { animation: none !important; }
+    .hero-title { animation: none !important; }
+    .logo-text  { animation: none !important; }
+    .btn-primary { animation: none !important; }
+}
 
-    /* ── STAR ── */
-    .stars { color: #fbbf24; letter-spacing: 2px; font-size: 0.9rem; }
 
-    /* ── HERO BOOK MOCKUP ── */
-    .book-mockup {
-      border-radius: 16px;
-      box-shadow: -12px 16px 40px rgba(0,0,0,0.6), 4px 0 0 rgba(255,255,255,0.06);
-      transform: perspective(800px) rotateY(-12deg) rotateX(4deg);
-      transition: transform 0.6s ease;
-    }
-    .book-mockup:hover { transform: perspective(800px) rotateY(-4deg) rotateX(2deg); }
+/* ─── 30. Final Polishing Overrides ─────────────────────────────── */
 
-    /* ── COUNTER ── */
-    .count-up { font-variant-numeric: tabular-nums; }
+/* Ensure z-index layering is correct with new effects */
+.scroll-progress { z-index: 99999 !important; }
+.cursor-glow-layer { z-index: 0 !important; }
+.navbar { z-index: 9000 !important; }
+.categories-bar { z-index: 4000 !important; }
+.whatsapp-float { z-index: 8000 !important; }
+#backToTop { z-index: 7000 !important; }
 
-    /* ── SKELETON ── */
-    .skeleton {
-      background: linear-gradient(90deg, #1f2937 25%, #2d3748 50%, #1f2937 75%);
-      background-size: 200% 100%; animation: skelAnim 1.5s infinite;
-    }
-    @keyframes skelAnim { to { background-position: -200% 0; } }
+/* Anti-flicker for GPU-promoted elements */
+.product-card,
+.btn-primary,
+.btn-secondary,
+.hero-blob,
+.whatsapp-float {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
 
-    /* ── CARD HIDDEN ── */
-    .card-hidden { display: none !important; }
+/* Smooth color transitions globally */
+a, button {
+    transition: color var(--dur-fast) var(--ease-smooth);
+}
 
-    /* ── HERO PARTICLE DOTS ── */
-    .hero-dot {
-      position: absolute; border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.6), transparent);
-      animation: dotPulse 4s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes dotPulse { 0%,100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.4); } }
+/* Improve text rendering globally */
+body, h1, h2, h3, h4, h5, h6 {
+    text-rendering: optimizeLegibility;
+}
 
-    /* ── MOBILE ── */
-    @media (max-width: 640px) {
-      .book-mockup { transform: none; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-      .float, .float-slow, .float-delay { animation: none; }
-    }
 
-    /* ── URGENCY TICKER ── */
-    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .ticker-track { display: flex; animation: tickerMove 20s linear infinite; white-space: nowrap; }
 
-    /* ── GRADIENT BORDER ANIMATED ── */
-    @keyframes borderRotate { to { --angle: 360deg; } }
-  </style>
+    </style>
 </head>
 <body>
+    <!-- Cursor Glow Layer -->
+    <div class="cursor-glow-layer" aria-hidden="true"></div>.
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress" style="transform: scaleX(0);"></div>
 
-<!-- PRELOADER -->
-<div id="preloader">
-  <div class="loader-logo">Study<span>Hub</span></div>
-  <div class="loader-bar"><div class="loader-fill"></div></div>
-  <p style="font-size:0.72rem;color:#4b5563;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Loading Library...</p>
-</div>
+    <!-- ═══════════ NAVBAR ═══════════ -->
+    <nav class="navbar sticky top-0 z-50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
 
-<!-- SCROLL PROGRESS -->
-<div id="scroll-progress"></div>
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-3">
+                    <div class="logo-icon w-9 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-md">
+                    <img src="logo.png" alt="StudyHub Logo" class="w-9 h-9">
+                    </div>
+                    <span class="logo-text text-xl">StudyHub</span>
+                </a>
 
-<!-- PARTICLES CANVAS -->
-<canvas id="particles"></canvas>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Materials</a>
+                    <a href="index.e-books.html" class="nav-link active">E-Books</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </div>
 
-<!-- ═══════════════════════════════════════
-     NAVBAR
-═══════════════════════════════════════ -->
-<nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-5 px-6 lg:px-20">
-  <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <!-- Logo -->
-    <a href="index.html" class="flex items-center space-x-2 group">
-      <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-12 transition-transform">
-        <i data-lucide="layers" class="text-white w-6 h-6"></i>
-      </div>
-      <span class="text-2xl font-extrabold tracking-tight">Study<span class="text-blue-500">Hub</span></span>
+                <!-- Desktop Search -->
+                <div class="hidden lg:block flex-1 max-w-xs mx-8">
+                    <div class="search-wrap">
+                        <input type="text" id="desktopSearch" placeholder="Search HP Patwari, Fitness..." class="search-input">
+                        <svg class="search-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-gray-200 bg-white flex items-center justify-center transition-all hover:border-amber-300 hover:bg-amber-50" aria-label="Menu">
+                    <svg id="menuIconOpen" class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg id="menuIconClose" class="w-5 h-5 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden border-t border-gray-100 mt-1">
+                <div class="py-3 space-y-1">
+                    <a href="/" class="mobile-link">Home</a>
+                    <a href="#" class="mobile-link">Materials</a>
+                    <a href="index.e-books.html" class="mobile-link active">E-Books</a>
+                    <a href="#" class="mobile-link">Contact</a>
+                    <div class="px-4 pt-3 pb-1">
+                        <div class="search-wrap">
+                            <input type="text" id="mobileSearch" placeholder="Search e-books..." class="search-input">
+                            <svg class="search-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                <circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Search (tablet/small) -->
+    <div class="lg:hidden px-4 py-3 bg-white border-b border-gray-100">
+        <div class="search-wrap">
+            <input type="text" id="tabletSearch" placeholder="Search HP Patwari, Fitness..." class="search-input" style="font-size:1rem;padding:12px 16px 12px 46px;">
+            <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" style="left:16px;">
+                <circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="reveal">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    India's #1 Exam Prep Store
+                </div>
+
+                <h1 class="hero-title text-5xl md:text-7xl mb-6">
+                    Premium <span class="glow-word" data-text="E-Books">E-Books</span><br>Store
+                </h1>
+
+                <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-8 leading-relaxed font-medium">
+                    Instant Download • Expert-Crafted Content • 100% Exam Ready
+                </p>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">5000+</div>
+                        <div class="hero-stat-label">Students Enrolled</div>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">4.9★</div>
+                        <div class="hero-stat-label">Average Rating</div>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">60%</div>
+                        <div class="hero-stat-label">Max Discount</div>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">⚡ Instant</div>
+                        <div class="hero-stat-label">PDF Download</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CATEGORIES ═══════════ -->
+    <section class="categories-bar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex gap-2 overflow-x-auto scrollbar-hide pb-1" id="categories">
+                <button class="cat-btn active" data-category="all"><span>All Products</span></button>
+                <button class="cat-btn" data-category="patwari"><span>HP Patwari</span></button>
+                <button class="cat-btn" data-category="fitness"><span>Fitness</span></button>
+                <button class="cat-btn" data-category="geography" disabled><span>Geography</span></button>
+                <button class="cat-btn" data-category="jee" disabled><span>JEE</span></button>
+                <button class="cat-btn" data-category="neet" disabled><span>NEET</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ MAIN CONTENT ═══════════ -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+
+        <!-- Trending Section -->
+        <section class="mb-20">
+            <div class="reveal">
+                <div class="section-label">🔥 Hot Right Now</div>
+                <h2 class="section-title">
+                    <span class="section-title-dot" style="background: linear-gradient(135deg, #F59E0B, #F97316); box-shadow: 0 0 12px rgba(245,158,11,0.5);"></span>
+                    Trending Deals
+                </h2>
+                <div class="gradient-line" style="background: linear-gradient(90deg, #F59E0B, #F97316, transparent);"></div>
+            </div>
+            <div class="space-y-5" id="trendingProducts"></div>
+        </section>
+
+        <!-- Recommended Section -->
+        <section class="mb-20">
+            <div class="reveal">
+                <div class="section-label">✨ Handpicked For You</div>
+                <h2 class="section-title">
+                    <span class="section-title-dot" style="background: linear-gradient(135deg, #6366F1, #4F46E5); box-shadow: 0 0 12px rgba(99,102,241,0.4);"></span>
+                    Recommended
+                </h2>
+                <div class="gradient-line" style="background: linear-gradient(90deg, #6366F1, #4F46E5, transparent);"></div>
+            </div>
+            <div class="space-y-5" id="recommendedProducts"></div>
+        </section>
+
+        <!-- Coming Soon Section -->
+        <section class="mb-12">
+            <div class="reveal text-center mb-12">
+                <div class="section-label">🚀 Coming Soon</div>
+                <h2 class="section-title justify-center">
+                    <span class="section-title-dot" style="background: linear-gradient(135deg, #64748B, #475569);"></span>
+                    More Titles Coming
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4" id="comingSoonProducts"></div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════ BACK TO TOP ═══════════ -->
+    <button id="backToTop" class="back-to-top fixed bottom-24 right-6 w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-lg border-2 border-white z-50 flex items-center justify-center cursor-pointer" style="box-shadow: 0 6px 20px rgba(245,158,11,0.5);" aria-label="Back to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <!-- ═══════════ WHATSAPP ═══════════ -->
+    <a href="https://wa.me/919876543210?text=Hi! I want to buy StudyHub E-Books 📚" 
+       class="whatsapp-float fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center text-white border-2 border-white"
+       style="box-shadow: 0 8px 25px rgba(37,211,102,0.45);" aria-label="WhatsApp">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+        </svg>
     </a>
 
-    <!-- Desktop Nav -->
-    <div class="hidden md:flex items-center space-x-7">
-      <a href="index.html" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Home</a>
-      <a href="index.html#materials" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Materials</a>
-      <a href="index.html#notes-generator" class="nav-link text-sm font-medium text-gray-400 hover:text-white">AI Notes</a>
-      <a href="index.e-books.html" class="text-sm font-bold text-blue-400 relative">
-        E-Books
-        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></span>
-      </a>
-      <a href="index.html#handwritten" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Handwritten</a>
-      <a href="#contact" class="nav-link text-sm font-medium text-gray-400 hover:text-white">Contact</a>
-      <a href="index.ebook.html" class="btn-primary text-sm py-2.5 px-5" style="border-radius:99px;">
-        <i data-lucide="book-open" class="w-4 h-4"></i> Buy Now
-      </a>
-    </div>
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="mt-20 pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <span class="text-white text-xl font-bold" style="font-family:'Syne',sans-serif;">StudyHub</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Trusted by 5000+ students. Premium exam preparation materials with instant download & secure payment.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="social-btn" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="social-btn" aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 01-1.93.07 4.28 4.28 0 004 2.98 8.521 8.521 0 01-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg>
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Mobile Toggle -->
-    <button id="mobile-menu-btn" class="md:hidden text-white p-2">
-      <i data-lucide="menu" class="w-7 h-7"></i>
-    </button>
-  </div>
-</nav>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-5" style="font-family:'Syne',sans-serif;">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="footer-link">Home</a></li>
+                        <li><a href="#" class="footer-link">Study Materials</a></li>
+                        <li><a href="index.e-books.html" class="footer-link">E-Books Store</a></li>
+                        <li><a href="index.privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                    </ul>
+                </div>
 
-<!-- MOBILE SIDEBAR -->
-<div id="mobile-menu" class="fixed inset-0 bg-black/95 z-[60] flex flex-col items-center justify-center space-y-8 translate-x-full transition-transform duration-500 md:hidden">
-  <button id="close-menu" class="absolute top-8 right-8 text-white">
-    <i data-lucide="x" class="w-9 h-9"></i>
-  </button>
-  <a href="index.html" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Home</a>
-  <a href="index.html#materials" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Materials</a>
-  <a href="index.html#notes-generator" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">AI Notes</a>
-  <a href="index.e-books.html" class="text-3xl font-extrabold mobile-link text-gradient">E-Books</a>
-  <a href="index.html#handwritten" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Handwritten</a>
-  <a href="#contact" class="text-3xl font-bold mobile-link hover:text-blue-400 transition-colors">Contact</a>
-  <a href="index.ebook.html" class="btn-primary mt-4">Get eBook ₹199</a>
-</div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-5" style="font-family:'Syne',sans-serif;">Support</h4>
+                    <div class="space-y-3 text-sm text-slate-400">
+                        <p><span class="text-slate-300 font-medium">Email:</span> support@studyhub.in</p>
+                        <p><span class="text-slate-300 font-medium">WhatsApp:</span> +91 98765 43210</p>
+                        <p class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            Himachal Pradesh, India
+                        </p>
+                    </div>
+                </div>
 
-<!-- ═══════════════════════════════════════
-     URGENCY TICKER
-═══════════════════════════════════════ -->
-<div class="fixed top-0 left-0 right-0 z-40 overflow-hidden" style="background:linear-gradient(90deg,#1e3a5f,#1a1f3a,#1e3a5f);height:28px;display:flex;align-items:center;">
-  <div class="ticker-track text-xs font-bold text-blue-300" style="gap:0;">
-    <span style="padding:0 40px;">🔥 HP Patwari eBook — Only ₹199 &nbsp;•&nbsp; ⚡ Instant Download After Payment &nbsp;•&nbsp; 🏆 Trusted by 2000+ Students &nbsp;•&nbsp; 💎 Limited Time Offer &nbsp;•&nbsp; 📚 Updated for 2026 Exam &nbsp;•&nbsp;</span>
-    <span style="padding:0 40px;">🔥 HP Patwari eBook — Only ₹199 &nbsp;•&nbsp; ⚡ Instant Download After Payment &nbsp;•&nbsp; 🏆 Trusted by 2000+ Students &nbsp;•&nbsp; 💎 Limited Time Offer &nbsp;•&nbsp; 📚 Updated for 2026 Exam &nbsp;•&nbsp;</span>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     HERO SECTION
-═══════════════════════════════════════ -->
-<section id="hero" class="relative pt-36 pb-24 px-6 overflow-hidden">
-
-  <!-- Background glows -->
-  <div class="absolute top-20 left-1/4 w-96 h-96 rounded-full blur-3xl -z-10 glow-ring" style="background:radial-gradient(circle,rgba(59,130,246,0.12),transparent 70%)"></div>
-  <div class="absolute top-40 right-1/4 w-80 h-80 rounded-full blur-3xl -z-10 glow-ring" style="background:radial-gradient(circle,rgba(139,92,246,0.1),transparent 70%);animation-delay:1.5s"></div>
-
-  <!-- Hero dots -->
-  <div class="hero-dot w-3 h-3" style="top:25%;left:10%;animation-delay:0s"></div>
-  <div class="hero-dot w-2 h-2" style="top:60%;left:5%;animation-delay:1s"></div>
-  <div class="hero-dot w-4 h-4" style="top:30%;right:8%;animation-delay:2s"></div>
-  <div class="hero-dot w-2 h-2" style="top:70%;right:12%;animation-delay:0.5s"></div>
-
-  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-
-    <!-- Left: Text -->
-    <div class="space-y-8 reveal visible">
-      <!-- Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:#93c5fd;">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-        </span>
-        Premium Digital Library
-      </div>
-
-      <h1 class="text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight">
-        Explore<br>
-        <span class="text-gradient">Premium</span><br>
-        E-Books
-      </h1>
-
-      <p class="text-gray-400 text-lg max-w-lg leading-relaxed">
-        Curated digital resources designed for serious students. Exam-focused, affordable, and instantly accessible.
-      </p>
-
-      <div class="flex flex-wrap gap-4">
-        <a href="#showroom" class="btn-primary">
-          <i data-lucide="book-open" class="w-5 h-5"></i>
-          Browse Library
-        </a>
-        <a href="index.ebook.html" class="btn-outline">
-          Start Learning
-          <i data-lucide="arrow-right" class="w-5 h-5"></i>
-        </a>
-      </div>
-
-      <!-- Trust row -->
-      <div class="flex flex-wrap gap-3 pt-2">
-        <div class="trust-badge"><span>🏆</span> 2000+ Students</div>
-        <div class="trust-badge"><span>⚡</span> Instant Download</div>
-        <div class="trust-badge"><span>🔒</span> Secure Payment</div>
-      </div>
-    </div>
-
-    <!-- Right: Book mockups -->
-    <div class="relative flex items-center justify-center reveal reveal-delay-2">
-      <div class="absolute w-80 h-80 rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(59,130,246,0.15),transparent 70%)"></div>
-
-      <!-- Main book (Patwari) -->
-      <div class="relative float" style="z-index:2;">
-        <!--
-          ★ PLACE YOUR PATWARI BOOK COVER IMAGE HERE ★
-          Replace the src below with your file path: e.g., src="book.png"
-          Current fallback: gradient placeholder
-        -->
-        <div id="patwari-cover" class="book-mockup shine w-56 h-72 flex flex-col items-center justify-center text-center relative overflow-hidden cursor-pointer"
-             style="background:linear-gradient(135deg,#1e3a5f,#0f1f35);border:1px solid rgba(59,130,246,0.3);"
-             onclick="window.location='index.ebook.html'">
-          <img src="book.png" alt="HP Patwari eBook Cover"
-               class="w-full h-full object-cover absolute inset-0 rounded-2xl"
-               onerror="this.style.display='none'; document.getElementById('patwari-fallback').style.display='flex'">
-          <div id="patwari-fallback" class="absolute inset-0 flex flex-col items-center justify-center p-6 hidden">
-            <div class="text-4xl mb-3">📚</div>
-            <div class="text-xs font-black uppercase tracking-widest text-blue-300 mb-2">HP Patwari</div>
-            <div class="text-xs text-gray-400 leading-snug">Complete Preparation Guide 2026</div>
-            <div class="mt-4 text-lg font-black text-gradient">₹199</div>
-          </div>
-          <!-- Spine highlight -->
-          <div class="absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl" style="background:linear-gradient(180deg,rgba(59,130,246,0.5),rgba(139,92,246,0.3))"></div>
-        </div>
-        <!-- Price tag -->
-        <div class="absolute -top-3 -right-4 bg-blue-600 text-white text-xs font-black px-3 py-1.5 rounded-full shadow-lg shadow-blue-500/40 z-10">₹199</div>
-        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 badge badge-trending z-10">🔥 Trending</div>
-      </div>
-
-      <!-- Second book (FitLife) -->
-      <div class="relative float-delay ml-6" style="z-index:1;margin-top:50px;">
-        <!--
-          ★ PLACE YOUR FITLIFE COVER IMAGE HERE ★
-          Replace the src below with your FitLife cover image path: e.g., src="fitlife.png"
-        -->
-        <div class="book-mockup shine w-44 h-60 flex flex-col items-center justify-center text-center relative overflow-hidden cursor-pointer"
-             style="background:linear-gradient(135deg,#0f2a1a,#052015);border:1px solid rgba(16,185,129,0.3);"
-             onclick="window.location='index.health.html'">
-          <img src="fitlife.png" alt="FitLife Blueprint Cover"
-               class="w-full h-full object-cover absolute inset-0 rounded-2xl"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="absolute inset-0 flex flex-col items-center justify-center p-5 hidden">
-            <div class="text-3xl mb-2">💪</div>
-            <div class="text-xs font-black uppercase tracking-widest text-green-300 mb-1">FitLife</div>
-            <div class="text-xs text-gray-400 leading-snug">Blueprint Health Guide</div>
-            <div class="mt-3 text-base font-black" style="color:#34d399;">₹199</div>
-          </div>
-          <div class="absolute left-0 top-0 bottom-0 w-2 rounded-l-2xl" style="background:linear-gradient(180deg,rgba(16,185,129,0.5),rgba(6,182,212,0.3))"></div>
-        </div>
-        <div class="absolute -top-3 -right-4 text-xs font-black px-3 py-1.5 rounded-full shadow-lg z-10" style="background:#10b981;color:#fff;box-shadow:0 4px 14px rgba(16,185,129,0.4);">₹199</div>
-        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 badge badge-bestseller z-10">💪 Best Seller</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     SEARCH + FILTER
-═══════════════════════════════════════ -->
-<section class="py-10 px-6" id="search-section">
-  <div class="max-w-4xl mx-auto reveal">
-    <div class="glass p-6" style="border-radius:24px;">
-      <!-- Search -->
-      <div class="relative mb-5">
-        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"></i>
-        <input id="search-input" type="text" placeholder="Search eBooks, topics, subjects..."
-               class="search-bar w-full pl-12 pr-4" autocomplete="off">
-      </div>
-      <!-- Filter pills -->
-      <div class="flex flex-wrap gap-3" id="filter-pills">
-        <button class="filter-pill active" data-filter="all">All</button>
-        <button class="filter-pill" data-filter="exam">📋 Government Exams</button>
-        <button class="filter-pill" data-filter="health">💪 Health &amp; Fitness</button>
-        <button class="filter-pill" data-filter="school">📓 School Notes</button>
-        <button class="filter-pill" data-filter="coming">🔜 Coming Soon</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     EBOOK SHOWROOM
-═══════════════════════════════════════ -->
-<section id="showroom" class="py-10 px-6">
-  <div class="max-w-7xl mx-auto">
-
-    <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style="background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);color:#c4b5fd;">
-        <i data-lucide="library" class="w-3 h-3"></i> Digital Showroom
-      </div>
-      <h2 class="text-4xl lg:text-5xl font-black mb-4">Our <span class="text-gradient">E-Book Collection</span></h2>
-      <p class="text-gray-500 max-w-xl mx-auto">Hand-crafted study guides built to help you prepare smarter, not harder.</p>
-    </div>
-
-    <!-- Grid -->
-    <div id="ebook-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <!-- ── CARD 1: HP Patwari ── -->
-      <div class="ebook-card tilt-card reveal" data-category="exam" data-name="hp patwari preparation guide government exam himachal pradesh">
-        <!-- Thumbnail -->
-        <div class="book-cover shine relative" style="height:240px;background:linear-gradient(135deg,#1e3a5f 0%,#0d1f35 100%);">
-          <!--
-            ★ Patwari cover image — place "book.png" in same folder as this file ★
-          -->
-          <img src="book.png" alt="HP Patwari eBook"
-               class="w-full h-full object-cover"
-               loading="lazy"
-               onerror="this.style.display='none'">
-          <!-- Overlay gradient -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-          <!-- Top badges -->
-          <div class="absolute top-4 left-4 flex gap-2">
-            <span class="badge badge-trending">🔥 Trending</span>
-            <span class="badge badge-new">2026</span>
-          </div>
-          <!-- Urgency -->
-          <div class="absolute bottom-4 right-4 text-xs font-black px-3 py-1 rounded-full" style="background:rgba(239,68,68,0.9);color:#fff;">
-            ⏳ Limited Offer
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-6">
-          <div class="flex items-start justify-between mb-3">
-            <div>
-              <h3 class="font-black text-lg text-white leading-tight">HP Patwari Complete Guide</h3>
-              <p class="text-xs text-gray-500 mt-1">Himachal Pradesh Govt. Exam</p>
-            </div>
-            <div class="text-right">
-              <div class="text-2xl font-black text-gradient">₹199</div>
-              <div class="text-xs text-gray-500 line-through">₹499</div>
-            </div>
-          </div>
-
-          <p class="text-sm text-gray-400 leading-relaxed mb-4">
-            Complete HP Patwari preparation guide — syllabus-wise notes, PYQs, MCQ sets, HP GK, and exam strategy packed into one powerful PDF.
-          </p>
-
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2 mb-5">
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(59,130,246,0.1);color:#93c5fd;">PDF Format</span>
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(59,130,246,0.1);color:#93c5fd;">PYQs Included</span>
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(59,130,246,0.1);color:#93c5fd;">MCQ Practice</span>
-          </div>
-
-          <!-- Features mini list -->
-          <ul class="space-y-1.5 mb-6">
-            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Full syllabus coverage</li>
-            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Previous Year Questions</li>
-            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Instant download after payment</li>
-          </ul>
-
-          <a href="index.ebook.html" class="btn-primary w-full justify-center">
-            <i data-lucide="eye" class="w-4 h-4"></i> View Details
-          </a>
-        </div>
-      </div>
-
-      <!-- ── CARD 2: FitLife Blueprint ── -->
-      <div class="ebook-card tilt-card reveal reveal-delay-1" data-category="health" data-name="fitlife blueprint health fitness diet lifestyle wellness">
-        <!-- Thumbnail -->
-        <div class="book-cover shine relative" style="height:240px;background:linear-gradient(135deg,#052015 0%,#0a1f0f 100%);">
-          <!--
-            ★ FitLife cover image — place your image file (e.g., "fitlife.png") in same folder ★
-            Update src="fitlife.png" to your actual filename once you have it
-          -->
-          <img src="fitlife.png" alt="FitLife Blueprint eBook"
-               class="w-full h-full object-cover"
-               loading="lazy"
-               onerror="this.style.display='none'">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-          <div class="absolute top-4 left-4 flex gap-2">
-            <span class="badge badge-bestseller">💪 Best Seller</span>
-          </div>
-          <div class="absolute bottom-4 right-4 text-xs font-black px-3 py-1 rounded-full" style="background:rgba(16,185,129,0.9);color:#fff;">
-            ⚡ Instant Access
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-6">
-          <div class="flex items-start justify-between mb-3">
-            <div>
-              <h3 class="font-black text-lg text-white leading-tight">FitLife Blueprint</h3>
-              <p class="text-xs text-gray-500 mt-1">Health &amp; Fitness Guide</p>
-            </div>
-            <div class="text-right">
-              <div class="text-2xl font-black" style="background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">₹199</div>
-              <div class="text-xs text-gray-500 line-through">₹499</div>
-            </div>
-          </div>
-
-          <p class="text-sm text-gray-400 leading-relaxed mb-4">
-            Transform your health with this complete blueprint — diet planning, home workouts, weight management, sleep science, and mental wellness in one guide.
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-5">
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(16,185,129,0.1);color:#6ee7b7;">Diet Plans</span>
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(16,185,129,0.1);color:#6ee7b7;">Workouts</span>
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(16,185,129,0.1);color:#6ee7b7;">Wellness</span>
-          </div>
-
-          <ul class="space-y-1.5 mb-6">
-            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Complete nutrition guide</li>
-            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Home workout routines</li>
-            <li class="flex items-center gap-2 text-xs text-gray-400"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-green-400 flex-shrink-0"></i> Instant download after payment</li>
-          </ul>
-
-          <a href="index.health.html" class="w-full justify-center inline-flex items-center gap-2 font-black py-3.5 px-6 rounded-2xl transition-all"
-             style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;box-shadow:0 8px 24px rgba(16,185,129,0.3);">
-            <i data-lucide="eye" class="w-4 h-4"></i> View Details
-          </a>
-        </div>
-      </div>
-
-      <!-- ── CARD 3: Coming Soon ── -->
-      <div class="ebook-card reveal reveal-delay-2" data-category="coming" data-name="coming soon new ebook">
-        <div class="relative flex items-center justify-center" style="height:240px;background:linear-gradient(135deg,#1a1f35,#0f1225);">
-          <div class="text-center">
-            <div class="text-5xl mb-3">🔜</div>
-            <div class="text-xs font-black uppercase tracking-widest text-purple-400">Coming Soon</div>
-          </div>
-          <div class="absolute top-4 left-4"><span class="badge badge-coming">⏳ Coming Soon</span></div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-black text-lg text-white mb-2">More eBooks Loading...</h3>
-          <p class="text-sm text-gray-500 mb-5">We're working on HP Forest Guard, HP Clerk, HP Health Inspector and more exam guides. Stay tuned!</p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(139,92,246,0.1);color:#c4b5fd;">Forest Guard</span>
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(139,92,246,0.1);color:#c4b5fd;">HP Clerk</span>
-            <span class="text-xs px-2.5 py-1 rounded-lg font-medium" style="background:rgba(139,92,246,0.1);color:#c4b5fd;">Health Inspector</span>
-          </div>
-          <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank" class="btn-outline w-full justify-center" style="border-color:rgba(139,92,246,0.3);">
-            <i data-lucide="bell" class="w-4 h-4"></i> Get Notified
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- No results -->
-    <div id="no-results" class="hidden text-center py-20">
-      <div class="text-5xl mb-4">🔍</div>
-      <p class="text-gray-500 font-bold">No eBooks found. Try a different search.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     FEATURED eBOOK SPOTLIGHT
-═══════════════════════════════════════ -->
-<section class="py-20 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="reveal" style="background:linear-gradient(135deg,rgba(30,58,120,0.25),rgba(15,23,42,0.5),rgba(88,28,135,0.15));border:1px solid rgba(59,130,246,0.2);border-radius:32px;padding:3rem;overflow:hidden;position:relative;">
-
-      <!-- Glow blob -->
-      <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(59,130,246,0.15),transparent 70%);pointer-events:none;"></div>
-      <div class="absolute -bottom-20 -right-20 w-80 h-80 rounded-full blur-3xl" style="background:radial-gradient(circle,rgba(139,92,246,0.1),transparent 70%);pointer-events:none;"></div>
-
-      <div class="grid lg:grid-cols-2 gap-12 items-center relative z-10">
-
-        <!-- Book visual -->
-        <div class="flex justify-center">
-          <div class="relative">
-            <div class="absolute inset-0 rounded-2xl blur-2xl" style="background:radial-gradient(circle,rgba(59,130,246,0.3),transparent 60%);transform:scale(1.1)"></div>
-            <!--
-              ★ Same Patwari cover used here — "book.png" ★
-            -->
-            <div class="float book-mockup shine w-64 h-80 relative overflow-hidden"
-                 style="background:linear-gradient(135deg,#1e3a5f,#0d1f35);border:1px solid rgba(59,130,246,0.3);">
-              <img src="book.png" alt="HP Patwari Featured"
-                   class="w-full h-full object-cover absolute inset-0"
-                   onerror="this.style.display='none'">
-              <div class="absolute left-0 top-0 bottom-0 w-3 rounded-l-2xl" style="background:linear-gradient(180deg,rgba(59,130,246,0.6),rgba(139,92,246,0.4))"></div>
-              <div class="absolute inset-0 flex flex-col items-center justify-center p-6 z-10" id="feat-fallback"
-                   style="display:none;">
-                <div class="text-5xl mb-4">📚</div>
-                <div class="text-sm font-black text-blue-300 uppercase tracking-widest mb-2">HP Patwari</div>
-                <div class="text-xs text-gray-400 text-center">Complete Preparation Guide 2026</div>
-                <div class="mt-6 text-2xl font-black text-gradient">₹199</div>
-              </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-5" style="font-family:'Syne',sans-serif;">Secure Shopping</h4>
+                    <div class="space-y-3 text-sm">
+                        <p class="flex items-center gap-2 text-slate-400"><span class="text-green-400 font-bold">✔</span> Instant PDF Download</p>
+                        <p class="flex items-center gap-2 text-slate-400"><span class="text-green-400 font-bold">✔</span> 100% Secure Payment</p>
+                        <p class="flex items-center gap-2 text-slate-400"><span class="text-green-400 font-bold">✔</span> 30-Day Money Back</p>
+                        <p class="flex items-center gap-2 text-slate-400"><span class="text-green-400 font-bold">✔</span> Trusted by 5000+ Students</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Floating mini badges -->
-            <div class="absolute -right-6 top-8 glass px-3 py-2 rounded-xl text-xs font-black text-green-400 float-delay" style="border-color:rgba(16,185,129,0.2);">
-              ✅ 2000+ Sold
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-slate-500 text-sm">&copy; 2025 StudyHub. All rights reserved.</p>
+                <a href="index.privacy-policy.html" class="footer-link text-sm">Privacy Policy</a>
             </div>
-            <div class="absolute -left-8 bottom-16 glass px-3 py-2 rounded-xl text-xs font-black text-blue-400 float-slow" style="border-color:rgba(59,130,246,0.2);">
-              ⚡ Instant PDF
-            </div>
-          </div>
         </div>
+    </footer>
 
-        <!-- Content -->
-        <div class="space-y-6">
-          <div>
-            <span class="badge badge-trending mb-3">🔥 #1 Best eBook</span>
-            <h2 class="text-4xl font-black leading-tight">HP Patwari <span class="text-gradient">Complete</span> Preparation Guide 2026</h2>
-          </div>
+        <script>
+        lucide.createIcons();
 
-          <p class="text-gray-400 leading-relaxed">
-            The most comprehensive HP Patwari preparation guide available — built by experts, updated for 2026, and designed to maximize your score in minimum time.
-          </p>
+        // ═══════════════════════════════════════════════════════
+        //  DATA
+        // ═══════════════════════════════════════════════════════
+       const products = [
+    {
+        id: 1,
+        title: "HP Patwari 2026 Complete Guide",
+        subtitle: "HP Patwari Exam • 5000+ Questions",
+        description: "Comprehensive preparation with previous papers, video solutions & mock tests. Covers complete syllabus for HP Patwari 2026.",
+        price: 199,
+        originalPrice: 499,
+        discount: 60,
+        image: "HP Patwari E-Book.png", // better path
+        category: "patwari",
+        tag: "Bestseller",
+        rating: 4.9,
+        reviews: 1247,
 
-          <!-- Benefits -->
-          <div class="grid sm:grid-cols-2 gap-3">
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
-              <span class="text-sm font-bold">Full Syllabus Coverage</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
-              <span class="text-sm font-bold">Previous Year Questions</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
-              <span class="text-sm font-bold">5000+ MCQ Practice</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
-              <span class="text-sm font-bold">HP GK &amp; Current Affairs</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
-              <span class="text-sm font-bold">Instant PDF Download</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.15);">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
-              <span class="text-sm font-bold">Printable Format</span>
-            </div>
-          </div>
+        // 🔥 NEW (separate payment link)
+        payment: "https://rzp.io/rzp/lpgXVd9",
 
-          <!-- Price + CTA -->
-          <div class="flex flex-wrap items-center gap-6 pt-2">
-            <div>
-              <div class="text-4xl font-black text-gradient">₹199</div>
-              <div class="text-sm text-gray-500 line-through">₹499 • 60% off</div>
-            </div>
-            <a href="https://rzp.io/rzp/lpgXVd9" class="btn-primary text-base px-8 py-4">
-              <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-              Get This eBook
-            </a>
-          </div>
+        // optional (for details page if needed)
+        link: "index.hp-patwari-guide.html",
 
-          <!-- Trust badges row -->
-          <div class="flex flex-wrap gap-3 pt-1">
-            <div class="trust-badge text-xs"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-blue-400"></i> Secure Razorpay</div>
-            <div class="trust-badge text-xs"><i data-lucide="zap" class="w-3.5 h-3.5 text-yellow-400"></i> Instant Access</div>
-            <div class="trust-badge text-xs"><i data-lucide="users" class="w-3.5 h-3.5 text-green-400"></i> 2000+ Students</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        preview: "#pdf-preview-patwari"
+    },
+    {
+        id: 2,
+        title: "FitLife Blueprint (Fat Loss Guide)",
+        subtitle: "Fitness • 90-Day Program",
+        description: "Complete fat loss transformation with meal plans, workouts & habit tracker. Proven results guaranteed for real people.",
+        price: 299,
+        originalPrice: 699,
+        discount: 60,
+        image: "Fitlife Blueprint.png",
+        category: "fitness",
+        tag: "Limited Deal",
+        rating: 4.8,
+        reviews: 892,
 
-<!-- ═══════════════════════════════════════
-     WHY OUR E-BOOKS
-═══════════════════════════════════════ -->
-<section class="py-20 px-6" style="background:rgba(0,0,0,0.2);">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style="background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);color:#67e8f9;">
-        <i data-lucide="star" class="w-3 h-3"></i> Why Study Hub?
-      </div>
-      <h2 class="text-4xl font-black mb-3">Why Our <span class="text-gradient">eBooks?</span></h2>
-      <p class="text-gray-500 max-w-lg mx-auto">Not just notes — engineered study tools designed to get you results.</p>
-    </div>
+        // 🔥 NEW (separate payment link)
+        payment: "https://rzp.io/rzp/86rlBUy",
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        link: "index.health.html",
 
-      <div class="glass p-7 text-center reveal group hover:-translate-y-2 transition-transform duration-300">
-        <div class="feat-icon mx-auto mb-5" style="background:rgba(59,130,246,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="target" class="w-7 h-7 text-blue-400"></i>
-        </div>
-        <h3 class="font-black text-lg mb-2">Exam-Focused</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">Every topic mapped exactly to the official exam syllabus. Zero irrelevant content.</p>
-      </div>
-
-      <div class="glass p-7 text-center reveal reveal-delay-1 group hover:-translate-y-2 transition-transform duration-300">
-        <div class="feat-icon mx-auto mb-5" style="background:rgba(139,92,246,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="refresh-cw" class="w-7 h-7 text-purple-400"></i>
-        </div>
-        <h3 class="font-black text-lg mb-2">Always Updated</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">Content updated regularly for 2026 exams — latest syllabus changes included.</p>
-      </div>
-
-      <div class="glass p-7 text-center reveal reveal-delay-2 group hover:-translate-y-2 transition-transform duration-300">
-        <div class="feat-icon mx-auto mb-5" style="background:rgba(16,185,129,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="indian-rupee" class="w-7 h-7 text-green-400"></i>
-        </div>
-        <h3 class="font-black text-lg mb-2">Truly Affordable</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">Premium quality at ₹199. No coaching fees. No hidden charges. Ever.</p>
-      </div>
-
-      <div class="glass p-7 text-center reveal reveal-delay-3 group hover:-translate-y-2 transition-transform duration-300">
-        <div class="feat-icon mx-auto mb-5" style="background:rgba(245,158,11,0.12);width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;">
-          <i data-lucide="zap" class="w-7 h-7 text-yellow-400"></i>
-        </div>
-        <h3 class="font-black text-lg mb-2">Instant Access</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">Pay once, download instantly. Access anytime on any device, forever.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     STATS STRIP
-═══════════════════════════════════════ -->
-<section class="py-14 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="glass reveal" style="border-radius:24px;padding:2.5rem;">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-        <div>
-          <div class="text-4xl font-black text-gradient count-up" data-target="2000">0</div>
-          <div class="text-sm text-gray-500 mt-1 font-medium">Students</div>
-        </div>
-        <div>
-          <div class="text-4xl font-black" style="background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">2</div>
-          <div class="text-sm text-gray-500 mt-1 font-medium">eBooks Live</div>
-        </div>
-        <div>
-          <div class="text-4xl font-black" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">4.9★</div>
-          <div class="text-sm text-gray-500 mt-1 font-medium">Avg Rating</div>
-        </div>
-        <div>
-          <div class="text-4xl font-black" style="background:linear-gradient(135deg,#f87171,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">5min</div>
-          <div class="text-sm text-gray-500 mt-1 font-medium">Avg Delivery</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     TESTIMONIALS
-═══════════════════════════════════════ -->
-<section class="py-20 px-6" style="background:rgba(0,0,0,0.2);">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-14 reveal">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-5" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);color:#fcd34d;">
-        <i data-lucide="heart" class="w-3 h-3"></i> Student Reviews
-      </div>
-      <h2 class="text-4xl font-black mb-3">What <span class="text-gradient">Students Say</span></h2>
-      <p class="text-gray-500">Real reviews from students who prepared with our eBooks.</p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <div class="glass p-7 reveal group hover:-translate-y-2 transition-transform duration-300">
-        <div class="stars mb-3">★★★★★</div>
-        <p class="text-gray-300 text-sm leading-relaxed mb-5">"The HP Patwari eBook is absolutely brilliant. PYQs and MCQs in one place — saved me so much time. Totally worth ₹199."</p>
-        <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);">R</div>
-          <div>
-            <div class="font-bold text-sm">Rahul Sharma</div>
-            <div class="text-xs text-gray-500">HP Patwari Aspirant, Mandi</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass p-7 reveal reveal-delay-1 group hover:-translate-y-2 transition-transform duration-300">
-        <div class="stars mb-3">★★★★★</div>
-        <p class="text-gray-300 text-sm leading-relaxed mb-5">"Downloaded in minutes, worked perfectly on my phone. The HP GK section alone is worth the price. Highly recommend to all HP exam aspirants!"</p>
-        <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background:linear-gradient(135deg,#10b981,#059669);">P</div>
-          <div>
-            <div class="font-bold text-sm">Priya Thakur</div>
-            <div class="text-xs text-gray-500">Govt. Exam Student, Shimla</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass p-7 reveal reveal-delay-2 group hover:-translate-y-2 transition-transform duration-300">
-        <div class="stars mb-3">★★★★★</div>
-        <p class="text-gray-300 text-sm leading-relaxed mb-5">"FitLife Blueprint is exactly what I needed alongside my studies. Diet + workout + mental health in one PDF. Study Hub really delivers quality."</p>
-        <div class="flex items-center gap-3 pt-4 border-t border-white/5">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">A</div>
-          <div>
-            <div class="font-bold text-sm">Amit Verma</div>
-            <div class="text-xs text-gray-500">Student, Kangra</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     WHATSAPP BANNER
-═══════════════════════════════════════ -->
-<section class="py-16 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="glass text-center reveal p-12" style="border-color:rgba(16,185,129,0.2);background:rgba(16,185,129,0.03);">
-      <div class="inline-flex p-4 rounded-full mb-5 text-green-400" style="background:rgba(16,185,129,0.1);">
-        <i data-lucide="message-square" class="w-8 h-8"></i>
-      </div>
-      <h2 class="text-3xl font-black mb-3">Get Updates &amp; Free Tips</h2>
-      <p class="text-gray-400 mb-8 max-w-lg mx-auto">Join our WhatsApp community — exam updates, free study material, doubt solving, and exclusive offers.</p>
-      <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank"
-         class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-black px-8 py-4 rounded-full transition-all shadow-xl"
-         style="box-shadow:0 8px 24px rgba(16,185,129,0.3);">
-        <i data-lucide="phone" class="w-5 h-5"></i>
-        Join WhatsApp Community
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     CONTACT
-═══════════════════════════════════════ -->
-<section id="contact" class="py-20 px-6">
-  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
-    <div class="reveal">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6" style="background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:#93c5fd;">
-        <i data-lucide="mail" class="w-3 h-3"></i> Contact Us
-      </div>
-      <h2 class="text-4xl font-black mb-5">Let's Get <span class="text-gradient">in Touch</span></h2>
-      <p class="text-gray-400 mb-10">Have questions about an eBook? Need help with your order? We're here for you.</p>
-
-      <div class="space-y-6">
-        <div class="flex items-center gap-5">
-          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="mail" class="w-6 h-6"></i></div>
-          <div>
-            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Email</p>
-            <p class="font-bold">studyhubnetwork@gmail.com</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-5">
-          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="phone" class="w-6 h-6"></i></div>
-          <div>
-            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Phone / WhatsApp</p>
-            <p class="font-bold">+91 8629844548</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-5">
-          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
-          <div>
-            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Location</p>
-            <p class="font-bold">Shimla, Himachal Pradesh 171201, India</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-5">
-          <div class="w-14 h-14 glass flex items-center justify-center text-blue-500 flex-shrink-0"><i data-lucide="building-2" class="w-6 h-6"></i></div>
-          <div>
-            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-0.5">Business</p>
-            <p class="font-bold">Study Hub Network</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="glass p-10 reveal reveal-delay-2">
-      <form action="https://formspree.io/f/mblgjeva" method="POST" class="space-y-5">
-        <div class="grid sm:grid-cols-2 gap-5">
-          <input type="text" name="name" placeholder="Full Name" required
-                 class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium"
-                 style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
-                 onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-          <input type="email" name="email" placeholder="Email Address" required
-                 class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium"
-                 style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
-                 onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-        </div>
-        <input type="text" name="subject" placeholder="Subject (e.g. Order Help, Query)"
-               class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium"
-               style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
-               onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-        <textarea name="message" placeholder="How can we help you?" rows="4" required
-                  class="w-full rounded-xl px-5 py-4 outline-none transition-all font-medium resize-none"
-                  style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff;"
-                  onfocus="this.style.borderColor='rgba(59,130,246,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"></textarea>
-        <button type="submit" class="btn-primary w-full justify-center text-base py-4">
-          <i data-lucide="send" class="w-5 h-5"></i>
-          Send Message
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
-<footer class="py-16 px-6 border-t border-white/5" style="background:rgba(0,0,0,0.5);">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
-    <div class="col-span-2">
-      <a href="index.html" class="flex items-center gap-2 mb-5">
-        <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-white"><i data-lucide="layers" class="w-5 h-5"></i></div>
-        <span class="text-xl font-black">Study<span class="text-blue-500">Hub</span></span>
-      </a>
-      <p class="text-gray-500 max-w-xs mb-6 text-sm leading-relaxed">Premium digital study resources for HP government exam aspirants and beyond. Learn smarter. Score higher.</p>
-      <div class="flex gap-3">
-        <a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" class="w-10 h-10 glass flex items-center justify-center hover:bg-green-500/20 transition-colors text-gray-400 hover:text-green-400">
-          <i data-lucide="message-circle" class="w-5 h-5"></i>
-        </a>
-        <a href="https://www.instagram.com/study_hub099?igsh=MTFzdWN6MmR5Y3hudA==" class="w-10 h-10 glass flex items-center justify-center hover:bg-pink-500/20 transition-colors text-gray-400 hover:text-pink-400">
-          <i data-lucide="instagram" class="w-5 h-5"></i>
-        </a>
-        <a href="https://youtube.com/@ayush00099" class="w-10 h-10 glass flex items-center justify-center hover:bg-red-500/20 transition-colors text-gray-400 hover:text-red-400">
-          <i data-lucide="youtube" class="w-5 h-5"></i>
-        </a>
-      </div>
-    </div>
-
-    <div>
-      <h4 class="font-black mb-5 text-sm uppercase tracking-widest">E-Books</h4>
-      <ul class="space-y-3 text-sm text-gray-500">
-        <li><a href="index.ebook.html" class="hover:text-blue-400 transition-colors">HP Patwari Guide</a></li>
-        <li><a href="index.health.html" class="hover:text-blue-400 transition-colors">FitLife Blueprint</a></li>
-        <li><a href="index.class-10-papers.html" class="hover:text-blue-400 transition-colors">Class 10 Papers</a></li>
-        <li><a href="index.html#materials" class="hover:text-blue-400 transition-colors">Study Materials</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-black mb-5 text-sm uppercase tracking-widest">Legal</h4>
-      <ul class="space-y-3 text-sm text-gray-500">
-        <li><a href="index_privacy-policy.html" class="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-        <li><a href="index_privacy-policy.html#terms" class="hover:text-blue-400 transition-colors">Terms &amp; Conditions</a></li>
-        <li><a href="index_privacy-policy.html#refund" class="hover:text-blue-400 transition-colors">Refund Policy</a></li>
-        <li><a href="index_privacy-policy.html#contact" class="hover:text-blue-400 transition-colors">Contact Us</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
-    <p>&copy; 2026 Study Hub Network. All rights reserved.</p>
-    <p>Not affiliated with HP Govt. or HPPSC. Educational purposes only.</p>
-  </div>
-</footer>
-
-<!-- Fixed WhatsApp -->
-<a href="https://chat.whatsapp.com/IlDPrcMYWAU6EjLskexcAL" target="_blank" rel="noopener"
-   class="fixed bottom-8 right-8 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-50"
-   style="box-shadow:0 8px 28px rgba(16,185,129,0.5);">
-  <i data-lucide="message-circle" class="w-7 h-7"></i>
-</a>
-
-<!-- ═══════════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════════ -->
-<script>
-  // ── Init Icons ──
-  lucide.createIcons();
-
-  // ── Preloader ──
-  window.addEventListener('load', () => {
-    const pre = document.getElementById('preloader');
-    setTimeout(() => {
-      pre.style.opacity = '0';
-      setTimeout(() => pre.style.display = 'none', 700);
-    }, 1400);
-  });
-
-  // ── Scroll Progress + Navbar ──
-  window.addEventListener('scroll', () => {
-    const scroll = document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    document.getElementById('scroll-progress').style.width = (scroll / height * 100) + '%';
-
-    const nav = document.getElementById('navbar');
-    if (scroll > 60) {
-      nav.style.cssText = 'background:rgba(3,7,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding-top:14px;padding-bottom:14px;';
-    } else {
-      nav.style.cssText = 'background:transparent;padding-top:20px;padding-bottom:20px;';
+        preview: "#pdf-preview-fitlife"
     }
+];
 
-    // Reveal
-    document.querySelectorAll('.reveal').forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
-    });
-  });
 
-  // ── Mobile Menu ──
-  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.remove('translate-x-full');
-  });
-  document.getElementById('close-menu').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.add('translate-x-full');
-  });
-  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.add('translate-x-full');
-  }));
+        const comingSoon = [
+            { title: "JEE Advanced 2026 Complete", category: "jee" },
+            { title: "NEET 2026 Mastery Guide", category: "neet" },
+            { title: "SSC CGL Tier 1 & 2", category: "ssc" },
+            { title: "Geography Pro Guide", category: "geography" },
+            { title: "NTPC Technical Guide", category: "ntpc" },
+            { title: "HPPSC Prelims 2026", category: "hppsc" }
+        ];
 
-  // ── Particles ──
-  const isMobile = window.innerWidth < 640;
-  if (!isMobile) {
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let dots = [];
-    function initDots() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      dots = [];
-      for (let i = 0; i < 35; i++) {
-        dots.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 1.5 + 0.5,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          color: Math.random() > 0.5 ? 'rgba(59,130,246,0.18)' : 'rgba(139,92,246,0.14)'
+        // ═══════════════════════════════════════════════════════
+        //  DOM REFERENCES
+        // ═══════════════════════════════════════════════════════
+        const searchInputs       = document.querySelectorAll('#mobileSearch, #desktopSearch, #tabletSearch');
+        const categoryBtns       = document.querySelectorAll('#categories button');
+        const trendingContainer   = document.getElementById('trendingProducts');
+        const recommendedContainer= document.getElementById('recommendedProducts');
+        const comingSoonContainer = document.getElementById('comingSoonProducts');
+        const mobileMenuBtn      = document.getElementById('mobileMenuBtn');
+        const mobileMenu         = document.getElementById('mobileMenu');
+        const menuIconOpen       = document.getElementById('menuIconOpen');
+        const menuIconClose      = document.getElementById('menuIconClose');
+        const backToTop          = document.getElementById('backToTop');
+        const scrollProgress     = document.getElementById('scrollProgress');
+        const navbar             = document.getElementById('navbar');
+
+        // ═══════════════════════════════════════════════════════
+        //  HELPERS
+        // ═══════════════════════════════════════════════════════
+
+        /* ── Star renderer ── */
+        function renderStars(rating) {
+            return [...Array(5)].map((_, i) => `
+                <svg class="w-4 h-4 ${i < Math.floor(rating) ? 'star-fill' : 'star-empty'}"
+                     viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462
+                             c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292
+                             c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034
+                             c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118
+                             L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>`).join('');
+        }
+
+        /* ── Debounce (for search) ── */
+        function debounce(fn, delay = 180) {
+            let t;
+            return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), delay); };
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  RENDER — PRODUCT CARDS
+        // ═══════════════════════════════════════════════════════
+        function renderAmazonProducts(productsList, container) {
+            if (!container) return;
+
+            if (!productsList.length) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p class="empty-state-text">No products match your search</p>
+                        <p class="text-slate-400 mt-2 text-sm">Try a different keyword or category</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = productsList.map((p, index) => `
+                <article class="product-card reveal p-6 lg:p-8"
+                         style="transition-delay:${index * 90}ms;"
+                         data-id="${p.id}">
+                    <div class="flex flex-col lg:flex-row gap-6 relative">
+
+                        <!-- Floating tag badge -->
+                        <div class="product-tag">${p.tag}</div>
+
+                        <!-- Book cover image -->
+                        <div class="product-img-wrap flex-shrink-0"
+                             style="width:128px;height:160px;min-width:128px;">
+                            <img src="${p.image}" alt="${p.title}" loading="lazy"
+                                 onerror="this.src='https://via.placeholder.com/128x160?text=Cover'">
+                        </div>
+
+                        <!-- Product info -->
+                        <div class="flex-1 min-w-0">
+
+                            <!-- Title -->
+                            <h3 class="text-xl lg:text-2xl font-bold text-slate-900 mb-1
+                                       line-clamp-2 transition-colors"
+                                style="font-family:'Syne',sans-serif;line-height:1.25;">
+                                ${p.title}
+                            </h3>
+                            <p class="text-sm text-slate-500 mb-3 font-medium">${p.subtitle}</p>
+
+                            <!-- Star rating -->
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="flex gap-0.5">${renderStars(p.rating)}</div>
+                                <span class="text-sm font-bold text-slate-800">${p.rating}</span>
+                                <span class="text-sm text-slate-400">
+                                    (${p.reviews.toLocaleString()} reviews)
+                                </span>
+                            </div>
+
+                            <!-- Price row -->
+                            <div class="flex items-baseline gap-3 mb-2">
+                                <span class="price-main">₹${p.price}</span>
+                                <span class="price-original">₹${p.originalPrice}</span>
+                            </div>
+                            <div class="flex items-center gap-3 mb-5">
+                                <span class="discount-badge">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" stroke-width="3">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                    ${p.discount}% OFF
+                                </span>
+                                <span class="limited-deal">
+                                    <span class="limited-deal-dot"></span>
+                                    Limited Time Deal
+                                </span>
+                            </div>
+
+                            <!-- Description -->
+                            <p class="text-sm text-slate-500 line-clamp-2 mb-5 leading-relaxed">
+                                ${p.description}
+                            </p>
+
+                            <!-- Trust pills -->
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <span class="trust-pill">
+                                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414
+                                             l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414
+                                             L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                    Trusted by 5000+
+                                </span>
+                                <span class="trust-pill">
+                                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0
+                                             012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2
+                                             zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Secure Payment
+                                </span>
+                                <span class="trust-pill">
+                                    <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z
+                                                 M15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                        <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5
+                                                 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z
+                                                 M14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95
+                                                 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2
+                                                 A1 1 0 0015 7h-1z"/>
+                                    </svg>
+                                    Instant Download
+                                </span>
+                            </div>
+
+                            <!-- CTA Buttons -->
+                            <div class="space-y-3 max-w-sm">
+                                <a href="${p.payment}" class="btn-primary ripple">
+                                    🛒 BUY NOW — ₹${p.price}
+                                </a>
+                                <a href="${p.link}" class="btn-secondary ripple">
+                                    📖 VIEW DETAILS
+                                </a>
+                                <a href="${p.preview}" target="_blank" class="btn-outline">
+                                    👁️ PREVIEW SAMPLE
+                                </a>
+                            </div>
+                        </div><!-- /info -->
+                    </div>
+                </article>
+            `).join('');
+
+            // Trigger reveals for freshly injected cards
+            requestAnimationFrame(() => {
+                runReveal();
+                initCardEffects(); // tilt + shine on new cards
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  RENDER — COMING SOON
+        // ═══════════════════════════════════════════════════════
+        function renderComingSoon() {
+            if (!comingSoonContainer) return;
+            comingSoonContainer.innerHTML = comingSoon.map((p, i) => `
+                <div class="coming-card reveal" style="transition-delay:${i * 60}ms;">
+                    <div class="coming-cover">
+                        <div class="coming-cover-shimmer"></div>
+                    </div>
+                    <h3 class="text-sm font-bold text-slate-500 line-clamp-2"
+                        style="font-family:'Syne',sans-serif;">${p.title}</h3>
+                    <div class="coming-badge">Coming Soon</div>
+                </div>
+            `).join('');
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  FILTER + SEARCH
+        // ═══════════════════════════════════════════════════════
+        let currentCategory = 'all';
+
+        function filterProducts(query = '', category = currentCategory) {
+            currentCategory = category;
+            const q = query.toLowerCase().trim();
+            const filtered = products.filter(p =>
+                (p.title.toLowerCase().includes(q)    ||
+                 p.subtitle.toLowerCase().includes(q) ||
+                 p.category.toLowerCase().includes(q)) &&
+                (category === 'all' || p.category === category)
+            );
+            renderAmazonProducts(filtered, trendingContainer);
+            renderAmazonProducts(filtered.slice(0, 2), recommendedContainer);
+        }
+
+        // ── Search input (debounced) ──────────────────────────
+        const debouncedFilter = debounce(q => filterProducts(q));
+        searchInputs.forEach(input => {
+            input.addEventListener('input', e => debouncedFilter(e.target.value));
         });
-      }
-    }
-    function animateDots() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      dots.forEach(d => {
-        d.x += d.vx; d.y += d.vy;
-        if (d.x < 0 || d.x > canvas.width) d.vx *= -1;
-        if (d.y < 0 || d.y > canvas.height) d.vy *= -1;
-        ctx.fillStyle = d.color;
-        ctx.beginPath(); ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2); ctx.fill();
-      });
-      // Draw lines between nearby dots
-      dots.forEach((a, i) => {
-        dots.slice(i + 1).forEach(b => {
-          const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 120) {
-            ctx.strokeStyle = `rgba(59,130,246,${0.06 * (1 - dist/120)})`;
-            ctx.lineWidth = 0.6;
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-          }
+
+        // ── Sync all search inputs together ──────────────────
+        searchInputs.forEach(input => {
+            input.addEventListener('input', e => {
+                searchInputs.forEach(other => {
+                    if (other !== e.target) other.value = e.target.value;
+                });
+            });
         });
-      });
-      requestAnimationFrame(animateDots);
-    }
-    window.addEventListener('resize', initDots);
-    initDots(); animateDots();
-  }
 
-  // ── 3D Card Tilt ──
-  document.querySelectorAll('.tilt-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-10px) scale(1.02)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
+        // ═══════════════════════════════════════════════════════
+        //  CATEGORY BUTTONS
+        // ═══════════════════════════════════════════════════════
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.disabled) return;
 
-  // ── Search & Filter ──
-  const searchInput = document.getElementById('search-input');
-  const filterPills = document.querySelectorAll('.filter-pill');
-  const grid = document.getElementById('ebook-grid');
-  let activeFilter = 'all';
+                // Visual active state
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-  function filterCards() {
-    const q = searchInput.value.toLowerCase().trim();
-    const cards = grid.querySelectorAll('.ebook-card');
-    let visible = 0;
-    cards.forEach(card => {
-      const cat = card.dataset.category || '';
-      const name = (card.dataset.name || '').toLowerCase();
-      const matchFilter = activeFilter === 'all' || cat === activeFilter;
-      const matchSearch = q === '' || name.includes(q);
-      if (matchFilter && matchSearch) {
-        card.classList.remove('card-hidden');
-        visible++;
-      } else {
-        card.classList.add('card-hidden');
-      }
-    });
-    document.getElementById('no-results').classList.toggle('hidden', visible > 0);
-  }
+                // Haptic-feel press animation
+                btn.animate(
+                    [{ transform: 'scale(0.94)' }, { transform: 'scale(1.04)' }, { transform: 'scale(1)' }],
+                    { duration: 350, easing: 'cubic-bezier(0.34,1.56,0.64,1)' }
+                );
 
-  filterPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      filterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      activeFilter = pill.dataset.filter;
-      filterCards();
-    });
-  });
-  searchInput.addEventListener('input', filterCards);
+                const query = document.getElementById('desktopSearch')?.value || '';
+                filterProducts(query, btn.dataset.category);
+            });
+        });
 
-  // ── Counter animation ──
-  document.querySelectorAll('.count-up').forEach(el => {
-    const target = parseInt(el.dataset.target);
-    const obs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        let count = 0;
-        const step = Math.ceil(target / 80);
-        const timer = setInterval(() => {
-          count = Math.min(count + step, target);
-          el.textContent = count.toLocaleString() + '+';
-          if (count >= target) clearInterval(timer);
-        }, 20);
-        obs.disconnect();
-      }
-    });
-    obs.observe(el);
-  });
+        // ═══════════════════════════════════════════════════════
+        //  MOBILE MENU
+        // ═══════════════════════════════════════════════════════
+        let menuOpen = false;
+        mobileMenuBtn?.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu?.classList.toggle('open', menuOpen);
+            menuIconOpen?.classList.toggle('hidden', menuOpen);
+            menuIconClose?.classList.toggle('hidden', !menuOpen);
 
-  // ── Initial reveal on load ──
-  setTimeout(() => {
-    document.querySelectorAll('.reveal').forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
-    });
-  }, 200);
+            // Animate menu icon
+            mobileMenuBtn.animate(
+                [{ transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }],
+                { duration: 300, fill: 'forwards', easing: 'cubic-bezier(0.4,0,0.2,1)' }
+            );
+        });
 
-  // ── Patwari cover image fallback ──
-  window.addEventListener('load', () => {
-    const img = document.querySelector('#patwari-cover img');
-    if (img && (img.naturalWidth === 0 || img.style.display === 'none')) {
-      document.getElementById('patwari-fallback').style.display = 'flex';
-    }
-  });
-</script>
+        // Close mobile menu on outside click
+        document.addEventListener('click', e => {
+            if (menuOpen &&
+                !mobileMenu.contains(e.target) &&
+                !mobileMenuBtn.contains(e.target)) {
+                menuOpen = false;
+                mobileMenu.classList.remove('open');
+                menuIconOpen?.classList.remove('hidden');
+                menuIconClose?.classList.add('hidden');
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════
+        //  SCROLL HANDLER
+        // ═══════════════════════════════════════════════════════
+        function handleScroll() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? scrollTop / docHeight : 0;
+
+            // Scroll progress bar
+            if (scrollProgress) scrollProgress.style.transform = `scaleX(${pct})`;
+
+            // Navbar frosted glass on scroll
+            navbar?.classList.toggle('scrolled', scrollTop > 20);
+
+            // Back to top button
+            backToTop?.classList.toggle('show', scrollTop > 500);
+
+            // Parallax blobs
+            runParallax(scrollTop);
+
+            // Reveal elements
+            runReveal();
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  SCROLL REVEAL (blur + slide + scale)
+        // ═══════════════════════════════════════════════════════
+        function runReveal() {
+            const threshold = window.innerHeight * 0.88;
+            document.querySelectorAll('.reveal:not(.animate)').forEach((el, i) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < threshold) {
+                    setTimeout(() => el.classList.add('animate'), i * 75);
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  PARALLAX — Hero Blobs
+        // ═══════════════════════════════════════════════════════
+        const blob1 = document.querySelector('.hero-blob-1');
+        const blob2 = document.querySelector('.hero-blob-2');
+        const blob3 = document.querySelector('.hero-blob-3');
+
+        function runParallax(scrollTop) {
+            const y = scrollTop * 0.25; // gentle factor
+            if (blob1) blob1.style.transform = `translateY(${y * 0.6}px) scale(1)`;
+            if (blob2) blob2.style.transform = `translateY(${-y * 0.4}px) scale(1)`;
+            if (blob3) blob3.style.transform = `translate(-50%,-50%) translateY(${y * 0.2}px)`;
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  BACK TO TOP
+        // ═══════════════════════════════════════════════════════
+        backToTop?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Bounce animation on click
+            backToTop.animate(
+                [{ transform: 'scale(1)' }, { transform: 'scale(0.8)' }, { transform: 'scale(1.2)' }, { transform: 'scale(1)' }],
+                { duration: 400, easing: 'cubic-bezier(0.34,1.56,0.64,1)' }
+            );
+        });
+
+        // ═══════════════════════════════════════════════════════
+        //  RIPPLE EFFECT
+        // ═══════════════════════════════════════════════════════
+        document.addEventListener('click', e => {
+            const btn = e.target.closest('.ripple');
+            if (!btn) return;
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const size = Math.max(rect.width, rect.height) * 2;
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple-effect';
+            ripple.style.cssText = `
+                left:${x}px; top:${y}px;
+                width:${size}px; height:${size}px;
+                margin-left:-${size / 2}px; margin-top:-${size / 2}px;
+            `;
+            btn.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+        });
+
+        // ═══════════════════════════════════════════════════════
+        //  CURSOR GLOW SPOTLIGHT
+        // ═══════════════════════════════════════════════════════
+        let rafCursor;
+        document.addEventListener('mousemove', e => {
+            cancelAnimationFrame(rafCursor);
+            rafCursor = requestAnimationFrame(() => {
+                document.documentElement.style.setProperty('--cx', e.clientX + 'px');
+                document.documentElement.style.setProperty('--cy', e.clientY + 'px');
+            });
+        });
+
+        // ═══════════════════════════════════════════════════════
+        //  3D CARD TILT + SHINE SWEEP
+        // ═══════════════════════════════════════════════════════
+        function initCardEffects() {
+            document.querySelectorAll('.product-card').forEach(card => {
+
+                // Prevent double-binding
+                if (card.dataset.tiltBound) return;
+                card.dataset.tiltBound = '1';
+
+                card.addEventListener('mousemove', e => {
+                    const r   = card.getBoundingClientRect();
+                    const x   = (e.clientX - r.left) / r.width  - 0.5;  // -0.5 → 0.5
+                    const y   = (e.clientY - r.top)  / r.height - 0.5;
+                    const rx  = -y * 6;   // max 6deg X-axis
+                    const ry  =  x * 8;   // max 8deg Y-axis
+
+                    card.style.transform  = `translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                    card.style.transition = 'transform 0.08s linear, box-shadow 0.3s, border-color 0.3s';
+
+                    // Move shine highlight with cursor
+                    const shine = card.querySelector('.card-shine');
+                    if (shine) {
+                        shine.style.background = `radial-gradient(circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, rgba(255,255,255,0.18) 0%, transparent 65%)`;
+                        shine.style.opacity = '1';
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform  = '';
+                    card.style.transition = 'transform 0.55s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s, border-color 0.3s';
+
+                    const shine = card.querySelector('.card-shine');
+                    if (shine) shine.style.opacity = '0';
+                });
+
+                // Add shine layer if not present
+                if (!card.querySelector('.card-shine')) {
+                    const shine = document.createElement('div');
+                    shine.className = 'card-shine';
+                    shine.style.cssText = `
+                        position:absolute; inset:0; border-radius:inherit;
+                        pointer-events:none; opacity:0; z-index:3;
+                        transition:opacity 0.3s; will-change:background;
+                    `;
+                    card.appendChild(shine);
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  MAGNETIC BUTTON EFFECT
+        // ═══════════════════════════════════════════════════════
+        function initMagneticButtons() {
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                if (btn.dataset.magnetBound) return;
+                btn.dataset.magnetBound = '1';
+
+                btn.addEventListener('mousemove', e => {
+                    const r  = btn.getBoundingClientRect();
+                    const cx = r.left + r.width  / 2;
+                    const cy = r.top  + r.height / 2;
+                    const dx = (e.clientX - cx) * 0.18;
+                    const dy = (e.clientY - cy) * 0.18;
+                    btn.style.transform  = `translate(${dx}px, ${dy - 2}px) scale(1.02)`;
+                    btn.style.transition = 'transform 0.12s linear';
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform  = '';
+                    btn.style.transition = 'transform 0.45s cubic-bezier(0.34,1.56,0.64,1)';
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  NAVBAR LINK STAGGER ON LOAD
+        // ═══════════════════════════════════════════════════════
+        function animateNavLinks() {
+            document.querySelectorAll('.nav-link').forEach((link, i) => {
+                link.style.opacity    = '0';
+                link.style.transform  = 'translateY(-8px)';
+                link.style.transition = `opacity 0.4s ease ${i * 80 + 200}ms, transform 0.4s cubic-bezier(0.34,1.56,0.64,1) ${i * 80 + 200}ms`;
+                requestAnimationFrame(() => {
+                    link.style.opacity   = '1';
+                    link.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  HERO STATS COUNTER ANIMATION
+        // ═══════════════════════════════════════════════════════
+        function animateCounters() {
+            const counters = [
+                { el: document.querySelector('.hero-stat:nth-child(1) .hero-stat-num'), target: 5000, suffix: '+', duration: 1800 },
+                { el: document.querySelector('.hero-stat:nth-child(3) .hero-stat-num'), target: 60,   suffix: '%', duration: 1200 },
+            ];
+
+            counters.forEach(({ el, target, suffix, duration }) => {
+                if (!el) return;
+                const start    = performance.now();
+                const original = el.textContent;
+
+                function update(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease-out cubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const value = Math.round(eased * target);
+                    el.textContent = value.toLocaleString() + suffix;
+                    if (progress < 1) requestAnimationFrame(update);
+                }
+                requestAnimationFrame(update);
+            });
+        }
+
+        // ── Trigger counter once hero is visible ─────────────
+        let countersRan = false;
+        const heroObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersRan) {
+                    countersRan = true;
+                    animateCounters();
+                    heroObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) heroObserver.observe(heroSection);
+
+        // ═══════════════════════════════════════════════════════
+        //  SECTION HEADING ENTRANCE ANIMATION
+        // ═══════════════════════════════════════════════════════
+        function initSectionObserver() {
+            const sectionHeadings = document.querySelectorAll('.section-label, .section-title, .gradient-line');
+            const headingObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        entry.target.animate(
+                            [
+                                { opacity: 0, transform: 'translateX(-20px)', filter: 'blur(4px)' },
+                                { opacity: 1, transform: 'translateX(0)',     filter: 'blur(0px)' }
+                            ],
+                            { duration: 550, delay: i * 80, fill: 'forwards', easing: 'cubic-bezier(0.4,0,0.2,1)' }
+                        );
+                        headingObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            sectionHeadings.forEach(el => headingObserver.observe(el));
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  CATEGORY BAR ENTRANCE STAGGER
+        // ═══════════════════════════════════════════════════════
+        function animateCategoryBar() {
+            categoryBtns.forEach((btn, i) => {
+                btn.style.opacity   = '0';
+                btn.style.transform = 'translateY(12px) scale(0.9)';
+                setTimeout(() => {
+                    btn.style.transition = 'opacity 0.4s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1)';
+                    btn.style.opacity    = '1';
+                    btn.style.transform  = 'translateY(0) scale(1)';
+                }, 100 + i * 70);
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  PRODUCT CARD HOVER — TITLE COLOR SHIFT
+        // ═══════════════════════════════════════════════════════
+        function initTitleHover() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (card.dataset.titleBound) return;
+                card.dataset.titleBound = '1';
+
+                const title = card.querySelector('h3');
+                if (!title) return;
+
+                card.addEventListener('mouseenter', () => {
+                    title.style.color      = '#B45309'; // amber-700
+                    title.style.transition = 'color 0.25s ease';
+                });
+                card.addEventListener('mouseleave', () => {
+                    title.style.color = '';
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  WHATSAPP BUTTON — ORBIT PULSE ON PAGE LOAD
+        // ═══════════════════════════════════════════════════════
+        function initWhatsappEntrance() {
+            const wa = document.querySelector('.whatsapp-float');
+            if (!wa) return;
+            wa.style.opacity   = '0';
+            wa.style.transform = 'scale(0) rotate(-180deg)';
+            wa.style.transition = 'opacity 0.5s ease 1.5s, transform 0.6s cubic-bezier(0.34,1.56,0.64,1) 1.5s';
+            requestAnimationFrame(() => {
+                wa.style.opacity   = '1';
+                wa.style.transform = 'scale(1) rotate(0deg)';
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  BACK TO TOP — PAGE LOAD ENTRANCE
+        // ═══════════════════════════════════════════════════════
+        // Handled by CSS .back-to-top / .back-to-top.show classes
+
+        // ═══════════════════════════════════════════════════════
+        //  STAR RATING FILL ANIMATION (on card reveal)
+        // ═══════════════════════════════════════════════════════
+        const starObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stars = entry.target.querySelectorAll('.star-fill');
+                    stars.forEach((star, i) => {
+                        star.style.opacity   = '0';
+                        star.style.transform = 'scale(0) rotate(-30deg)';
+                        setTimeout(() => {
+                            star.style.transition = 'opacity 0.3s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1)';
+                            star.style.opacity    = '1';
+                            star.style.transform  = 'scale(1) rotate(0deg)';
+                        }, 300 + i * 80);
+                    });
+                    starObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        // ── Observe cards after render ────────────────────────
+        function observeStars() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (!card.dataset.starObserved) {
+                    card.dataset.starObserved = '1';
+                    starObserver.observe(card);
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  COMING SOON — CARD HOVER LIFT + BADGE COLOR SWAP
+        // ═══════════════════════════════════════════════════════
+        function initComingSoonHover() {
+            document.querySelectorAll('.coming-card').forEach(card => {
+                if (card.dataset.comingBound) return;
+                card.dataset.comingBound = '1';
+
+                card.addEventListener('mouseenter', () => {
+                    card.animate(
+                        [{ transform: 'translateY(0) scale(1)' }, { transform: 'translateY(-6px) scale(1.03)' }],
+                        { duration: 300, fill: 'forwards', easing: 'cubic-bezier(0.34,1.56,0.64,1)' }
+                    );
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.animate(
+                        [{ transform: 'translateY(-6px) scale(1.03)' }, { transform: 'translateY(0) scale(1)' }],
+                        { duration: 400, fill: 'forwards', easing: 'cubic-bezier(0.34,1.56,0.64,1)' }
+                    );
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  PAGE LOAD ENTRANCE — HERO
+        // ═══════════════════════════════════════════════════════
+        function animateHeroEntrance() {
+            const badge = document.querySelector('.hero-badge');
+            const title = document.querySelector('.hero-title');
+            const sub   = document.querySelector('.hero .text-lg, .hero .text-xl');
+            const stats = document.querySelectorAll('.hero-stat');
+
+            const sequence = [
+                { el: badge, delay: 100 },
+                { el: title, delay: 280 },
+                { el: sub,   delay: 450 },
+            ];
+
+            sequence.forEach(({ el, delay }) => {
+                if (!el) return;
+                el.style.opacity   = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.filter    = 'blur(6px)';
+                el.style.transition = `opacity 0.65s ease ${delay}ms, transform 0.65s cubic-bezier(0.4,0,0.2,1) ${delay}ms, filter 0.65s ease ${delay}ms`;
+                requestAnimationFrame(() => {
+                    el.style.opacity   = '1';
+                    el.style.transform = 'translateY(0)';
+                    el.style.filter    = 'blur(0)';
+                });
+            });
+
+            stats.forEach((stat, i) => {
+                stat.style.opacity   = '0';
+                stat.style.transform = 'translateY(16px) scale(0.88)';
+                const d = 600 + i * 120;
+                stat.style.transition = `opacity 0.5s ease ${d}ms, transform 0.55s cubic-bezier(0.34,1.56,0.64,1) ${d}ms`;
+                requestAnimationFrame(() => {
+                    stat.style.opacity   = '1';
+                    stat.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  SCROLL PROGRESS — SMOOTH RAF LOOP
+        // ═══════════════════════════════════════════════════════
+        let rafScroll;
+        function smoothScrollProgress() {
+            const scrollTop  = window.scrollY;
+            const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+            const pct        = docHeight > 0 ? scrollTop / docHeight : 0;
+            if (scrollProgress) scrollProgress.style.transform = `scaleX(${pct})`;
+            rafScroll = requestAnimationFrame(smoothScrollProgress);
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  MUTATION OBSERVER — Re-run effects after dynamic render
+        // ═══════════════════════════════════════════════════════
+        function observeContainers() {
+            const containers = [trendingContainer, recommendedContainer, comingSoonContainer];
+            const mo = new MutationObserver(() => {
+                initCardEffects();
+                initMagneticButtons();
+                initTitleHover();
+                observeStars();
+                initComingSoonHover();
+                // Small delay to let DOM paint first
+                setTimeout(runReveal, 60);
+            });
+            containers.forEach(c => {
+                if (c) mo.observe(c, { childList: true });
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        //  KEYBOARD SHORTCUT — "/" focuses search
+        // ═══════════════════════════════════════════════════════
+        document.addEventListener('keydown', e => {
+            if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                const search = document.getElementById('desktopSearch') || document.getElementById('tabletSearch');
+                search?.focus();
+                search?.select();
+            }
+            // Escape closes mobile menu
+            if (e.key === 'Escape' && menuOpen) {
+                menuOpen = false;
+                mobileMenu?.classList.remove('open');
+                menuIconOpen?.classList.remove('hidden');
+                menuIconClose?.classList.add('hidden');
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════
+        //  TOUCH — Swipe feel on category bar (scroll snap)
+        // ═══════════════════════════════════════════════════════
+        (function initCategorySwipe() {
+            const bar = document.querySelector('#categories');
+            if (!bar) return;
+            let startX, scrollLeft;
+            bar.addEventListener('touchstart', e => {
+                startX = e.touches[0].pageX - bar.offsetLeft;
+                scrollLeft = bar.scrollLeft;
+            }, { passive: true });
+            bar.addEventListener('touchmove', e => {
+                const x    = e.touches[0].pageX - bar.offsetLeft;
+                const walk = (x - startX) * 1.2;
+                bar.scrollLeft = scrollLeft - walk;
+            }, { passive: true });
+        })();
+
+        // ═══════════════════════════════════════════════════════
+        //  INIT — Run everything
+        // ═══════════════════════════════════════════════════════
+        function init() {
+            // Render content
+            filterProducts();
+            renderComingSoon();
+
+            // Scroll handling
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            smoothScrollProgress(); // RAF-based progress
+            document.documentElement.style.scrollBehavior = 'smooth';
+
+            // Visual effects
+            animateHeroEntrance();
+            animateNavLinks();
+            animateCategoryBar();
+            initSectionObserver();
+            initWhatsappEntrance();
+
+            // Card effects (initial — cards come from filterProducts)
+            setTimeout(() => {
+                initCardEffects();
+                initMagneticButtons();
+                initTitleHover();
+                observeStars();
+                initComingSoonHover();
+            }, 150);
+
+            // Watch dynamic containers
+            observeContainers();
+
+            // First scroll pass
+            setTimeout(handleScroll, 120);
+        }
+
+        // Fire when DOM is fully ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+    </script>
+
 </body>
 </html>
+
