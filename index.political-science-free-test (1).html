@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGC NET Political Science – Free Mock Test | Study Hub</title>
+  <meta name="description" content="Attempt the free 10-question UGC NET Political Science mock test. Real exam feel. Instant results." />
+  <link rel="stylesheet" href="index.mtstyle.css" />
+  <style>
+    body{background:var(--bg2)}
+    .top-buy-banner{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(239,68,68,.04));border-bottom:1px solid rgba(245,158,11,.2);padding:11px 20px;text-align:center;font-size:14px;color:var(--text2)}
+    .top-buy-banner strong{color:#fbbf24}
+    .top-buy-banner a{color:#fbbf24;font-weight:700;text-decoration:underline;margin-left:8px}
+    .progress-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:var(--text3);margin-bottom:8px;font-weight:500}
+    .upgrade-card{padding:18px;background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(139,92,246,.05));border:1px solid rgba(245,158,11,.2);border-radius:var(--radius);text-align:center}
+    .upgrade-card-icon{font-size:1.6rem;margin-bottom:7px}
+    .upgrade-card-title{font-family:var(--font-display);font-weight:700;font-size:14px;margin-bottom:5px}
+    .upgrade-card-desc{font-size:12px;color:var(--text2);margin-bottom:13px;line-height:1.5}
+    @media(max-width:768px){.quiz-wrapper{grid-template-columns:1fr!important}.sidebar{flex-direction:row;flex-wrap:wrap}.sidebar>*{flex:1;min-width:180px}}
+  </style>
+</head>
+<body>
+
+<div class="top-buy-banner">
+  🎁 Skip the test? <strong>Get all 100 Questions + Answer Key</strong> for just ₹49
+  <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank">Buy Now →</a>
+</div>
+
+<nav class="quiz-nav">
+  <a href="index.mock-tests.html" class="quiz-nav-brand">← Study Hub</a>
+  <div class="quiz-nav-info">
+    <span class="quiz-nav-title">Political Science · Free Test (10 Qs)</span>
+  </div>
+  <div class="timer-box"><span>⏱</span><span id="timer-display">15:00</span></div>
+</nav>
+
+<div class="quiz-wrapper">
+  <div class="quiz-main">
+    <div style="margin-bottom:18px;">
+      <div class="progress-row">
+        <span id="progress-text">Question 1 of 10</span>
+        <span id="progress-percent">10%</span>
+      </div>
+      <div class="progress-bar-track"><div id="progress-fill" style="width:10%;"></div></div>
+    </div>
+    <div class="question-card">
+      <div class="question-card-header">
+        <span style="font-size:13px;font-weight:600;color:var(--text3);">Free Mock Test &nbsp;·&nbsp; 10 Questions &nbsp;·&nbsp; 15 Minutes</span>
+        <span style="font-size:13px;color:var(--purple-light);font-weight:600;">Political Science</span>
+      </div>
+      <div id="question-container"></div>
+      <div class="controls-bar">
+        <button id="review-btn" onclick="quiz.markForReview(quiz.currentIndex)">🔖 Mark for Review</button>
+        <div class="spacer"></div>
+        <button id="prev-btn"   onclick="quiz.prev()"       class="btn btn-sm btn-secondary" disabled>← Prev</button>
+        <button id="next-btn"   onclick="quiz.next()"       class="btn btn-sm btn-primary">Next →</button>
+        <button id="submit-btn" onclick="openSubmitModal()" class="btn btn-sm btn-amber" style="display:none;">Submit ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="student-info">
+        <div class="student-avatar">👤</div>
+        <div><div class="student-name">Guest Student</div><div class="student-test">Political Science · Free</div></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot current"></div> Current</div>
+        <div class="legend-item"><div class="legend-dot answered"></div> Answered</div>
+        <div class="legend-item"><div class="legend-dot review"></div> Marked for Review</div>
+        <div class="legend-item"><div class="legend-dot not-visited"></div> Not Visited</div>
+      </div>
+    </div>
+    <div class="stats-card"><div id="palette-stats">
+      <div class="stat-item answered"><span>0</span> Answered</div>
+      <div class="stat-item unanswered"><span>10</span> Not Answered</div>
+      <div class="stat-item review"><span>0</span> Marked</div>
+    </div></div>
+    <div class="palette-card">
+      <div class="palette-label">Question Palette</div>
+      <div id="question-palette"></div>
+    </div>
+    <div class="upgrade-card">
+      <div class="upgrade-card-icon">🔓</div>
+      <div class="upgrade-card-title">Unlock 90 More Questions</div>
+      <div class="upgrade-card-desc">Full PDF + Answer Key<br>Instant delivery on WhatsApp</div>
+      <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank" class="btn btn-amber btn-full" style="font-size:13px;padding:11px;">Buy Full Test ₹49</a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="submit-modal">
+  <div class="modal">
+    <div class="modal-icon">📝</div>
+    <h2 class="modal-title">Submit Your Test?</h2>
+    <p class="modal-desc" id="modal-desc">Make sure you have answered all questions.</p>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-value" id="modal-answered">0</div><div class="modal-stat-label">Answered</div></div>
+      <div class="modal-stat"><div class="modal-stat-value" id="modal-unanswered">10</div><div class="modal-stat-label">Unanswered</div></div>
+      <div class="modal-stat"><div class="modal-stat-value" id="modal-marked">0</div><div class="modal-stat-label">Marked</div></div>
+    </div>
+    <div class="modal-actions">
+      <button onclick="closeSubmitModal()" class="btn btn-secondary btn-full">← Go Back</button>
+      <button onclick="confirmSubmit()"    class="btn btn-primary  btn-full">Submit Now ✓</button>
+    </div>
+  </div>
+</div>
+
+<div class="achievement-popup" id="achievement-popup">
+  <div class="achievement-popup-icon" id="ach-icon">🎯</div>
+  <div>
+    <div class="achievement-popup-title">Achievement Unlocked!</div>
+    <div class="achievement-popup-name" id="ach-name">Test Taker</div>
+    <div class="achievement-popup-xp"   id="ach-xp">+50 XP</div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────
+const RAZORPAY_LINK = "https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#";
+
+const rankSystem = [
+  {min:0,  max:3,  rank:"Beginner", icon:"🌱", color:"#94a3b8", message:"Don't worry. Every expert was once a beginner. Keep practicing!"},
+  {min:4,  max:6,  rank:"Learner",  icon:"📘", color:"#3b82f6", message:"Good start! Consistent practice will take you to the top."},
+  {min:7,  max:8,  rank:"Advanced", icon:"🔥", color:"#f59e0b", message:"Impressive! You have strong fundamentals. Keep pushing!"},
+  {min:9,  max:9,  rank:"Scholar",  icon:"🎓", color:"#8b5cf6", message:"Outstanding! You're almost exam-ready. Go for the full test!"},
+  {min:10, max:10, rank:"Master",   icon:"👑", color:"#f59e0b", message:"PERFECT SCORE! You are a Political Science Master!"}
+];
+
+const achievements = [
+  {id:"first_test",       title:"Test Taker",        icon:"🎯", desc:"Completed your first mock test",     xp:50},
+  {id:"perfect_score",    title:"Master",             icon:"👑", desc:"Scored 10/10 on free test",          xp:200},
+  {id:"speed_demon",      title:"Speed Demon",        icon:"⚡", desc:"Finished test in under 5 minutes",   xp:100},
+  {id:"high_accuracy",    title:"Sharp Mind",         icon:"🧠", desc:"Achieved 80%+ accuracy",             xp:150},
+  {id:"political_thinker",title:"Political Thinker",  icon:"⚖️", desc:"Completed Political Science test",   xp:80}
+];
+
+const FREE_QUESTIONS = [
+  {
+    id:1,
+    question:"Which of the following is NOT a feature of a Federal State?",
+    options:["Written Constitution","Supremacy of Parliament","Division of Powers","Independent Judiciary"],
+    correct:1, topic:"Political Theory",
+    explanation:"Supremacy of Parliament is a feature of a Unitary State, not a Federal State. In federal systems, the Constitution is supreme, not Parliament."
+  },
+  {
+    id:2,
+    question:"The concept of 'General Will' was propounded by:",
+    options:["John Locke","Thomas Hobbes","Jean-Jacques Rousseau","Montesquieu"],
+    correct:2, topic:"Western Political Thought",
+    explanation:"Jean-Jacques Rousseau propounded the concept of 'General Will' in 'The Social Contract' (1762), arguing that the general will represents the common good of all citizens."
+  },
+  {
+    id:3,
+    question:"The Preamble of the Indian Constitution was amended by which Constitutional Amendment?",
+    options:["42nd Amendment, 1976","44th Amendment, 1978","52nd Amendment, 1985","61st Amendment, 1988"],
+    correct:0, topic:"Indian Constitution",
+    explanation:"The 42nd Constitutional Amendment Act, 1976 added the words 'Socialist', 'Secular', and 'Integrity' to the Preamble of the Indian Constitution."
+  },
+  {
+    id:4,
+    question:"Which theory of sovereignty is associated with John Austin?",
+    options:["Pluralistic Theory","Monistic Theory","Popular Sovereignty","Legal Positivism"],
+    correct:1, topic:"Political Theory",
+    explanation:"John Austin is associated with the Monistic Theory of Sovereignty (Legal Positivism), which holds that sovereignty is absolute, indivisible, and inalienable."
+  },
+  {
+    id:5,
+    question:"The doctrine of 'Separation of Powers' is primarily associated with:",
+    options:["Rousseau","Locke","Montesquieu","Hobbes"],
+    correct:2, topic:"Western Political Thought",
+    explanation:"Montesquieu propounded the doctrine of Separation of Powers in 'The Spirit of Laws' (1748), advocating separation of legislative, executive, and judicial powers."
+  },
+  {
+    id:6,
+    question:"Which Article of the Indian Constitution deals with the Right to Constitutional Remedies?",
+    options:["Article 14","Article 19","Article 21","Article 32"],
+    correct:3, topic:"Indian Constitution",
+    explanation:"Article 32 deals with the Right to Constitutional Remedies, which Dr. B.R. Ambedkar called the 'Heart and Soul of the Constitution'."
+  },
+  {
+    id:7,
+    question:"The concept of 'Power Elite' was developed by:",
+    options:["Robert Dahl","C. Wright Mills","Harold Lasswell","David Easton"],
+    correct:1, topic:"Political Sociology",
+    explanation:"C. Wright Mills developed the concept of 'Power Elite' in his 1956 book, arguing that power in America is concentrated in military, corporate, and political elites."
+  },
+  {
+    id:8,
+    question:"Kautilya's 'Arthashastra' primarily deals with:",
+    options:["Philosophy of Religion","Statecraft and Political Economy","Military Strategy only","Metaphysics and Ethics"],
+    correct:1, topic:"Indian Political Thought",
+    explanation:"Kautilya's Arthashastra is an ancient Indian treatise on statecraft, economic policy, and military strategy covering governance, taxation, and foreign policy."
+  },
+  {
+    id:9,
+    question:"Which of the following is NOT a Directive Principle of State Policy in India?",
+    options:["Equal pay for equal work","Right to work","Right to vote","Uniform Civil Code"],
+    correct:2, topic:"Indian Constitution",
+    explanation:"Right to vote is a constitutional right under Article 326, not a Directive Principle. Equal pay, Right to work, and Uniform Civil Code are all Directive Principles."
+  },
+  {
+    id:10,
+    question:"The 'Systems Theory' in Political Science was developed by:",
+    options:["Gabriel Almond","David Easton","Robert Dahl","Harold Lasswell"],
+    correct:1, topic:"Political Theory",
+    explanation:"David Easton developed the Systems Theory in 'The Political System' (1953) and 'A Systems Analysis of Political Life' (1965), treating the political system as inputs, outputs, and feedback."
+  }
+];
+
+// ── QUIZ ENGINE ───────────────────────────────────────────
+class QuizEngine {
+  constructor() {
+    this.questions      = FREE_QUESTIONS;
+    this.currentIndex   = 0;
+    this.answers        = new Array(this.questions.length).fill(null);
+    this.markedForReview= new Array(this.questions.length).fill(false);
+    this.visited        = new Array(this.questions.length).fill(false);
+    this.startTime      = null;
+    this.timerInterval  = null;
+    this.timeLimit      = 15 * 60;
+    this.timeRemaining  = this.timeLimit;
+    this.isSubmitted    = false;
+    this.xp             = parseInt(localStorage.getItem("sh_xp") || "0");
+    this.achievements   = JSON.parse(localStorage.getItem("sh_achievements") || "[]");
+  }
+
+  init() {
+    this.startTime = Date.now();
+    this.visited[0] = true;
+    this.startTimer();
+    this.saveState();
+  }
+
+  startTimer() {
+    this.timerInterval = setInterval(() => {
+      this.timeRemaining--;
+      this.updateTimerDisplay();
+      if (this.timeRemaining <= 0) this.autoSubmit();
+      this.saveState();
+    }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timerInterval) { clearInterval(this.timerInterval); this.timerInterval = null; }
+  }
+
+  updateTimerDisplay() {
+    const m = Math.floor(this.timeRemaining / 60), s = this.timeRemaining % 60;
+    const el = document.getElementById("timer-display");
+    if (!el) return;
+    el.textContent = String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+    if (this.timeRemaining <= 60)       el.classList.add("danger");
+    else if (this.timeRemaining <= 180) el.classList.add("warning");
+  }
+
+  selectAnswer(qi, oi) {
+    if (this.isSubmitted) return;
+    this.answers[qi] = oi;
+    this.saveState(); this.renderPalette(); this.renderQuestion();
+  }
+
+  markForReview(qi) {
+    this.markedForReview[qi] = !this.markedForReview[qi];
+    this.saveState(); this.renderPalette();
+  }
+
+  goToQuestion(i) {
+    if (i < 0 || i >= this.questions.length) return;
+    this.visited[i] = true; this.currentIndex = i;
+    this.renderQuestion(); this.renderPalette();
+  }
+
+  next() { if (this.currentIndex < this.questions.length - 1) this.goToQuestion(this.currentIndex + 1); }
+  prev() { if (this.currentIndex > 0)                         this.goToQuestion(this.currentIndex - 1); }
+  autoSubmit() { this.stopTimer(); this.submit(true); }
+
+  submit(auto = false) {
+    if (this.isSubmitted) return;
+    this.isSubmitted = true; this.stopTimer();
+    const timeTaken = Math.floor((Date.now() - this.startTime) / 1000);
+    const result = this.calculateResult(timeTaken);
+    this.awardXP(result); this.checkAchievements(result, timeTaken); this.saveResult(result);
+    return result;
+  }
+
+  calculateResult(timeTaken) {
+    let correct = 0, wrong = 0, unattempted = 0;
+    this.answers.forEach((ans, i) => {
+      if (ans === null)                        unattempted++;
+      else if (ans === this.questions[i].correct) correct++;
+      else                                     wrong++;
+    });
+    const attempted = correct + wrong, score = correct;
+    const accuracy  = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+    let rank = rankSystem[0];
+    for (const r of rankSystem) { if (score >= r.min && score <= r.max) { rank = r; break; } }
+    const topicPerformance = {};
+    this.questions.forEach((q, i) => {
+      if (!topicPerformance[q.topic]) topicPerformance[q.topic] = {correct: 0, total: 0};
+      topicPerformance[q.topic].total++;
+      if (this.answers[i] === q.correct) topicPerformance[q.topic].correct++;
+    });
+    return {correct, wrong, unattempted, attempted, score, accuracy, timeTaken, rank, topicPerformance, answers:[...this.answers]};
+  }
+
+  awardXP(result) {
+    const gained = result.correct * 10 + (result.accuracy >= 80 ? 50 : 0);
+    this.xp += gained; localStorage.setItem("sh_xp", this.xp); return gained;
+  }
+
+  checkAchievements(result, timeTaken) {
+    const n = [];
+    const add = id => { if (!this.achievements.includes(id)) { this.achievements.push(id); n.push(id); } };
+    add("first_test");
+    if (result.score === 10)     add("perfect_score");
+    if (timeTaken < 300)         add("speed_demon");
+    if (result.accuracy >= 80)   add("high_accuracy");
+    add("political_thinker");
+    localStorage.setItem("sh_achievements", JSON.stringify(this.achievements));
+    return n;
+  }
+
+  saveResult(result) {
+    localStorage.setItem("sh_last_result", JSON.stringify(result));
+    const h = JSON.parse(localStorage.getItem("sh_test_history") || "[]");
+    h.unshift({...result, date: new Date().toISOString()});
+    localStorage.setItem("sh_test_history", JSON.stringify(h.slice(0, 10)));
+  }
+
+  saveState() {
+    sessionStorage.setItem("sh_quiz_state", JSON.stringify({
+      currentIndex: this.currentIndex, answers: this.answers,
+      markedForReview: this.markedForReview, visited: this.visited,
+      timeRemaining: this.timeRemaining, startTime: this.startTime
+    }));
+  }
+
+  renderQuestion() {
+    const q   = this.questions[this.currentIndex];
+    const con = document.getElementById("question-container");
+    if (!con) return;
+    const sel = this.answers[this.currentIndex];
+    con.innerHTML =
+      '<div class="question-header">' +
+      '<span class="question-number">Question ' + (this.currentIndex + 1) + ' of ' + this.questions.length + '</span>' +
+      '<span class="question-topic">' + q.topic + '</span>' +
+      '</div>' +
+      '<div class="question-text">' + q.question + '</div>' +
+      '<div class="options-grid">' +
+      q.options.map((opt, i) =>
+        '<div class="option ' + (sel === i ? "selected" : "") + '" onclick="quiz.selectAnswer(' + this.currentIndex + ',' + i + ')">' +
+        '<span class="option-letter">' + String.fromCharCode(65 + i) + '</span>' +
+        '<span class="option-text">' + opt + '</span>' +
+        '<span class="option-check">' + (sel === i ? "✓" : "") + '</span>' +
+        '</div>'
+      ).join("") +
+      '</div>';
+
+    const pf = document.getElementById("progress-fill");
+    if (pf) pf.style.width = ((this.currentIndex + 1) / this.questions.length * 100) + "%";
+
+    document.getElementById("prev-btn").disabled = this.currentIndex === 0;
+    document.getElementById("next-btn").style.display   = this.currentIndex === this.questions.length - 1 ? "none" : "flex";
+    document.getElementById("submit-btn").style.display = this.currentIndex === this.questions.length - 1 ? "flex" : "none";
+
+    const rb = document.getElementById("review-btn");
+    if (rb) {
+      rb.classList.toggle("active", this.markedForReview[this.currentIndex]);
+      rb.textContent = this.markedForReview[this.currentIndex] ? "🔖 Marked" : "🔖 Mark for Review";
+    }
+    updateProgressUI();
+  }
+
+  renderPalette() {
+    const pal = document.getElementById("question-palette");
+    if (!pal) return;
+    pal.innerHTML = this.questions.map((_, i) => {
+      let cls = "palette-btn";
+      if (i === this.currentIndex)                              cls += " current";
+      else if (this.answers[i] !== null && this.markedForReview[i]) cls += " answered-review";
+      else if (this.answers[i] !== null)                        cls += " answered";
+      else if (this.markedForReview[i])                         cls += " review";
+      else if (this.visited[i])                                 cls += " visited";
+      return '<button class="' + cls + '" onclick="quiz.goToQuestion(' + i + ')">' + (i + 1) + '</button>';
+    }).join("");
+
+    const answered   = this.answers.filter(a => a !== null).length;
+    const marked     = this.markedForReview.filter(Boolean).length;
+    const unanswered = this.questions.length - answered;
+    const st = document.getElementById("palette-stats");
+    if (st) st.innerHTML =
+      '<div class="stat-item answered"><span>'  + answered   + '</span> Answered</div>' +
+      '<div class="stat-item unanswered"><span>'+ unanswered + '</span> Not Answered</div>' +
+      '<div class="stat-item review"><span>'    + marked     + '</span> Marked</div>';
+  }
+}
+
+// ── INIT ──────────────────────────────────────────────────
+const quiz = new QuizEngine();
+
+document.addEventListener("DOMContentLoaded", () => {
+  quiz.init();
+  quiz.renderQuestion();
+  quiz.renderPalette();
+  updateProgressUI();
+});
+
+function updateProgressUI() {
+  const cur = quiz.currentIndex + 1, total = quiz.questions.length;
+  const pt = document.getElementById("progress-text");
+  const pp = document.getElementById("progress-percent");
+  if (pt) pt.textContent = "Question " + cur + " of " + total;
+  if (pp) pp.textContent = Math.round(cur / total * 100) + "%";
+}
+
+// ── MODAL ─────────────────────────────────────────────────
+function openSubmitModal() {
+  const answered   = quiz.answers.filter(a => a !== null).length;
+  const unanswered = quiz.questions.length - answered;
+  const marked     = quiz.markedForReview.filter(Boolean).length;
+  document.getElementById("modal-answered").textContent   = answered;
+  document.getElementById("modal-unanswered").textContent = unanswered;
+  document.getElementById("modal-marked").textContent     = marked;
+  document.getElementById("modal-desc").textContent       = unanswered > 0
+    ? "You have " + unanswered + " unanswered question(s). Submit anyway?"
+    : "All questions answered. Ready to submit!";
+  document.getElementById("submit-modal").classList.add("open");
+}
+function closeSubmitModal() { document.getElementById("submit-modal").classList.remove("open"); }
+
+function confirmSubmit() {
+  const result    = quiz.submit();
+  const timeTaken = Math.floor((Date.now() - quiz.startTime) / 1000);
+  const newAchs   = quiz.checkAchievements(result, timeTaken);
+  closeSubmitModal();
+  if (newAchs.length > 0) {
+    showAchievementPopup(newAchs[0]);
+    setTimeout(() => { window.location.href = "index.mock-test-result.html"; }, 2200);
+  } else {
+    window.location.href = "index.mock-test-result.html";
+  }
+}
+
+function showAchievementPopup(id) {
+  const ach = achievements.find(a => a.id === id);
+  if (!ach) return;
+  const popup = document.getElementById("achievement-popup");
+  document.getElementById("ach-icon").textContent = ach.icon;
+  document.getElementById("ach-name").textContent = ach.title;
+  document.getElementById("ach-xp").textContent   = "+" + ach.xp + " XP";
+  popup.classList.add("show");
+  setTimeout(() => popup.classList.remove("show"), 2000);
+}
+
+window.addEventListener("beforeunload", e => {
+  if (!quiz.isSubmitted) { e.preventDefault(); e.returnValue = "Your test progress will be lost."; }
+});
+</script>
+</body>
+</html>
