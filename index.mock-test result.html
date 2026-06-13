@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Result | Study Hub Mock Test</title>
+  <link rel="stylesheet" href="index.mtstyle.css" />
+  <style>
+    body{background:var(--bg2)}
+    .xp-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.22);border-radius:100px;font-size:14px;font-weight:700;color:var(--emerald);margin-top:16px;font-family:var(--font-display)}
+    .ring-wrap{position:relative;width:180px;height:180px;margin:28px auto 4px}
+    .ring-wrap svg{transform:rotate(-90deg)}
+    .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .ring-num{font-family:var(--font-display);font-size:44px;font-weight:800;line-height:1}
+    .ring-label{font-size:13px;color:var(--text3);margin-top:4px}
+    .mot-banner{padding:22px 28px;border-radius:var(--radius-xl);margin-bottom:22px;text-align:center;font-family:var(--font-display);font-size:17px;font-weight:600;line-height:1.55;border:1px solid}
+    .mot-banner.low{background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.18);color:var(--text2)}
+    .mot-banner.high{background:rgba(16,185,129,.05);border-color:rgba(16,185,129,.22);color:var(--text)}
+    .share-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+    @media(max-width:480px){.ring-wrap{width:150px;height:150px}.ring-num{font-size:36px}}
+  </style>
+</head>
+<body>
+
+<nav class="result-nav">
+  <a href="index.mock-tests.html" class="result-nav-brand">← Study Hub</a>
+  <span style="font-size:13px;color:var(--text2);font-weight:500;">Your Result</span>
+  <a href="index.political-science-free-test.html" class="btn btn-sm btn-secondary">🔄 Retake</a>
+</nav>
+
+<div class="result-wrapper" id="result-content">
+  <div style="text-align:center;padding:80px 0;color:var(--text3);">Loading your results…</div>
+</div>
+
+<div class="achievement-popup" id="achievement-popup">
+  <div class="achievement-popup-icon" id="ach-icon">🎯</div>
+  <div>
+    <div class="achievement-popup-title">Achievement Unlocked!</div>
+    <div class="achievement-popup-name" id="ach-name">First Test</div>
+    <div class="achievement-popup-xp"   id="ach-xp">+50 XP</div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────
+const RAZORPAY_LINK = "https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#";
+
+const rankSystem = [
+  {min:0,  max:3,  rank:"Beginner", icon:"🌱", color:"#94a3b8", message:"Don't worry. Every expert was once a beginner. Keep practicing!"},
+  {min:4,  max:6,  rank:"Learner",  icon:"📘", color:"#3b82f6", message:"Good start! Consistent practice will take you to the top."},
+  {min:7,  max:8,  rank:"Advanced", icon:"🔥", color:"#f59e0b", message:"Impressive! You have strong fundamentals. Keep pushing!"},
+  {min:9,  max:9,  rank:"Scholar",  icon:"🎓", color:"#8b5cf6", message:"Outstanding! You're almost exam-ready. Go for the full test!"},
+  {min:10, max:10, rank:"Master",   icon:"👑", color:"#f59e0b", message:"PERFECT SCORE! You are a Political Science Master!"}
+];
+
+const achievements = [
+  {id:"first_test",       title:"Test Taker",       icon:"🎯", desc:"Completed your first mock test",   xp:50},
+  {id:"perfect_score",    title:"Master",            icon:"👑", desc:"Scored 10/10 on free test",        xp:200},
+  {id:"speed_demon",      title:"Speed Demon",       icon:"⚡", desc:"Finished in under 5 minutes",      xp:100},
+  {id:"high_accuracy",    title:"Sharp Mind",        icon:"🧠", desc:"Achieved 80%+ accuracy",           xp:150},
+  {id:"political_thinker",title:"Political Thinker", icon:"⚖️", desc:"Completed Political Science test", xp:80}
+];
+
+const FREE_QUESTIONS = [
+  {id:1, question:"Which of the following is NOT a feature of a Federal State?", options:["Written Constitution","Supremacy of Parliament","Division of Powers","Independent Judiciary"], correct:1, topic:"Political Theory", explanation:"Supremacy of Parliament is a feature of a Unitary State. In federal systems, the Constitution is supreme, not Parliament."},
+  {id:2, question:"The concept of 'General Will' was propounded by:", options:["John Locke","Thomas Hobbes","Jean-Jacques Rousseau","Montesquieu"], correct:2, topic:"Western Political Thought", explanation:"Jean-Jacques Rousseau propounded the concept of 'General Will' in 'The Social Contract' (1762)."},
+  {id:3, question:"The Preamble of the Indian Constitution was amended by which Constitutional Amendment?", options:["42nd Amendment, 1976","44th Amendment, 1978","52nd Amendment, 1985","61st Amendment, 1988"], correct:0, topic:"Indian Constitution", explanation:"The 42nd Constitutional Amendment Act, 1976 added 'Socialist', 'Secular', and 'Integrity' to the Preamble."},
+  {id:4, question:"Which theory of sovereignty is associated with John Austin?", options:["Pluralistic Theory","Monistic Theory","Popular Sovereignty","Legal Positivism"], correct:1, topic:"Political Theory", explanation:"John Austin is associated with the Monistic Theory of Sovereignty — absolute, indivisible, inalienable."},
+  {id:5, question:"The doctrine of 'Separation of Powers' is primarily associated with:", options:["Rousseau","Locke","Montesquieu","Hobbes"], correct:2, topic:"Western Political Thought", explanation:"Montesquieu propounded the doctrine of Separation of Powers in 'The Spirit of Laws' (1748)."},
+  {id:6, question:"Which Article of the Indian Constitution deals with the Right to Constitutional Remedies?", options:["Article 14","Article 19","Article 21","Article 32"], correct:3, topic:"Indian Constitution", explanation:"Article 32 — called the 'Heart and Soul of the Constitution' by Dr. B.R. Ambedkar."},
+  {id:7, question:"The concept of 'Power Elite' was developed by:", options:["Robert Dahl","C. Wright Mills","Harold Lasswell","David Easton"], correct:1, topic:"Political Sociology", explanation:"C. Wright Mills developed 'Power Elite' in his 1956 book arguing power is concentrated in military, corporate, and political elites."},
+  {id:8, question:"Kautilya's 'Arthashastra' primarily deals with:", options:["Philosophy of Religion","Statecraft and Political Economy","Military Strategy only","Metaphysics and Ethics"], correct:1, topic:"Indian Political Thought", explanation:"Kautilya's Arthashastra is an ancient treatise on statecraft, economic policy, and military strategy."},
+  {id:9, question:"Which of the following is NOT a Directive Principle of State Policy in India?", options:["Equal pay for equal work","Right to work","Right to vote","Uniform Civil Code"], correct:2, topic:"Indian Constitution", explanation:"Right to vote is a constitutional right under Article 326, not a Directive Principle."},
+  {id:10, question:"The 'Systems Theory' in Political Science was developed by:", options:["Gabriel Almond","David Easton","Robert Dahl","Harold Lasswell"], correct:1, topic:"Political Theory", explanation:"David Easton developed Systems Theory in 'The Political System' (1953) treating politics as inputs, outputs, and feedback."}
+];
+
+// ── INIT ──────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  const raw = localStorage.getItem("sh_last_result");
+  if (!raw) { window.location.href = "index.political-science-free-test.html"; return; }
+  const result = JSON.parse(raw);
+  renderResult(result);
+  if (result.score >= 7) setTimeout(launchConfetti, 700);
+  const earned = JSON.parse(localStorage.getItem("sh_achievements") || "[]");
+  if (earned.length) setTimeout(() => showAchievementPopup(earned[earned.length - 1]), 1400);
+});
+
+// ── RENDER ────────────────────────────────────────────────
+function renderResult(result) {
+  const xp      = parseInt(localStorage.getItem("sh_xp") || "0");
+  const xpGained= result.correct * 10 + (result.accuracy >= 80 ? 50 : 0);
+  const rank    = result.rank, isGood = result.score >= 5;
+  const circ    = (2 * Math.PI * 76).toFixed(1);
+  const offset  = (2 * Math.PI * 76 * (1 - result.score / 10)).toFixed(1);
+
+  document.getElementById("result-content").innerHTML =
+    '<div class="mot-banner ' + (isGood ? "high" : "low") + '">' + (isGood ? "🎉" : "💪") + " " + rank.message + "</div>" +
+
+    '<div class="result-hero">' +
+    '<div class="result-rank-icon">' + rank.icon + "</div>" +
+    '<div class="result-rank" style="color:' + rank.color + '">' + rank.rank + "</div>" +
+    '<div class="result-message">' + rank.message + "</div>" +
+    '<div class="ring-wrap">' +
+    '<svg width="180" height="180" viewBox="0 0 180 180">' +
+    "<defs><linearGradient id='rg' x1='0%' y1='0%' x2='100%' y2='0%'>" +
+    "<stop offset='0%' stop-color='" + rank.color + "'/>" +
+    "<stop offset='100%' stop-color='#818cf8'/>" +
+    "</linearGradient></defs>" +
+    "<circle cx='90' cy='90' r='76' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='11'/>" +
+    "<circle cx='90' cy='90' r='76' id='ring-arc' fill='none' stroke='url(#rg)' stroke-width='11' stroke-linecap='round' stroke-dasharray='" + circ + "' stroke-dashoffset='" + circ + "' style='transition:stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1);'/>" +
+    "</svg>" +
+    '<div class="ring-center">' +
+    '<div class="ring-num" style="color:' + rank.color + '" id="score-counter">0</div>' +
+    '<div class="ring-label">out of 10</div>' +
+    "</div></div>" +
+    '<div class="xp-badge">⚡ +' + xpGained + " XP &nbsp;·&nbsp; Total: " + xp + " XP</div>" +
+    "</div>" +
+
+    '<div class="result-stats">' +
+    '<div class="result-stat"><div class="result-stat-value" style="color:var(--emerald)">' + result.correct + '</div><div class="result-stat-label">✅ Correct</div></div>' +
+    '<div class="result-stat"><div class="result-stat-value" style="color:var(--red)">'    + result.wrong   + '</div><div class="result-stat-label">❌ Wrong</div></div>' +
+    '<div class="result-stat"><div class="result-stat-value" style="color:var(--text3)">'  + result.unattempted + '</div><div class="result-stat-label">⬜ Skipped</div></div>' +
+    '<div class="result-stat"><div class="result-stat-value" style="color:var(--sky)">'   + result.accuracy + '%</div><div class="result-stat-label">🎯 Accuracy</div></div>' +
+    '<div class="result-stat"><div class="result-stat-value" style="color:var(--amber)">' + formatTime(result.timeTaken) + '</div><div class="result-stat-label">⏱ Time</div></div>' +
+    "</div>" +
+
+    '<div style="background:rgba(22,22,37,.7);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:22px;">' +
+    '<div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:14px;font-weight:600;"><span>Accuracy Meter</span>' +
+    '<span style="color:' + (result.accuracy>=80?"var(--emerald)":result.accuracy>=50?"var(--amber)":"var(--red)") + '">' + result.accuracy + "%</span></div>" +
+    '<div class="meter-track"><div class="meter-fill" id="accuracy-bar" style="width:0%;background:' +
+    (result.accuracy>=80?"linear-gradient(90deg,var(--emerald),var(--sky))":result.accuracy>=50?"linear-gradient(90deg,var(--amber),var(--emerald))":"linear-gradient(90deg,var(--red),var(--amber))") +
+    '"></div></div>' +
+    '<div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--text3);"><span>0%</span><span>50%</span><span>100%</span></div>' +
+    "</div>" +
+
+    '<div class="result-tabs">' +
+    '<button class="result-tab active" onclick="switchTab(this,\'analysis\')">📊 Analysis</button>' +
+    '<button class="result-tab"        onclick="switchTab(this,\'review\')">📋 Review</button>' +
+    '<button class="result-tab"        onclick="switchTab(this,\'badges\')">🏅 Badges</button>' +
+    "</div>" +
+
+    '<div class="tab-panel active" id="tab-analysis">' +
+    '<div style="background:rgba(22,22,37,.7);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:22px;">' +
+    '<h3 style="font-size:17px;margin-bottom:18px;font-family:var(--font-display);">📊 Topic Performance</h3>' +
+    renderTopicBars(result.topicPerformance) + "</div>" +
+    '<div style="background:rgba(22,22,37,.7);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:22px;">' +
+    '<h3 style="font-size:17px;margin-bottom:16px;font-family:var(--font-display);">💡 Insights</h3>' +
+    '<div style="display:flex;flex-direction:column;gap:10px;">' + generateInsights(result) + "</div></div></div>" +
+
+    '<div class="tab-panel" id="tab-review"><div class="answer-review">' + renderAnswerReview(result) + "</div></div>" +
+    '<div class="tab-panel" id="tab-badges"><div class="badges-grid">' + renderBadges() + "</div></div>" +
+
+    '<div style="text-align:center;padding:24px;background:rgba(22,22,37,.5);border:1px solid var(--border);border-radius:var(--radius);margin:22px 0 28px;">' +
+    '<h3 style="font-family:var(--font-display);margin-bottom:14px;">Share Your Score 🎉</h3>' +
+    '<div class="share-row">' +
+    '<button class="share-btn" onclick="shareResult(' + result.score + ')">📤 Share</button>' +
+    '<button class="share-btn" onclick="copyResult(' + result.score + ',' + result.accuracy + ')">📋 Copy</button>' +
+    '<a href="index.political-science-free-test.html" class="share-btn">🔄 Retake</a>' +
+    "</div></div>" +
+
+    '<div class="unlock-section">' +
+    '<div style="display:inline-flex;align-items:center;gap:7px;padding:5px 16px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.28);border-radius:100px;font-size:12px;font-weight:700;color:var(--amber);margin-bottom:20px;font-family:var(--font-display);">🔥 LIMITED TIME OFFER</div>' +
+    '<h2 class="unlock-title">90 Premium Questions Are <span class="gradient-text-amber">Waiting For You</span></h2>' +
+    '<p class="unlock-desc">You just finished 10 questions. The full test has 100 questions with a detailed answer key — exactly like the real UGC NET exam.</p>' +
+    '<div class="blurred-preview"><div style="font-size:14px;color:var(--text2);margin-bottom:6px;">Q11. Which philosopher propounded the concept of \'Veil of Ignorance\'?</div><div style="font-size:13px;color:var(--text3);">A) Karl Marx &nbsp;·&nbsp; B) John Rawls &nbsp;·&nbsp; C) Isaiah Berlin &nbsp;·&nbsp; D) Amartya Sen</div></div>' +
+    '<div class="premium-benefits">' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> Full 100 Questions</div>' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> Detailed Answer Key</div>' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> Topic-wise Explanations</div>' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> UGC NET / HP SET Pattern</div>' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> Instant PDF Delivery</div>' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> Mobile Friendly PDF</div>' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> Lifetime Access</div>' +
+    '<div class="benefit-item"><span class="benefit-check">✓</span> Previous Year Pattern</div>' +
+    "</div>" +
+    '<div class="price-display"><span class="price-tag">₹49</span><span class="price-original2">₹149</span><div class="price-note">One-time · Instant PDF on WhatsApp/Email · No subscription</div></div>' +
+    '<div class="buy-buttons">' +
+    '<a href="' + RAZORPAY_LINK + '" target="_blank" class="btn btn-amber btn-large">🔓 Buy Full Mock Test — ₹49</a>' +
+    '<a href="' + RAZORPAY_LINK + '" target="_blank" class="btn btn-primary btn-large">📄 Unlock 100 Qs + Answer Key</a>' +
+    "</div>" +
+    '<p style="margin-top:14px;font-size:12px;color:var(--text3);">🔒 Secure payment via Razorpay · UPI · Cards · Net Banking</p>' +
+    "</div>";
+
+  animateScore("score-counter", result.score, 1400);
+  animateRing(result.score);
+  setTimeout(() => {
+    const bar = document.getElementById("accuracy-bar");
+    if (bar) bar.style.width = result.accuracy + "%";
+    document.querySelectorAll(".topic-bar-fill").forEach(el => { el.style.width = el.dataset.w; });
+  }, 500);
+}
+
+// ── HELPERS ───────────────────────────────────────────────
+function formatTime(s) { const m = Math.floor(s/60), r = s%60; return m === 0 ? r+"s" : m+"m "+r+"s"; }
+
+function animateScore(id, target, dur) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (target === 0) { el.textContent = "0"; return; }
+  let cur = 0;
+  const t = setInterval(() => { cur++; el.textContent = cur; if (cur >= target) clearInterval(t); }, dur / target);
+}
+
+function animateRing(score) {
+  const arc = document.getElementById("ring-arc");
+  if (!arc) return;
+  setTimeout(() => { arc.style.strokeDashoffset = (2 * Math.PI * 76 * (1 - score / 10)).toFixed(1); }, 300);
+}
+
+function renderTopicBars(tp) {
+  return Object.entries(tp).map(([topic, data]) => {
+    const pct   = Math.round(data.correct / data.total * 100);
+    const color = pct >= 80 ? "var(--emerald)" : pct >= 50 ? "var(--amber)" : "var(--red)";
+    return '<div class="topic-row">' +
+      '<div class="topic-header"><span style="font-size:14px;">' + topic + '</span><span style="color:' + color + ';font-weight:700;font-size:14px;">' + data.correct + "/" + data.total + " (" + pct + "%)</span></div>" +
+      '<div class="topic-bar-track"><div class="topic-bar-fill" data-w="' + pct + '%" style="width:0%;background:linear-gradient(90deg,' + color + "," + color + '99);"></div></div>' +
+      "</div>";
+  }).join("");
+}
+
+function generateInsights(result) {
+  const lines = [];
+  Object.entries(result.topicPerformance).forEach(([topic, data]) => {
+    const pct = Math.round(data.correct / data.total * 100);
+    if (pct === 100)   lines.push(["🌟","var(--emerald)","Excellent! You mastered <strong>" + topic + "</strong>."]);
+    else if (pct >= 50) lines.push(["📘","var(--amber)","Good understanding of <strong>" + topic + "</strong>. A bit more revision will perfect it."]);
+    else               lines.push(["📌","var(--red)","Focus more on <strong>" + topic + "</strong>. Review key concepts."]);
+  });
+  if (result.timeTaken < 300) lines.push(["⚡","var(--sky)","Lightning fast! You finished in record time."]);
+  if (result.accuracy === 100) lines.push(["🎯","var(--emerald)","100% Accuracy! Not a single wrong answer!"]);
+  if (result.unattempted > 3) lines.push(["⚠️","var(--amber)","Try to attempt all questions. Unattempted = 0 marks."]);
+  return lines.map(([icon, color, text]) =>
+    '<div style="display:flex;align-items:flex-start;gap:11px;padding:12px 14px;background:rgba(255,255,255,.03);border-radius:var(--radius-sm);border-left:3px solid ' + color + ';">' +
+    '<span style="font-size:1.2rem;flex-shrink:0;">' + icon + '</span>' +
+    '<span style="color:var(--text2);font-size:14px;line-height:1.65;">' + text + '</span></div>'
+  ).join("");
+}
+
+function renderAnswerReview(result) {
+  return FREE_QUESTIONS.map((q, i) => {
+    const ua = result.answers[i], ok = ua === q.correct, na = ua === null;
+    const cls = na ? "unattempted" : ok ? "correct" : "wrong";
+    const ico = na ? "⬜" : ok ? "✅" : "❌";
+    return '<div class="review-item ' + cls + '">' +
+      '<div class="review-q">' + ico + ' <strong>Q' + (i+1) + '.</strong> ' + q.question + '</div>' +
+      '<div class="review-options">' +
+      q.options.map((opt, oi) => {
+        let c2 = "review-option", lbl = "";
+        if (oi === q.correct)        { c2 += " correct-opt"; lbl = " ✓ Correct"; }
+        else if (oi === ua && !ok)   { c2 += " wrong-opt";   lbl = " ✗ Your Answer"; }
+        return '<div class="' + c2 + '">' + String.fromCharCode(65+oi) + ". " + opt + "<strong>" + lbl + "</strong></div>";
+      }).join("") +
+      '</div><div class="review-explanation">💡 <strong>Explanation:</strong> ' + q.explanation + "</div></div>";
+  }).join("");
+}
+
+function renderBadges() {
+  const earned = JSON.parse(localStorage.getItem("sh_achievements") || "[]");
+  return achievements.map(a => {
+    const got = earned.includes(a.id);
+    return '<div class="badge-card ' + (got ? "earned" : "badge-locked") + '">' +
+      '<div class="badge-icon">' + a.icon + '</div>' +
+      '<div class="badge-name">' + a.title + '</div>' +
+      '<div class="badge-desc">' + a.desc + '</div>' +
+      (got ? '<div class="badge-xp">+' + a.xp + ' XP</div>' : '<div style="font-size:11px;color:var(--text3);margin-top:5px;">🔒 Locked</div>') +
+      "</div>";
+  }).join("");
+}
+
+function switchTab(btn, name) {
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".result-tab").forEach(t => t.classList.remove("active"));
+  document.getElementById("tab-" + name).classList.add("active");
+  btn.classList.add("active");
+}
+
+function shareResult(score) {
+  const txt = "I scored " + score + "/10 on the UGC NET Political Science Mock Test on Study Hub! 🎓\nTry it free: https://study-hub-kappa.vercel.app/index.mock-tests.html";
+  if (navigator.share) navigator.share({title: "My Study Hub Score", text: txt});
+  else window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank");
+}
+
+function copyResult(score, acc) {
+  const txt = "UGC NET Political Science Mock Test\nScore: " + score + "/10 | Accuracy: " + acc + "%\nStudy Hub — study-hub-kappa.vercel.app";
+  navigator.clipboard.writeText(txt).then(() => alert("Copied to clipboard!"));
+}
+
+function launchConfetti() {
+  const colors = ["#8b5cf6","#6366f1","#f59e0b","#10b981","#ef4444","#0ea5e9","#a78bfa","#fcd34d"];
+  for (let i = 0; i < 90; i++) {
+    const el = document.createElement("div");
+    el.className = "confetti-piece";
+    const size = Math.random() * 9 + 5;
+    el.style.cssText = "left:" + (Math.random()*100) + "vw;top:-20px;width:" + size + "px;height:" + size + "px;" +
+      "background:" + colors[Math.floor(Math.random()*colors.length)] + ";" +
+      "border-radius:" + (Math.random()>.5?"50%":"2px") + ";" +
+      "animation-duration:" + (Math.random()*2.2+2) + "s;" +
+      "animation-delay:" + (Math.random()*1.8) + "s;";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4800);
+  }
+}
+
+function showAchievementPopup(id) {
+  const ach = achievements.find(a => a.id === id);
+  if (!ach) return;
+  const popup = document.getElementById("achievement-popup");
+  document.getElementById("ach-icon").textContent = ach.icon;
+  document.getElementById("ach-name").textContent = ach.title;
+  document.getElementById("ach-xp").textContent   = "+" + ach.xp + " XP";
+  popup.classList.add("show");
+  setTimeout(() => popup.classList.remove("show"), 3200);
+}
+</script>
+</body>
+</html>
