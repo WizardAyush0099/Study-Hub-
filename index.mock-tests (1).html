@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mock Tests | Study Hub – Crack UGC NET &amp; HP SET</title>
+  <meta name="description" content="Practice with premium mock tests for UGC NET, HP SET. Start free, then unlock 100 questions for just ₹49." />
+  <meta property="og:title" content="Mock Tests | Study Hub" />
+  <meta property="og:description" content="Crack your exam before the real exam. Premium mock tests for ₹49." />
+  <link rel="stylesheet" href="index.mtstyle.css" />
+  <style>
+    .hero-scroll-hint{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:32px;color:var(--text3);font-size:12px}
+    .stats-grid{align-items:stretch}
+    .faq-wrapper{max-width:680px;margin:0 auto}
+    .cta-box{max-width:580px;margin:0 auto;padding:56px 36px;background:linear-gradient(145deg,rgba(139,92,246,.09),rgba(99,102,241,.05));border:1px solid rgba(139,92,246,.22);border-radius:26px;text-align:center}
+    .testimonials-container{height:260px}
+    @media(max-width:600px){.testimonials-container{height:340px}}
+    @media(max-width:420px){#coming-soon-grid{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+
+<div class="banner-strip">
+  🎯 Limited Time: Full 100-Question Political Science Mock Test for just ₹49 &nbsp;·&nbsp; 🔥 1,000+ students enrolled
+</div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Study Hub</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.mock-tests.html" style="color:var(--purple-light)">Mock Tests</a></li>
+    <li><a href="index.e-books.html">E-Books</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="index.political-science-free-test.html" class="btn btn-sm btn-secondary">Free Test</a>
+    <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank" class="btn btn-sm btn-primary">Buy ₹49</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-bg"></div>
+  <div class="hero-icons">
+    <span class="floating-icon">📚</span>
+    <span class="floating-icon">🎓</span>
+    <span class="floating-icon">⚖️</span>
+    <span class="floating-icon">✏️</span>
+    <span class="floating-icon">🏆</span>
+    <span class="floating-icon">🧠</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🔥 India's Most Affordable Mock Tests</div>
+    <h1 class="hero-title">Crack Your Exam<br><span class="gradient-text">Before The Real Exam</span></h1>
+    <p class="hero-subtitle">Practice with premium mock tests designed for UGC NET &amp; HP SET. Start free — upgrade when you're ready.</p>
+    <div class="hero-buttons">
+      <a href="index.political-science-free-test.html" class="btn btn-primary btn-large">🎯 Start Free Test Now</a>
+      <a href="#mock-tests" class="btn btn-secondary btn-large">📋 View All Tests</a>
+    </div>
+    <div class="hero-stats-strip">
+      <div class="hero-stat"><span class="hero-stat-value">5,000+</span><div class="hero-stat-label">Questions Practiced</div></div>
+      <div class="hero-stat"><span class="hero-stat-value">1,000+</span><div class="hero-stat-label">Students Enrolled</div></div>
+      <div class="hero-stat"><span class="hero-stat-value">₹49</span><div class="hero-stat-label">Full Test Price</div></div>
+      <div class="hero-stat"><span class="hero-stat-value">87%</span><div class="hero-stat-label">Success Rate</div></div>
+    </div>
+    <div class="hero-scroll-hint"><span>Scroll to explore</span><div class="scroll-dot"></div></div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal"><span class="stat-icon">📝</span><span class="counter-value" data-target="5000" data-suffix="+">0+</span><div class="stat-label">Questions Practiced</div></div>
+    <div class="stat-card reveal"><span class="stat-icon">👥</span><span class="counter-value" data-target="1000" data-suffix="+">0+</span><div class="stat-label">Students Enrolled</div></div>
+    <div class="stat-card reveal"><span class="stat-icon">⭐</span><span class="counter-value" data-target="95"   data-suffix="%">0%</span><div class="stat-label">Satisfaction Rate</div></div>
+    <div class="stat-card reveal"><span class="stat-icon">⏱️</span><span class="counter-value" data-target="100"  data-suffix="+">0+</span><div class="stat-label">Hours Saved</div></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="tests-section" id="mock-tests">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">🎯 Available Now</div>
+    <h2 class="section-title">Premium <span class="gradient-text">Mock Tests</span></h2>
+    <p class="section-desc">Carefully crafted tests that mirror the exact pattern of real competitive exams.</p>
+  </div>
+  <div id="mock-tests-grid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="fact-section">
+  <div class="fact-card reveal">
+    <div class="fact-label">📡 Did You Know?</div>
+    <div id="daily-fact">Loading interesting fact…</div>
+  </div>
+</section>
+
+<section class="coming-soon-section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">🚀 Coming Soon</div>
+    <h2 class="section-title">More Tests <span class="gradient-text">On The Way</span></h2>
+    <p class="section-desc">We're adding more subjects every month. Stay tuned!</p>
+  </div>
+  <div id="coming-soon-grid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="motivation-section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">💬 Daily Motivation</div>
+    <h2 class="section-title">Words That <span class="gradient-text">Fuel Success</span></h2>
+  </div>
+  <div class="motivation-wrapper reveal">
+    <div id="quote-text">"Success is built one mock test at a time."</div>
+    <div id="quote-author">— Study Hub</div>
+    <div class="quote-dots" id="quote-dots-container"></div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">⭐ Student Reviews</div>
+    <h2 class="section-title">What <span class="gradient-text">Toppers Say</span></h2>
+  </div>
+  <div class="testimonials-container reveal">
+    <div id="testimonials-track"></div>
+  </div>
+  <div class="testimonial-nav">
+    <button id="prev-testimonial" aria-label="Previous">←</button>
+    <button id="next-testimonial" aria-label="Next">→</button>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section style="padding:64px 20px;">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">❓ Help</div>
+    <h2 class="section-title">Frequently <span class="gradient-text">Asked</span></h2>
+  </div>
+  <div class="faq-wrapper reveal">
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">What is included in the free test?<span class="faq-chevron">▾</span></div>
+      <div class="faq-answer">The free test includes the first 10 questions from our UGC NET Political Science mock test. You get a 15-minute timer, question palette, mark-for-review, and a detailed result dashboard — completely free, no registration needed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">How do I get the full 100-question PDF after paying?<span class="faq-chevron">▾</span></div>
+      <div class="faq-answer">After payment, you will receive the PDF directly on WhatsApp or Email within a few hours. The PDF contains all 100 questions along with a detailed answer key and explanations for every question.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Is the test pattern same as actual UGC NET / HP SET?<span class="faq-chevron">▾</span></div>
+      <div class="faq-answer">Yes! All questions exactly match the pattern, difficulty level, and topic distribution of the actual UGC NET and HP SET Political Science examination papers.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Can I attempt the free test multiple times?<span class="faq-chevron">▾</span></div>
+      <div class="faq-answer">Yes, you can retake the free test as many times as you want. Each attempt is fresh and your results are stored locally on your device.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">What payment methods are accepted?<span class="faq-chevron">▾</span></div>
+      <div class="faq-answer">We accept all major payment methods through Razorpay — UPI (GPay, PhonePe, Paytm), Net Banking, Credit/Debit Cards, and Wallets. 100% secure and instant.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">Is there a refund policy?<span class="faq-chevron">▾</span></div>
+      <div class="faq-answer">Since we deliver digital PDF products, refunds are not available once the PDF has been delivered. For any issue, contact studyhubnetwork@gmail.com and we will resolve it promptly.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:20px 20px 80px;">
+  <div class="cta-box reveal">
+    <div style="font-size:2.8rem;margin-bottom:14px;">🚀</div>
+    <h2 class="section-title" style="margin-bottom:10px;">Ready to <span class="gradient-text">Crack Your Exam?</span></h2>
+    <p style="color:var(--text2);margin-bottom:28px;font-size:16px;line-height:1.7;">Start with the free 10-question test right now.<br>No registration. No payment.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="index.political-science-free-test.html" class="btn btn-primary btn-large">🎯 Start Free Test</a>
+      <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank" class="btn btn-amber btn-large">🔓 Buy Full Test ₹49</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">Study Hub</div>
+  <p style="max-width:460px;margin:0 auto 16px;color:var(--text2);line-height:1.7;">Empowering students across Himachal Pradesh with affordable, high-quality exam preparation.</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="index.mock-tests.html">Mock Tests</a>
+    <a href="index.e-books.html">E-Books</a>
+    <a href="index_privacy-policy.html">Privacy Policy</a>
+    <a href="mailto:studyhubnetwork@gmail.com">Contact</a>
+  </div>
+  <p style="margin-top:12px;">© 2026 Study Hub Network · Shimla, Himachal Pradesh</p>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────
+const RAZORPAY_LINK = "https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#";
+
+const mockTests = [{
+  id:"political-science", title:"UGC NET / SET Political Science", subtitle:"Complete Mock Test Series",
+  difficulty:"Moderate-Hard", totalQuestions:100, duration:120, price:49, originalPrice:149,
+  successRate:"87%", students:"1,200+", rating:4.8, reviews:340,
+  buyLink: RAZORPAY_LINK,
+  freeTestPage:"index.political-science-free-test.html",
+  badge:"POPULAR", badgeColor:"#f59e0b", icon:"⚖️",
+  features:["100 Questions (NET/SET Pattern)","Detailed Answer Key","Topic-wise Analysis","Previous Year Pattern","Mobile Friendly","Instant PDF Access"]
+}];
+
+const comingSoonTests = [
+  {title:"History",icon:"📜",color:"#dc2626"},{title:"Geography",icon:"🌍",color:"#16a34a"},
+  {title:"Economics",icon:"📈",color:"#d97706"},{title:"Sociology",icon:"👥",color:"#7c3aed"},
+  {title:"Biology",icon:"🧬",color:"#059669"},{title:"Physics",icon:"⚛️",color:"#0284c7"},
+  {title:"Chemistry",icon:"🧪",color:"#e11d48"},{title:"Mathematics",icon:"∑",color:"#4f46e5"},
+  {title:"Public Administration",icon:"🏛️",color:"#92400e"},{title:"Adv. Pol. Science",icon:"🗳️",color:"#1d4ed8"}
+];
+
+const motivationQuotes = [
+  {text:"Success is built one mock test at a time.",author:"Study Hub"},
+  {text:"Every topper was once a beginner.",author:"Study Hub"},
+  {text:"The more you practice, the luckier you become.",author:"Gary Player"},
+  {text:"Today's preparation creates tomorrow's success.",author:"Study Hub"},
+  {text:"Don't wish for it. Work for it.",author:"Study Hub"},
+  {text:"Consistency beats talent every single day.",author:"Study Hub"},
+  {text:"Your future self will thank you for studying today.",author:"Study Hub"},
+  {text:"Discipline is choosing your dreams over your comfort.",author:"Study Hub"},
+  {text:"Mock tests reveal your weaknesses before exams do.",author:"Study Hub"},
+  {text:"One more question. One step closer to your dream.",author:"Study Hub"}
+];
+
+const dailyFacts = [
+  "📚 The UGC NET exam is conducted twice a year — June and December.",
+  "🏆 Only about 6% of candidates qualify UGC NET in their first attempt.",
+  "🧠 Spaced repetition increases long-term retention by up to 80%.",
+  "⏱️ The Pomodoro Technique (25 min study + 5 min break) boosts focus by 40%.",
+  "📖 Political Science is one of the most popular NET subjects in India.",
+  "🎯 Students who take mock tests score 20% higher than those who don't.",
+  "💡 Reading comprehension improves by 25% when you practice daily.",
+  "🔥 HP SET is conducted by HPPSC and follows the UGC NET pattern.",
+  "📊 The average UGC NET Political Science cutoff is around 60-65 marks.",
+  "🌟 Toppers spend at least 2-3 hours daily on practice tests.",
+  "✅ Active recall is 3x more effective than passive reading.",
+  "🗓️ Consistency of 1 hour daily beats 7 hours once a week."
+];
+
+const testimonials = [
+  {name:"Priya Sharma",role:"UGC NET Qualified, Political Science",text:"Study Hub's mock tests were exactly like the real exam. I scored 74/100 in UGC NET after practicing here!",avatar:"PS",score:"74/100",color:"#6366f1"},
+  {name:"Rahul Verma",role:"HP SET Qualified",text:"The free test gave me a real taste of the exam. After buying the full test, I was fully prepared. Highly recommended!",avatar:"RV",score:"82/100",color:"#f59e0b"},
+  {name:"Anjali Thakur",role:"Research Scholar, Shimla",text:"Best ₹49 I ever spent. The answer key with explanations cleared all my doubts. Cleared SET in first attempt!",avatar:"AT",score:"78/100",color:"#10b981"},
+  {name:"Deepak Chauhan",role:"Assistant Professor Aspirant",text:"The question quality matches actual NET questions perfectly. Worth every rupee. Already recommended to 10 friends.",avatar:"DC",score:"69/100",color:"#ef4444"},
+  {name:"Sunita Rana",role:"M.Phil. Student, HP University",text:"Study Hub is the best affordable platform for NET preparation in Himachal. Keep adding more tests!",avatar:"SR",score:"88/100",color:"#8b5cf6"}
+];
+
+// ── INIT ──────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  initParticles();
+  initCounters();
+  initQuoteDots();
+  initQuoteRotator();
+  initDailyFact();
+  initTestimonials();
+  renderMockTestCards();
+  renderComingSoonCards();
+  initScrollReveal();
+});
+
+// ── PARTICLES ─────────────────────────────────────────────
+function initParticles() {
+  const canvas = document.getElementById("particles-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  function resize() {
+    canvas.width  = canvas.parentElement.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight;
+  }
+  resize();
+  window.addEventListener("resize", resize);
+  const count = Math.min(55, Math.floor(window.innerWidth / 18));
+  const pts = Array.from({length: count}, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    r: Math.random() * 1.8 + 0.4,
+    dx: (Math.random() - 0.5) * 0.35, dy: (Math.random() - 0.5) * 0.35,
+    op: Math.random() * 0.45 + 0.15
+  }));
+  let raf;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pts.forEach(p => {
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(139,92,246," + p.op + ")"; ctx.fill();
+      p.x += p.dx; p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width)  p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+    raf = requestAnimationFrame(draw);
+  }
+  draw();
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) cancelAnimationFrame(raf); else draw();
+  });
+}
+
+// ── COUNTERS ──────────────────────────────────────────────
+function initCounters() {
+  const els = document.querySelectorAll(".counter-value");
+  if (!els.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = parseInt(el.dataset.target), suffix = el.dataset.suffix || "";
+      const steps = 60, dur = 1800, inc = target / steps;
+      let cur = 0, step = 0;
+      const t = setInterval(() => {
+        step++; cur = Math.min(Math.round(inc * step), target);
+        el.textContent = cur.toLocaleString("en-IN") + suffix;
+        if (cur >= target) clearInterval(t);
+      }, dur / steps);
+      obs.unobserve(el);
+    });
+  }, {threshold: 0.4});
+  els.forEach(c => obs.observe(c));
+}
+
+// ── QUOTE DOTS ────────────────────────────────────────────
+function initQuoteDots() {
+  const c = document.getElementById("quote-dots-container");
+  if (!c) return;
+  c.innerHTML = motivationQuotes.map((_, i) =>
+    '<div class="quote-dot' + (i === 0 ? " active" : "") + '"></div>'
+  ).join("");
+}
+
+// ── QUOTE ROTATOR ─────────────────────────────────────────
+function initQuoteRotator() {
+  const qt = document.getElementById("quote-text");
+  const qa = document.getElementById("quote-author");
+  if (!qt) return;
+  let cur = 0;
+  function show(i) {
+    qt.style.opacity = qa.style.opacity = "0";
+    setTimeout(() => {
+      qt.textContent = '"' + motivationQuotes[i].text + '"';
+      qa.textContent = "— " + motivationQuotes[i].author;
+      qt.style.opacity = qa.style.opacity = "1";
+    }, 320);
+    document.querySelectorAll(".quote-dot").forEach((d, j) =>
+      d.classList.toggle("active", j === i)
+    );
+  }
+  show(0);
+  setInterval(() => { cur = (cur + 1) % motivationQuotes.length; show(cur); }, 5000);
+}
+
+// ── DAILY FACT ────────────────────────────────────────────
+function initDailyFact() {
+  const el = document.getElementById("daily-fact");
+  if (!el) return;
+  el.textContent = dailyFacts[new Date().getDate() % dailyFacts.length];
+}
+
+// ── TESTIMONIALS ──────────────────────────────────────────
+function initTestimonials() {
+  const track = document.getElementById("testimonials-track");
+  if (!track) return;
+  track.innerHTML = testimonials.map((t, i) =>
+    '<div class="testimonial-card' + (i === 0 ? " active" : "") + '" style="transform:translateX(' + (i === 0 ? "0" : "110%") + ')">' +
+    '<p class="testimonial-quote">"' + t.text + '"</p>' +
+    '<div class="testimonial-footer">' +
+    '<div class="testimonial-avatar" style="background:' + t.color + '">' + t.avatar + '</div>' +
+    '<div><div class="testimonial-name">' + t.name + '</div><div class="testimonial-role">' + t.role + '</div></div>' +
+    '<div class="testimonial-score">' + t.score + '</div>' +
+    '</div></div>'
+  ).join("");
+  const cards = track.querySelectorAll(".testimonial-card");
+  let idx = 0, autoTimer;
+  function show(n) {
+    const prev = idx; idx = (n + cards.length) % cards.length;
+    cards[prev].classList.remove("active"); cards[prev].style.transform = "translateX(-110%)";
+    cards[idx].classList.add("active");    cards[idx].style.transform  = "translateX(0)";
+    cards.forEach((c, i) => { if (i !== idx && i !== prev) { c.style.transform = "translateX(110%)"; c.classList.remove("active"); } });
+  }
+  function startAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => show(idx + 1), 4500); }
+  startAuto();
+  document.getElementById("prev-testimonial").addEventListener("click", () => { show(idx - 1); startAuto(); });
+  document.getElementById("next-testimonial").addEventListener("click", () => { show(idx + 1); startAuto(); });
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+function initScrollReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("revealed"); obs.unobserve(e.target); } });
+  }, {threshold: 0.08, rootMargin: "0px 0px -40px 0px"});
+  document.querySelectorAll(".reveal").forEach(el => obs.observe(el));
+}
+
+// ── RENDER CARDS ──────────────────────────────────────────
+function renderMockTestCards() {
+  const container = document.getElementById("mock-tests-grid");
+  if (!container) return;
+  container.innerHTML = mockTests.map(t =>
+    '<div class="test-card reveal">' +
+    '<div class="card-badge" style="background:' + t.badgeColor + '">' + t.badge + '</div>' +
+    '<div class="card-header">' +
+    '<span class="card-icon">' + t.icon + '</span>' +
+    '<div><h3 class="card-title">' + t.title + '</h3><p class="card-subtitle">' + t.subtitle + '</p></div>' +
+    '</div>' +
+    '<div class="card-meta">' +
+    '<div class="meta-item"><span class="meta-icon">📝</span><span>' + t.totalQuestions + ' Questions</span></div>' +
+    '<div class="meta-item"><span class="meta-icon">⏱</span><span>' + t.duration + ' min</span></div>' +
+    '<div class="meta-item"><span class="meta-icon">📊</span><span>' + t.difficulty + '</span></div>' +
+    '<div class="meta-item"><span class="meta-icon">🏆</span><span>' + t.successRate + ' Pass Rate</span></div>' +
+    '<div class="meta-item"><span class="meta-icon">👥</span><span>' + t.students + ' Students</span></div>' +
+    '<div class="meta-item"><span class="meta-icon">⭐</span><span>' + t.rating + '/5 (' + t.reviews + ')</span></div>' +
+    '</div>' +
+    '<div class="card-features">' + t.features.map(f => '<span class="feature-tag">✓ ' + f + '</span>').join("") + '</div>' +
+    '<div class="card-pricing">' +
+    '<div class="price-group">' +
+    '<span class="price-current">₹' + t.price + '</span>' +
+    '<span class="price-original">₹' + t.originalPrice + '</span>' +
+    '<span class="price-off">' + Math.round((1 - t.price / t.originalPrice) * 100) + '% OFF</span>' +
+    '</div><span style="font-size:13px;color:var(--text3);">One-time payment</span>' +
+    '</div>' +
+    '<div class="card-actions">' +
+    '<a href="' + t.freeTestPage + '" class="btn btn-secondary">🎯 Start Free Test</a>' +
+    '<a href="' + t.buyLink + '" target="_blank" class="btn btn-amber">🔓 Buy Full ₹' + t.price + '</a>' +
+    '</div></div>'
+  ).join("");
+  setTimeout(initScrollReveal, 60);
+}
+
+function renderComingSoonCards() {
+  const container = document.getElementById("coming-soon-grid");
+  if (!container) return;
+  container.innerHTML = comingSoonTests.map(t =>
+    '<div class="coming-soon-card reveal">' +
+    '<span class="cs-lock">🔒</span>' +
+    '<span class="cs-icon" style="color:' + t.color + '">' + t.icon + '</span>' +
+    '<span class="cs-title">' + t.title + '</span>' +
+    '<span class="cs-badge">Coming Soon</span>' +
+    '</div>'
+  ).join("");
+  setTimeout(initScrollReveal, 60);
+}
+
+// ── FAQ ───────────────────────────────────────────────────
+function toggleFaq(el) {
+  const item = el.parentElement, isOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+  if (!isOpen) item.classList.add("open");
+}
+</script>
+</body>
+</html>
