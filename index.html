@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -590,6 +589,258 @@ src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"
             }
         }
         /* ========= END SWIPER STYLES ========= */
+
+        /* ========= MOCK TEST SWIPER SECTION ========= */
+        #mock-test-swiper-section {
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #mock-test-swiper-section::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(139,92,246,0.14) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .mock-swiper-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px 50px;
+            position: relative;
+        }
+
+        .mock-swiper { overflow: visible !important; }
+
+        /* Mock Test Cards — same base as ebook cards */
+        .mock-slide-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.22,1,0.36,1),
+                        box-shadow 0.5s ease,
+                        opacity 0.5s ease,
+                        filter 0.5s ease;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            opacity: 0.45;
+            filter: blur(1.5px) brightness(0.7);
+            transform: scale(0.88);
+            will-change: transform, opacity;
+            position: relative;
+        }
+
+        .swiper-slide-active .mock-slide-card {
+            opacity: 1;
+            filter: none;
+            transform: scale(1);
+            box-shadow: 0 24px 60px -10px rgba(0,0,0,0.6),
+                        0 0 0 1px rgba(139,92,246,0.28);
+            border-color: rgba(139,92,246,0.32);
+        }
+
+        .swiper-slide-prev .mock-slide-card,
+        .swiper-slide-next .mock-slide-card {
+            opacity: 0.65;
+            filter: blur(0.5px) brightness(0.8);
+            transform: scale(0.93);
+        }
+
+        /* Image area */
+        .mock-card-img-wrap {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            background: linear-gradient(135deg,#1a103a 0%,#0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mock-card-img-wrap img {
+            width: 56%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .swiper-slide-active .mock-slide-card:hover .mock-card-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .mock-card-img-wrap .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(3,7,18,0.85) 100%);
+        }
+
+        /* Card body */
+        .mock-card-body { padding: 20px; }
+
+        .mock-card-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #a78bfa;
+            margin-bottom: 8px;
+        }
+
+        .mock-card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #f3f4f6;
+            margin-bottom: 14px;
+        }
+
+        .mock-card-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .mock-card-meta span {
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            background: rgba(139,92,246,0.08);
+            border: 1px solid rgba(139,92,246,0.18);
+            border-radius: 100px;
+            color: #a78bfa;
+        }
+
+        .mock-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .mock-price {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(to right,#fbbf24,#f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mock-btn-free {
+            background: rgba(139,92,246,0.12);
+            color: #a78bfa;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(139,92,246,0.3);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .mock-btn-free:hover {
+            background: rgba(139,92,246,0.22);
+        }
+
+        .mock-btn-buy {
+            background: linear-gradient(135deg,#8b5cf6,#6366f1);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(139,92,246,0.35);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .mock-btn-buy:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 22px rgba(139,92,246,0.55);
+        }
+
+        .mock-btn-disabled {
+            background: rgba(255,255,255,0.05);
+            color: #4b5563;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.07);
+            cursor: not-allowed;
+        }
+
+        /* Live badge — purple */
+        .mock-live-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg,#8b5cf6,#6366f1);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(139,92,246,0.45);
+        }
+
+        /* Pagination */
+        #mock-test-swiper-section .swiper-pagination-bullet {
+            background: rgba(139,92,246,0.3);
+            opacity: 1;
+            width: 6px;
+            height: 6px;
+            transition: all 0.3s ease;
+        }
+        #mock-test-swiper-section .swiper-pagination-bullet-active {
+            background: #8b5cf6;
+            width: 22px;
+            border-radius: 3px;
+        }
+
+        /* Nav arrows */
+        #mock-test-swiper-section .swiper-button-next,
+        #mock-test-swiper-section .swiper-button-prev {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+            top: 42%;
+            color: white;
+            transition: all 0.3s;
+        }
+        #mock-test-swiper-section .swiper-button-next::after,
+        #mock-test-swiper-section .swiper-button-prev::after {
+            font-size: 13px;
+            font-weight: 900;
+        }
+        #mock-test-swiper-section .swiper-button-next:hover,
+        #mock-test-swiper-section .swiper-button-prev:hover {
+            background: rgba(139,92,246,0.28);
+            border-color: rgba(139,92,246,0.5);
+            box-shadow: 0 0 16px rgba(139,92,246,0.3);
+        }
+
+        @media (max-width: 640px) {
+            .mock-swiper-wrapper { padding: 10px 20px 50px; }
+            #mock-test-swiper-section .swiper-button-next,
+            #mock-test-swiper-section .swiper-button-prev { display: none; }
+            .mock-card-img-wrap { height: 150px; }
+        }
+        /* ========= END MOCK TEST SWIPER STYLES ========= */
     </style>
 </head>
 <body class="dark transition-colors duration-500">
@@ -624,6 +875,11 @@ src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"
           after:h-[2px] after:bg-gradient-to-r after:from-indigo-500 after:to-cyan-500">
   E-Books
 </a>
+                <a href="index.mock-tests.html"
+                   class="nav-link text-sm font-bold"
+                   style="color:#a78bfa;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.28);padding:6px 14px;border-radius:8px;">
+                  ⚖️ Mock Tests
+                </a>
                 <a href="#handwritten" class="nav-link text-sm font-medium hover:text-blue-400">Handwritten</a>
                 <a href="#contact" class="nav-link text-sm font-medium hover:text-blue-400">Contact</a>
                 
@@ -645,7 +901,11 @@ src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"
         <a href="#notes-generator" class="text-3xl font-bold mobile-link">AI Notes</a>
         <a href="#handwritten" class="text-3xl font-bold mobile-link">Handwritten</a>
         <a href="#contact" class="text-3xl font-bold mobile-link">Contact</a>
-        <a href="#ebooks" 
+        <a href="index.mock-tests.html" class="text-3xl font-extrabold mobile-link"
+           style="background:linear-gradient(to right,#a78bfa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+          ⚖️ Mock Tests
+        </a>
+        <a href="index.e-books.html" 
    class="text-3xl font-extrabold mobile-link 
           bg-gradient-to-r from-indigo-500 to-cyan-500 
           text-transparent bg-clip-text">
@@ -869,6 +1129,145 @@ src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"
     </section>
     <!-- ========= END FEATURED EBOOKS SWIPER SECTION ========= -->
 
+    <!-- ========= MOCK TESTS SWIPER SECTION ========= -->
+    <section id="mock-test-swiper-section">
+        <div class="swiper-section-heading reveal">
+            <div class="inline-flex items-center space-x-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-1.5 mb-4">
+                <span class="text-xs font-bold uppercase tracking-widest text-purple-400">⚖️ Mock Tests</span>
+            </div>
+            <h2>Practice with <span class="text-gradient">Real Exam Tests</span></h2>
+            <p>UGC NET · HP SET · Designed by toppers, for toppers</p>
+        </div>
+
+        <div class="mock-swiper-wrapper">
+            <div class="swiper mock-swiper" id="mockSwiper">
+                <div class="swiper-wrapper">
+
+                    <!-- CARD 1: UGC NET / HP SET Political Science — LIVE -->
+                    <div class="swiper-slide">
+                        <div class="mock-slide-card">
+                            <div class="mock-card-img-wrap" style="background:linear-gradient(135deg,#1a103a,#0f172a);">
+                                <img src="set.png" alt="HP SET Political Science Mock Test"
+                                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="ebook-placeholder" style="display:none;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(99,102,241,0.1));">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                                </div>
+                                <div class="img-overlay"></div>
+                                <span class="mock-live-badge">✦ Live</span>
+                            </div>
+                            <div class="mock-card-body">
+                                <div class="mock-card-tag">UGC NET · HP SET</div>
+                                <div class="mock-card-title">Political Science Mock Test</div>
+                                <div class="mock-card-meta">
+                                    <span>100 Questions</span>
+                                    <span>120 min</span>
+                                    <span>10 Free</span>
+                                </div>
+                                <div class="mock-card-footer">
+                                    <span class="mock-price">₹49</span>
+                                    <div style="display:flex;gap:6px;">
+                                        <a href="index.political-science-free-test.html" class="mock-btn-free">Free Test</a>
+                                        <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank" class="mock-btn-buy">Buy ₹49</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2: History — Coming Soon -->
+                    <div class="swiper-slide">
+                        <div class="mock-slide-card">
+                            <div class="mock-card-img-wrap" style="background:linear-gradient(135deg,#1c0a0a,#0f172a);">
+                                <div class="ebook-placeholder" style="background:linear-gradient(135deg,rgba(220,38,38,0.12),rgba(15,23,42,0.8));">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                </div>
+                                <div class="img-overlay"></div>
+                                <span class="coming-soon-badge">Coming Soon</span>
+                            </div>
+                            <div class="mock-card-body">
+                                <div class="mock-card-tag" style="color:#6b7280;">UGC NET · HP SET</div>
+                                <div class="mock-card-title">History Mock Test</div>
+                                <div class="mock-card-meta">
+                                    <span style="color:#4b5563;border-color:rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);">100 Questions</span>
+                                    <span style="color:#4b5563;border-color:rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);">120 min</span>
+                                </div>
+                                <div class="mock-card-footer">
+                                    <span style="font-size:0.8rem;color:#4b5563;font-weight:600;">Price TBA</span>
+                                    <span class="mock-btn-disabled">Coming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3: Geography — Coming Soon -->
+                    <div class="swiper-slide">
+                        <div class="mock-slide-card">
+                            <div class="mock-card-img-wrap" style="background:linear-gradient(135deg,#052e16,#0f172a);">
+                                <div class="ebook-placeholder" style="background:linear-gradient(135deg,rgba(22,163,74,0.12),rgba(15,23,42,0.8));">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <div class="img-overlay"></div>
+                                <span class="coming-soon-badge">Coming Soon</span>
+                            </div>
+                            <div class="mock-card-body">
+                                <div class="mock-card-tag" style="color:#6b7280;">UGC NET · HP SET</div>
+                                <div class="mock-card-title">Geography Mock Test</div>
+                                <div class="mock-card-meta">
+                                    <span style="color:#4b5563;border-color:rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);">100 Questions</span>
+                                    <span style="color:#4b5563;border-color:rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);">120 min</span>
+                                </div>
+                                <div class="mock-card-footer">
+                                    <span style="font-size:0.8rem;color:#4b5563;font-weight:600;">Price TBA</span>
+                                    <span class="mock-btn-disabled">Coming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4: Economics — Coming Soon -->
+                    <div class="swiper-slide">
+                        <div class="mock-slide-card">
+                            <div class="mock-card-img-wrap" style="background:linear-gradient(135deg,#1c1100,#0f172a);">
+                                <div class="ebook-placeholder" style="background:linear-gradient(135deg,rgba(217,119,6,0.12),rgba(15,23,42,0.8));">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+                                </div>
+                                <div class="img-overlay"></div>
+                                <span class="coming-soon-badge">Coming Soon</span>
+                            </div>
+                            <div class="mock-card-body">
+                                <div class="mock-card-tag" style="color:#6b7280;">UGC NET · HP SET</div>
+                                <div class="mock-card-title">Economics Mock Test</div>
+                                <div class="mock-card-meta">
+                                    <span style="color:#4b5563;border-color:rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);">100 Questions</span>
+                                    <span style="color:#4b5563;border-color:rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);">120 min</span>
+                                </div>
+                                <div class="mock-card-footer">
+                                    <span style="font-size:0.8rem;color:#4b5563;font-weight:600;">Price TBA</span>
+                                    <span class="mock-btn-disabled">Coming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- end swiper-wrapper -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <!-- View All link -->
+        <div style="text-align:center;margin-top:8px;">
+            <a href="index.mock-tests.html"
+               style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.28);border-radius:100px;font-size:14px;font-weight:700;color:#a78bfa;text-decoration:none;transition:all 0.25s;"
+               onmouseover="this.style.background='rgba(139,92,246,0.2)'"
+               onmouseout="this.style.background='rgba(139,92,246,0.1)'">
+                View All Mock Tests &nbsp;→
+            </a>
+        </div>
+    </section>
+    <!-- ========= END MOCK TESTS SWIPER SECTION ========= -->
+
     <!-- Features -->
     <section id="features" class="py-24 px-6 bg-black/20">
         <div class="max-w-7xl mx-auto">
@@ -930,10 +1329,10 @@ src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"
                     <a href="#class-papers" class="w-full py-4 border border-white/10 rounded-xl text-center font-bold hover:bg-white/5 transition-all">View Papers</a>
                 </div>
                 <div class="glass-card p-10 flex flex-col reveal" style="transition-delay: 100ms">
-                    <i data-lucide="terminal" class="text-amber-500 w-12 h-12 mb-6"></i>
+                    <i data-lucide="terminal" class="text-purple-400 w-12 h-12 mb-6"></i>
                     <h3 class="text-2xl font-bold mb-4">Interactive Mock Tests</h3>
-                    <p class="text-gray-400 mb-8 flex-grow">Test your knowledge with our time-bound, interactive mock tests. Assess your preparation.</p>
-                    <span class="w-full py-4 border border-amber-500/20 text-amber-500/80 rounded-xl text-center font-bold">🚧 Under Construction</span>
+                    <p class="text-gray-400 mb-8 flex-grow">Test your knowledge with our time-bound, interactive mock tests designed for UGC NET & HP SET.</p>
+                    <a href="index.mock-tests.html" class="w-full py-4 rounded-xl text-center font-bold transition-all" style="background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.35);">Explore Mock Tests →</a>
                 </div>
             </div>
         </div>
@@ -1156,6 +1555,8 @@ src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"
                     <li><a href="#materials" class="hover:text-blue-400">Study Materials</a></li>
                     <li><a href="#handwritten" class="hover:text-blue-400">Handwritten Notes</a></li>
                     <li><a href="#notes-generator" class="hover:text-blue-400">AI Generator</a></li>
+                    <li><a href="index.mock-tests.html" class="hover:text-purple-400" style="color:#a78bfa;">⚖️ Mock Tests</a></li>
+                    <li><a href="index.e-books.html" class="hover:text-indigo-400">E-Books</a></li>
                 </ul>
             </div>
             
@@ -1221,6 +1622,29 @@ src="https://www.facebook.com/tr?id=4371581243162957&ev=PageView&noscript=1"
             },
         });
         // ========= END EBOOK SWIPER INIT =========
+
+        // ========= MOCK TEST SWIPER INIT (no autoplay) =========
+        const mockSwiper = new Swiper('#mockSwiper', {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+            centeredSlides: true,
+            loop: false,
+            speed: 700,
+            pagination: {
+                el: '#mock-test-swiper-section .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '#mock-test-swiper-section .swiper-button-next',
+                prevEl: '#mock-test-swiper-section .swiper-button-prev',
+            },
+            breakpoints: {
+                480: { slidesPerView: 1.5, spaceBetween: 20 },
+                768: { slidesPerView: 2.2, spaceBetween: 24 },
+                1024: { slidesPerView: 3, spaceBetween: 28 },
+            },
+        });
+        // ========= END MOCK TEST SWIPER INIT =========
     </script>
     <!-- Scripts -->
     <script>
