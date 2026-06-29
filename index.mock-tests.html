@@ -9,6 +9,7 @@
   <meta property="og:description" content="Crack your exam before the real exam. Premium mock tests for ₹49." />
   <link rel="stylesheet" href="index.mtstyle.css" />
   <style>
+    .delay-200 { transition-delay: 200ms; }
     .hero-scroll-hint{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:32px;color:var(--text3);font-size:12px}
     .stats-grid{align-items:stretch}
     .faq-wrapper{max-width:680px;margin:0 auto}
@@ -16,7 +17,112 @@
     .testimonials-container{height:260px}
     @media(max-width:600px){.testimonials-container{height:340px}}
     @media(max-width:420px){#coming-soon-grid{grid-template-columns:repeat(3,1fr)}}
+
+    /* ── Contact Section ── */
+    .contact-section{padding:80px 20px;}
+    .contact-wrapper{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+    .contact-title{font-family:var(--font-display);font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px;color:var(--text);}
+    .contact-desc{color:var(--text2);font-size:16px;line-height:1.7;margin-bottom:40px;}
+    .contact-info-list{display:flex;flex-direction:column;gap:28px;}
+    .contact-info-item{display:flex;align-items:center;gap:20px;}
+    .contact-info-icon{
+      width:52px;height:52px;flex-shrink:0;border-radius:14px;
+      background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.22);
+      display:flex;align-items:center;justify-content:center;font-size:22px;
+      color:var(--purple-light);
+    }
+    .contact-info-label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+    .contact-info-value{font-weight:700;color:var(--text);font-size:15px;}
+
+    .contact-form-card{
+      background:rgba(22,22,37,0.7);backdrop-filter:blur(18px);
+      border:1px solid var(--border);border-radius:var(--radius-xl);padding:36px;
+    }
+    .contact-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+    .contact-input,.contact-textarea{
+      width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border2);
+      border-radius:12px;padding:15px 18px;color:var(--text);font-size:14px;
+      font-family:var(--font-body);transition:var(--transition);
+    }
+    .contact-input::placeholder,.contact-textarea::placeholder{color:var(--text3);}
+    .contact-input:focus,.contact-textarea:focus{
+      outline:none;border-color:rgba(139,92,246,0.5);background:rgba(139,92,246,0.04);
+    }
+    .contact-textarea{resize:vertical;min-height:120px;margin-bottom:20px;}
+    .contact-submit-btn{
+      width:100%;padding:16px;border-radius:12px;border:none;cursor:pointer;
+      background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff;
+      font-family:var(--font-display);font-weight:700;font-size:15px;
+      box-shadow:0 4px 18px rgba(99,102,241,0.35);transition:var(--transition);
+    }
+    .contact-submit-btn:hover{box-shadow:0 8px 28px rgba(99,102,241,0.5);transform:translateY(-2px);}
+
+    @media(max-width:768px){
+      .contact-wrapper{grid-template-columns:1fr;gap:40px;}
+      .contact-form-row{grid-template-columns:1fr;}
+      .contact-section{padding:56px 16px;}
+    }
     #mock-tests-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));max-width:1000px;margin:0 auto;}
+
+    /* ── Nav Test Pills Slider ── */
+    .nav-pills-wrap{
+      position:relative;
+      max-width:200px;
+      overflow:hidden;
+    }
+    #nav-test-pills{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      overflow-x:auto;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      scroll-behavior:smooth;
+      scroll-snap-type:x mandatory;
+      padding:2px 4px;
+      mask-image:linear-gradient(to right, transparent 0%, black 14px, black calc(100% - 14px), transparent 100%);
+      -webkit-mask-image:linear-gradient(to right, transparent 0%, black 14px, black calc(100% - 14px), transparent 100%);
+    }
+    #nav-test-pills::-webkit-scrollbar{display:none}
+    .nav-pill{
+      flex-shrink:0;
+      scroll-snap-align:center;
+      white-space:nowrap;
+      padding:8px 16px;
+      border-radius:100px;
+      font-size:12.5px;
+      font-weight:600;
+      background:rgba(139,92,246,0.08);
+      border:1px solid rgba(139,92,246,0.22);
+      color:var(--text2);
+      cursor:pointer;
+      transition:background 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.3s ease, transform 0.3s ease;
+      opacity:0.55;
+      transform:scale(0.96);
+    }
+    .nav-pill:hover{
+      background:rgba(139,92,246,0.16);
+      border-color:rgba(139,92,246,0.4);
+      color:var(--text);
+    }
+    .nav-pill.active{
+      background:linear-gradient(135deg,#8b5cf6,#6366f1);
+      border-color:transparent;
+      color:#fff;
+      opacity:1;
+      transform:scale(1);
+      box-shadow:0 0 0 0 rgba(139,92,246,0.5);
+      animation:pillPulse 2.4s ease-out infinite;
+    }
+    @keyframes pillPulse{
+      0%{box-shadow:0 0 0 0 rgba(139,92,246,0.45);}
+      70%{box-shadow:0 0 0 6px rgba(139,92,246,0);}
+      100%{box-shadow:0 0 0 0 rgba(139,92,246,0);}
+    }
+    @media(max-width:640px){
+      .nav-pills-wrap{max-width:128px}
+      .nav-links{display:none}
+    }
   </style>
 </head>
 <body>
@@ -32,10 +138,7 @@
     <li><a href="index.mock-tests.html" style="color:var(--purple-light)">Mock Tests</a></li>
     <li><a href="index.e-books.html">E-Books</a></li>
   </ul>
-  <div class="nav-cta">
-    <a href="index.political-science-free-test.html" class="btn btn-sm btn-secondary">Free Test</a>
-    <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank" class="btn btn-sm btn-primary">Buy ₹49</a>
-  </div>
+  <div class="nav-pills-wrap"><div class="nav-cta" id="nav-test-pills"></div></div>
 </nav>
 
 <section class="hero">
@@ -175,7 +278,52 @@
     <p style="color:var(--text2);margin-bottom:28px;font-size:16px;line-height:1.7;">Start with any free 10-question test right now.<br>No registration. No payment.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
       <a href="#mock-tests" class="btn btn-primary btn-large">🎯 Start Free Test</a>
-      <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank" class="btn btn-amber btn-large">🔓 Buy Full Test ₹49</a>
+      <a href="#mock-tests" class="btn btn-amber btn-large">🔓 View Test Plans &amp; Buy ₹49</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+  <div class="contact-wrapper">
+    <div class="reveal">
+      <h2 class="contact-title">Let's Get in <span class="gradient-text">Touch</span></h2>
+      <p class="contact-desc">Have a question or need specific material? Drop us a message.</p>
+
+      <div class="contact-info-list">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉️</div>
+          <div>
+            <div class="contact-info-label">Email Us</div>
+            <div class="contact-info-value">ayushdanthta@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <div class="contact-info-label">Location</div>
+            <div class="contact-info-value">Online Platform, India</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">💬</div>
+          <div>
+            <div class="contact-info-label">Response Time</div>
+            <div class="contact-info-value">Within 24 Hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-card reveal delay-200">
+      <form action="https://formspree.io/f/mblgjeva" method="POST">
+        <div class="contact-form-row">
+          <input type="text" name="name" placeholder="Full Name" required class="contact-input">
+          <input type="email" name="email" placeholder="Email Address" required class="contact-input">
+        </div>
+        <textarea name="message" placeholder="How can we help?" rows="4" required class="contact-textarea"></textarea>
+        <button type="submit" class="contact-submit-btn">Send Message</button>
+      </form>
     </div>
   </div>
 </section>
@@ -188,21 +336,19 @@
     <a href="index.mock-tests.html">Mock Tests</a>
     <a href="index.e-books.html">E-Books</a>
     <a href="index_privacy-policy.html">Privacy Policy</a>
-    <a href="mailto:studyhubnetwork@gmail.com">Contact</a>
+    <a href="#contact">Contact</a>
   </div>
   <p style="margin-top:12px;">© 2026 Study Hub Network · Shimla, Himachal Pradesh</p>
 </footer>
 
 <script>
 // ── DATA ──────────────────────────────────────────────────
-const RAZORPAY_LINK = "https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#";
-
 const mockTests = [
   {
     id:"political-science", title:"UGC NET / SET Political Science", subtitle:"Complete Mock Test Series",
     difficulty:"Moderate-Hard", totalQuestions:100, duration:120, price:49, originalPrice:149,
     successRate:"87%", students:"1,200+", rating:4.8, reviews:340,
-    buyLink: RAZORPAY_LINK,
+    buyLink: "https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#",
     freeTestPage:"index.political-science-free-test.html",
     badge:"POPULAR", badgeColor:"#f59e0b", icon:"⚖️",
     features:["100 Questions (NET/SET Pattern)","Detailed Answer Key","Topic-wise Analysis","Previous Year Pattern","Mobile Friendly","Instant PDF Access"]
@@ -211,7 +357,7 @@ const mockTests = [
     id:"ssc-cgl", title:"SSC CGL 2026 Mock Test", subtitle:"Tier I Full-Length Test",
     difficulty:"Moderate", totalQuestions:100, duration:60, price:49, originalPrice:149,
     successRate:"82%", students:"800+", rating:4.7, reviews:120,
-    buyLink: RAZORPAY_LINK,
+    buyLink: "https://rzp.io/rzp/TktAWZc",
     freeTestPage:"index.ssc-cgl-free-test.html",
     badge:"NEW", badgeColor:"#0ea5e9", icon:"📊",
     features:["100 Questions (Tier I Pattern)","All 4 Sections Covered","Detailed Answer Key","Topic-wise Explanations","Mobile Friendly","Instant PDF Access"]
@@ -275,6 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTestimonials();
   renderMockTestCards();
   renderComingSoonCards();
+  renderNavPills();
   initScrollReveal();
 });
 
@@ -412,7 +559,7 @@ function renderMockTestCards() {
   const container = document.getElementById("mock-tests-grid");
   if (!container) return;
   container.innerHTML = mockTests.map(t =>
-    '<div class="test-card reveal">' +
+    '<div class="test-card reveal" id="test-card-' + t.id + '">' +
     '<div class="card-badge" style="background:' + t.badgeColor + '">' + t.badge + '</div>' +
     '<div class="card-header">' +
     '<span class="card-icon">' + t.icon + '</span>' +
@@ -454,6 +601,85 @@ function renderComingSoonCards() {
     '</div>'
   ).join("");
   setTimeout(initScrollReveal, 60);
+}
+
+// ── NAV TEST PILLS (smooth scroll selector) ────────────────
+function renderNavPills() {
+  const container = document.getElementById("nav-test-pills");
+  if (!container) return;
+
+  // Short label for each test so pills stay compact
+  const shortLabel = (t) => {
+    if (t.id === "political-science") return "⚖️ Pol. Sci";
+    if (t.id === "ssc-cgl") return "📊 SSC CGL";
+    return t.title;
+  };
+
+  container.innerHTML = mockTests.map((t, i) =>
+    '<button class="nav-pill' + (i === 0 ? " active" : "") + '" data-target="test-card-' + t.id + '">' +
+    shortLabel(t) +
+    '</button>'
+  ).join("");
+
+  const pills = container.querySelectorAll(".nav-pill");
+
+  // Fade pills in/out smoothly as the tray scrolls horizontally,
+  // based on each pill's distance from the container's center.
+  function updatePillOpacity() {
+    const wrapRect = container.getBoundingClientRect();
+    const centerX = wrapRect.left + wrapRect.width / 2;
+    pills.forEach(pill => {
+      const r = pill.getBoundingClientRect();
+      const pillCenter = r.left + r.width / 2;
+      const dist = Math.abs(pillCenter - centerX);
+      const maxDist = wrapRect.width / 2 + r.width / 2;
+      const ratio = Math.max(0, 1 - dist / maxDist);
+      if (!pill.classList.contains("active")) {
+        pill.style.opacity = (0.35 + ratio * 0.5).toFixed(2);
+        pill.style.transform = "scale(" + (0.9 + ratio * 0.08).toFixed(2) + ")";
+      }
+    });
+  }
+
+  container.addEventListener("scroll", updatePillOpacity, { passive: true });
+  updatePillOpacity();
+
+  pills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      pills.forEach(p => { p.classList.remove("active"); p.style.opacity = ""; p.style.transform = ""; });
+      pill.classList.add("active");
+
+      // Center the clicked pill within the scroll tray
+      const pillCenter = pill.offsetLeft + pill.offsetWidth / 2;
+      const targetScroll = pillCenter - container.clientWidth / 2;
+      container.scrollTo({ left: targetScroll, behavior: "smooth" });
+
+      const target = document.getElementById(pill.dataset.target);
+      if (target) {
+        const navHeight = document.querySelector(".nav")?.offsetHeight || 0;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 24;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    });
+  });
+
+  autoPeekNavPills();
+}
+
+// ── AUTO-SCROLL PEEK (hints there are more pills) ──────────
+function autoPeekNavPills() {
+  const container = document.getElementById("nav-test-pills");
+  if (!container) return;
+  if (mockTests.length < 2) return; // no need to hint if only 1 test
+
+  setTimeout(() => {
+    const peekAmount = 60; // how far to nudge, in px
+    container.scrollTo({ left: peekAmount, behavior: "smooth" });
+
+    setTimeout(() => {
+      container.scrollTo({ left: 0, behavior: "smooth" });
+    }, 650);
+  }, 900);
 }
 
 // ── FAQ ───────────────────────────────────────────────────
