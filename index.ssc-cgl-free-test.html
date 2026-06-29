@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSC CGL 2026 – Free Mock Test | Study Hub</title>
+  <meta name="description" content="Attempt the free 10-question SSC CGL 2026 mock test. Real exam feel. Instant results." />
+  <link rel="stylesheet" href="index.mtstyle.css" />
+  <style>
+    body{background:var(--bg2)}
+    .top-buy-banner{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(239,68,68,.04));border-bottom:1px solid rgba(245,158,11,.2);padding:11px 20px;text-align:center;font-size:14px;color:var(--text2)}
+    .top-buy-banner strong{color:#fbbf24}
+    .top-buy-banner a{color:#fbbf24;font-weight:700;text-decoration:underline;margin-left:8px}
+    .progress-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:var(--text3);margin-bottom:8px;font-weight:500}
+    .upgrade-card{padding:18px;background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(139,92,246,.05));border:1px solid rgba(245,158,11,.2);border-radius:var(--radius);text-align:center}
+    .upgrade-card-icon{font-size:1.6rem;margin-bottom:7px}
+    .upgrade-card-title{font-family:var(--font-display);font-weight:700;font-size:14px;margin-bottom:5px}
+    .upgrade-card-desc{font-size:12px;color:var(--text2);margin-bottom:13px;line-height:1.5}
+    @media(max-width:768px){.quiz-wrapper{grid-template-columns:1fr!important}.sidebar{flex-direction:row;flex-wrap:wrap}.sidebar>*{flex:1;min-width:180px}}
+  </style>
+</head>
+<body>
+
+<div class="top-buy-banner">
+  🎁 Skip the test? <strong>Get all 100 Questions + Answer Key</strong> for just ₹49
+  <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank">Buy Now →</a>
+</div>
+
+<nav class="quiz-nav">
+  <a href="index.mock-tests.html" class="quiz-nav-brand">← Study Hub</a>
+  <div class="quiz-nav-info">
+    <span class="quiz-nav-title">SSC CGL 2026 · Free Test (10 Qs)</span>
+  </div>
+  <div class="timer-box"><span>⏱</span><span id="timer-display">10:00</span></div>
+</nav>
+
+<div class="quiz-wrapper">
+  <div class="quiz-main">
+    <div style="margin-bottom:18px;">
+      <div class="progress-row">
+        <span id="progress-text">Question 1 of 10</span>
+        <span id="progress-percent">10%</span>
+      </div>
+      <div class="progress-bar-track"><div id="progress-fill" style="width:10%;"></div></div>
+    </div>
+    <div class="question-card">
+      <div class="question-card-header">
+        <span style="font-size:13px;font-weight:600;color:var(--text3);">Free Mock Test &nbsp;·&nbsp; 10 Questions &nbsp;·&nbsp; 10 Minutes</span>
+        <span style="font-size:13px;color:var(--purple-light);font-weight:600;">SSC CGL 2026</span>
+      </div>
+      <div id="question-container"></div>
+      <div class="controls-bar">
+        <button id="review-btn" onclick="quiz.markForReview(quiz.currentIndex)">🔖 Mark for Review</button>
+        <div class="spacer"></div>
+        <button id="prev-btn"   onclick="quiz.prev()"       class="btn btn-sm btn-secondary" disabled>← Prev</button>
+        <button id="next-btn"   onclick="quiz.next()"       class="btn btn-sm btn-primary">Next →</button>
+        <button id="submit-btn" onclick="openSubmitModal()" class="btn btn-sm btn-amber" style="display:none;">Submit ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="student-info">
+        <div class="student-avatar">👤</div>
+        <div><div class="student-name">Guest Student</div><div class="student-test">SSC CGL · Free</div></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot current"></div> Current</div>
+        <div class="legend-item"><div class="legend-dot answered"></div> Answered</div>
+        <div class="legend-item"><div class="legend-dot review"></div> Marked for Review</div>
+        <div class="legend-item"><div class="legend-dot not-visited"></div> Not Visited</div>
+      </div>
+    </div>
+    <div class="stats-card"><div id="palette-stats">
+      <div class="stat-item answered"><span>0</span> Answered</div>
+      <div class="stat-item unanswered"><span>10</span> Not Answered</div>
+      <div class="stat-item review"><span>0</span> Marked</div>
+    </div></div>
+    <div class="palette-card">
+      <div class="palette-label">Question Palette</div>
+      <div id="question-palette"></div>
+    </div>
+    <div class="upgrade-card">
+      <div class="upgrade-card-icon">🔓</div>
+      <div class="upgrade-card-title">Unlock 90 More Questions</div>
+      <div class="upgrade-card-desc">Full PDF + Answer Key<br>Instant delivery on WhatsApp</div>
+      <a href="https://pages.razorpay.com/pl_SwQpT18zeDJ9gj/view#" target="_blank" class="btn btn-amber btn-full" style="font-size:13px;padding:11px;">Buy Full Test ₹49</a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="submit-modal">
+  <div class="modal">
+    <div class="modal-icon">📝</div>
+    <h2 class="modal-title">Submit Your Test?</h2>
+    <p class="modal-desc" id="modal-desc">Make sure you have answered all questions.</p>
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-value" id="modal-answered">0</div><div class="modal-stat-label">Answered</div></div>
+      <div class="modal-stat"><div class="modal-stat-value" id="modal-unanswered">10</div><div class="modal-stat-label">Unanswered</div></div>
+      <div class="modal-stat"><div class="modal-stat-value" id="modal-marked">0</div><div class="modal-stat-label">Marked</div></div>
+    </div>
+    <div class="modal-actions">
+      <button onclick="closeSubmitModal()" class="btn btn-secondary btn-full">← Go Back</button>
+      <button onclick="confirmSubmit()"    class="btn btn-primary  btn-full">Submit Now ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENT POPUP -->
+<div class="achievement-popup" id="achievement-popup">
+  <div class="achievement-popup-icon" id="ach-icon">🎯</div>
+  <div>
+    <div class="achievement-popup-title">Achievement Unlocked!</div>
+    <div class="achievement-popup-name" id="ach-name">Test Taker</div>
+    <div class="achievement-popup-xp"   id="ach-xp">+50 XP</div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG & DATA
+// ============================================================
+const rankSystem = [
+  {min:0,max:3,rank:"Beginner",icon:"🌱",color:"#94a3b8",message:"Don't worry. Every expert was once a beginner. Keep practicing!"},
+  {min:4,max:6,rank:"Learner", icon:"📘",color:"#3b82f6",message:"Good start! Consistent practice will take you to the top."},
+  {min:7,max:8,rank:"Advanced",icon:"🔥",color:"#f59e0b",message:"Impressive! You have strong fundamentals. Keep pushing!"},
+  {min:9,max:9,rank:"Scholar", icon:"🎓",color:"#8b5cf6",message:"Outstanding! You're almost exam-ready. Go for the full test!"},
+  {min:10,max:10,rank:"Master",icon:"👑",color:"#f59e0b",message:"PERFECT SCORE! You are an SSC CGL Master!"}
+];
+
+const achievements = [
+  {id:"first_test",     title:"Test Taker",       icon:"🎯",desc:"Completed your first mock test",xp:50},
+  {id:"perfect_score",  title:"Master",            icon:"👑",desc:"Scored 10/10 on free test",xp:200},
+  {id:"speed_demon",    title:"Speed Demon",       icon:"⚡",desc:"Finished test in under 4 minutes",xp:100},
+  {id:"high_accuracy",  title:"Sharp Mind",        icon:"🧠",desc:"Achieved 80%+ accuracy",xp:150},
+  {id:"ssc_strategist", title:"SSC Strategist",    icon:"📊",desc:"Completed SSC CGL test",xp:80}
+];
+
+// 10 free questions — 2-3 from each section, matching the PDF exactly
+const FREE_QUESTIONS = [
+  {id:1,question:"DOCTOR : HOSPITAL :: Teacher : ?",
+   options:["School","Clinic","Library","Office"],
+   correct:0,topic:"Reasoning",
+   explanation:"DOCTOR works in a HOSPITAL; similarly, a Teacher works in a SCHOOL. This is a workplace analogy."},
+  {id:2,question:"Find the ODD one out: 17, 23, 37, 51, 53",
+   options:["17","37","51","53"],
+   correct:2,topic:"Reasoning",
+   explanation:"17, 23, 37, and 53 are all prime numbers. 51 = 3 × 17 is NOT prime, making it the odd one out."},
+  {id:3,question:"In a row of 40 students, Ravi is 11th from the left. What is his position from the right?",
+   options:["28th","29th","30th","31st"],
+   correct:2,topic:"Reasoning",
+   explanation:"Position from right = Total − Position from left + 1 = 40 − 11 + 1 = 30th."},
+  {id:4,question:"Which Article of the Indian Constitution abolishes untouchability?",
+   options:["Article 14","Article 17","Article 21","Article 23"],
+   correct:1,topic:"General Awareness",
+   explanation:"Article 17 of the Indian Constitution abolishes untouchability and forbids its practice in any form."},
+  {id:5,question:"The Statue of Unity, the world's tallest statue, is located in which state?",
+   options:["Maharashtra","Madhya Pradesh","Gujarat","Rajasthan"],
+   correct:2,topic:"General Awareness",
+   explanation:"The Statue of Unity is located in Kevadia, Gujarat, on the banks of the Narmada river."},
+  {id:6,question:"Who authored the book 'Arthashastra'?",
+   options:["Manu","Chandragupta Maurya","Kautilya","Bana"],
+   correct:2,topic:"General Awareness",
+   explanation:"Arthashastra was written by Kautilya (Chanakya), the adviser to Chandragupta Maurya."},
+  {id:7,question:"A shopkeeper marks his goods 40% above cost price and gives a 20% discount. His profit % is:",
+   options:["10%","12%","14%","20%"],
+   correct:1,topic:"Quantitative Aptitude",
+   explanation:"Let CP = 100. MP = 140. SP after 20% discount = 140 × 0.8 = 112. Profit = 12%."},
+  {id:8,question:"A can do a work in 12 days, B can do it in 18 days. In how many days can they finish it together?",
+   options:["6.4 days","7.2 days","8 days","9 days"],
+   correct:1,topic:"Quantitative Aptitude",
+   explanation:"Combined rate = 1/12 + 1/18 = 3/36 + 2/36 = 5/36. Time = 36/5 = 7.2 days."},
+  {id:9,question:"[Synonym] VERBOSE",
+   options:["Silent","Brief","Wordy","Polite"],
+   correct:2,topic:"English",
+   explanation:"VERBOSE means using more words than necessary; the closest synonym is 'Wordy'."},
+  {id:10,question:"'Bite the bullet' means:",
+   options:["To eat hurriedly","To endure pain or hardship without complaint","To attack someone","To give up easily"],
+   correct:1,topic:"English",
+   explanation:"'Bite the bullet' is an idiom meaning to endure a painful or unpleasant situation bravely and without complaint."}
+];
+
+// ============================================================
+// QUIZ ENGINE
+// ============================================================
+class QuizEngine {
+  constructor() {
+    this.questions=FREE_QUESTIONS;
+    this.currentIndex=0;
+    this.answers=new Array(this.questions.length).fill(null);
+    this.markedForReview=new Array(this.questions.length).fill(false);
+    this.visited=new Array(this.questions.length).fill(false);
+    this.startTime=null;
+    this.timerInterval=null;
+    this.timeLimit=10*60;
+    this.timeRemaining=this.timeLimit;
+    this.isSubmitted=false;
+    this.xp=parseInt(localStorage.getItem("sh_xp")||"0");
+    this.achievements=JSON.parse(localStorage.getItem("sh_achievements_ssc")||"[]");
+  }
+  init() { this.startTime=Date.now(); this.visited[0]=true; this.startTimer(); this.saveState(); }
+  startTimer() {
+    this.timerInterval=setInterval(()=>{
+      this.timeRemaining--;
+      this.updateTimerDisplay();
+      if(this.timeRemaining<=0) this.autoSubmit();
+      this.saveState();
+    },1000);
+  }
+  stopTimer() { if(this.timerInterval){clearInterval(this.timerInterval);this.timerInterval=null;} }
+  updateTimerDisplay() {
+    const m=Math.floor(this.timeRemaining/60), s=this.timeRemaining%60;
+    const el=document.getElementById("timer-display");
+    if(el){
+      el.textContent=`${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+      if(this.timeRemaining<=60) el.classList.add("danger");
+      else if(this.timeRemaining<=120) el.classList.add("warning");
+    }
+  }
+  selectAnswer(qi,oi) {
+    if(this.isSubmitted) return;
+    this.answers[qi]=oi; this.saveState(); this.renderPalette(); this.renderQuestion();
+  }
+  markForReview(qi) { this.markedForReview[qi]=!this.markedForReview[qi]; this.saveState(); this.renderPalette(); }
+  goToQuestion(i) {
+    if(i<0||i>=this.questions.length) return;
+    this.visited[i]=true; this.currentIndex=i; this.renderQuestion(); this.renderPalette();
+  }
+  next() { if(this.currentIndex<this.questions.length-1) this.goToQuestion(this.currentIndex+1); }
+  prev() { if(this.currentIndex>0) this.goToQuestion(this.currentIndex-1); }
+  autoSubmit() { this.stopTimer(); this.submit(true); }
+  submit(auto=false) {
+    if(this.isSubmitted) return;
+    this.isSubmitted=true; this.stopTimer();
+    const timeTaken=Math.floor((Date.now()-this.startTime)/1000);
+    const result=this.calculateResult(timeTaken);
+    this.awardXP(result); this.checkAchievements(result,timeTaken); this.saveResult(result);
+    return result;
+  }
+  calculateResult(timeTaken) {
+    let correct=0,wrong=0,unattempted=0;
+    this.answers.forEach((ans,i)=>{
+      if(ans===null) unattempted++;
+      else if(ans===this.questions[i].correct) correct++;
+      else wrong++;
+    });
+    const attempted=correct+wrong, score=correct;
+    const accuracy=attempted>0?Math.round((correct/attempted)*100):0;
+    let rank=rankSystem[0];
+    for(const r of rankSystem){ if(score>=r.min&&score<=r.max){rank=r;break;} }
+    const topicPerformance={};
+    this.questions.forEach((q,i)=>{
+      if(!topicPerformance[q.topic]) topicPerformance[q.topic]={correct:0,total:0};
+      topicPerformance[q.topic].total++;
+      if(this.answers[i]===q.correct) topicPerformance[q.topic].correct++;
+    });
+    return {correct,wrong,unattempted,attempted,score,accuracy,timeTaken,rank,topicPerformance,answers:[...this.answers]};
+  }
+  awardXP(result) {
+    const xpGained=result.correct*10+(result.accuracy>=80?50:0);
+    this.xp+=xpGained; localStorage.setItem("sh_xp",this.xp); return xpGained;
+  }
+  checkAchievements(result,timeTaken) {
+    const n=[];
+    const add=(id)=>{ if(!this.achievements.includes(id)){this.achievements.push(id);n.push(id);} };
+    add("first_test");
+    if(result.score===10)      add("perfect_score");
+    if(timeTaken<240)          add("speed_demon");
+    if(result.accuracy>=80)    add("high_accuracy");
+    add("ssc_strategist");
+    localStorage.setItem("sh_achievements_ssc",JSON.stringify(this.achievements));
+    return n;
+  }
+  saveResult(result) {
+    localStorage.setItem("sh_last_result_ssc",JSON.stringify(result));
+    const h=JSON.parse(localStorage.getItem("sh_test_history_ssc")||"[]");
+    h.unshift({...result,date:new Date().toISOString()});
+    localStorage.setItem("sh_test_history_ssc",JSON.stringify(h.slice(0,10)));
+  }
+  saveState() {
+    sessionStorage.setItem("sh_quiz_state_ssc",JSON.stringify({
+      currentIndex:this.currentIndex,answers:this.answers,
+      markedForReview:this.markedForReview,visited:this.visited,
+      timeRemaining:this.timeRemaining,startTime:this.startTime
+    }));
+  }
+  renderQuestion() {
+    const q=this.questions[this.currentIndex];
+    const container=document.getElementById("question-container");
+    if(!container) return;
+    const sel=this.answers[this.currentIndex];
+    container.innerHTML=`
+      <div class="question-header">
+        <span class="question-number">Question ${this.currentIndex+1} of ${this.questions.length}</span>
+        <span class="question-topic">${q.topic}</span>
+      </div>
+      <div class="question-text">${q.question}</div>
+      <div class="options-grid">
+        ${q.options.map((opt,i)=>`
+          <div class="option ${sel===i?"selected":""}" onclick="quiz.selectAnswer(${this.currentIndex},${i})">
+            <span class="option-letter">${String.fromCharCode(65+i)}</span>
+            <span class="option-text">${opt}</span>
+            <span class="option-check">${sel===i?"✓":""}</span>
+          </div>`).join("")}
+      </div>`;
+    const pf=document.getElementById("progress-fill");
+    if(pf) pf.style.width=`${((this.currentIndex+1)/this.questions.length)*100}%`;
+    document.getElementById("prev-btn").disabled=this.currentIndex===0;
+    document.getElementById("next-btn").style.display=this.currentIndex===this.questions.length-1?"none":"flex";
+    document.getElementById("submit-btn").style.display=this.currentIndex===this.questions.length-1?"flex":"none";
+    const rb=document.getElementById("review-btn");
+    if(rb){ rb.classList.toggle("active",this.markedForReview[this.currentIndex]); rb.textContent=this.markedForReview[this.currentIndex]?"🔖 Marked":"🔖 Mark for Review"; }
+    updateProgressUI();
+  }
+  renderPalette() {
+    const palette=document.getElementById("question-palette");
+    if(!palette) return;
+    palette.innerHTML=this.questions.map((_,i)=>{
+      let cls="palette-btn";
+      if(i===this.currentIndex) cls+=" current";
+      else if(this.answers[i]!==null&&this.markedForReview[i]) cls+=" answered-review";
+      else if(this.answers[i]!==null) cls+=" answered";
+      else if(this.markedForReview[i]) cls+=" review";
+      else if(this.visited[i]) cls+=" visited";
+      return `<button class="${cls}" onclick="quiz.goToQuestion(${i})">${i+1}</button>`;
+    }).join("");
+    const answered=this.answers.filter(a=>a!==null).length;
+    const marked=this.markedForReview.filter(Boolean).length;
+    const unanswered=this.questions.length-answered;
+    const statsEl=document.getElementById("palette-stats");
+    if(statsEl) statsEl.innerHTML=`
+      <div class="stat-item answered"><span>${answered}</span> Answered</div>
+      <div class="stat-item unanswered"><span>${unanswered}</span> Not Answered</div>
+      <div class="stat-item review"><span>${marked}</span> Marked</div>`;
+  }
+}
+
+// ============================================================
+// INIT & CONTROLS
+// ============================================================
+const quiz=new QuizEngine();
+
+document.addEventListener("DOMContentLoaded",()=>{
+  quiz.init(); quiz.renderQuestion(); quiz.renderPalette(); updateProgressUI();
+});
+
+function updateProgressUI() {
+  const cur=quiz.currentIndex+1, total=quiz.questions.length;
+  const pt=document.getElementById("progress-text"), pp=document.getElementById("progress-percent");
+  if(pt) pt.textContent=`Question ${cur} of ${total}`;
+  if(pp) pp.textContent=`${Math.round((cur/total)*100)}%`;
+}
+
+function openSubmitModal() {
+  const answered=quiz.answers.filter(a=>a!==null).length;
+  const unanswered=quiz.questions.length-answered;
+  const marked=quiz.markedForReview.filter(Boolean).length;
+  document.getElementById("modal-answered").textContent=answered;
+  document.getElementById("modal-unanswered").textContent=unanswered;
+  document.getElementById("modal-marked").textContent=marked;
+  document.getElementById("modal-desc").textContent=unanswered>0
+    ?`You have ${unanswered} unanswered question(s). Submit anyway?`
+    :"All questions answered. Ready to submit!";
+  document.getElementById("submit-modal").classList.add("open");
+}
+function closeSubmitModal(){ document.getElementById("submit-modal").classList.remove("open"); }
+function confirmSubmit() {
+  const result=quiz.submit();
+  const timeTaken=Math.floor((Date.now()-quiz.startTime)/1000);
+  const newAchs=quiz.checkAchievements(result,timeTaken);
+  closeSubmitModal();
+  if(newAchs.length>0){ showAchievementPopup(newAchs[0]); setTimeout(()=>{ window.location.href="index.ssc-cgl-result.html"; },2200); }
+  else window.location.href="index.ssc-cgl-result.html";
+}
+function showAchievementPopup(id) {
+  const ach=achievements.find(a=>a.id===id);
+  if(!ach) return;
+  const popup=document.getElementById("achievement-popup");
+  document.getElementById("ach-icon").textContent=ach.icon;
+  document.getElementById("ach-name").textContent=ach.title;
+  document.getElementById("ach-xp").textContent=`+${ach.xp} XP`;
+  popup.classList.add("show"); setTimeout(()=>popup.classList.remove("show"),2000);
+}
+window.addEventListener("beforeunload",e=>{ if(!quiz.isSubmitted){e.preventDefault();e.returnValue="Your test progress will be lost. Are you sure?";} });
+</script>
+</body>
+</html>
